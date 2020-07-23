@@ -35,14 +35,14 @@
 
 - **로그인, 회원가입 페이지**
 
-  ![](/img/github-main.png)
+  ![](img/github-main.png)
   - 회원가입
   - 로그인
   - 가격정책(pricing)
 
 - 서비스소개(슬라이드해서 내려가면 아래처럼 소개 나오게끔)
 
-  ![](/img/github-intro.png)
+  ![](img/github-intro.png)
 
 
 
@@ -50,9 +50,9 @@
 
 - **디자인**: 페이스북의 피드처럼 설문이 하나씩 올라오도록
 
-![](/img/facebook-feedpage.png)
+![](img/facebook-feedpage.png)
 
-![](/img/mainpage.png)
+![](img/mainpage.png)
 
 - 메인에는 설문지 리스트
 - 헤더
@@ -72,7 +72,7 @@
 
 ### surveyMake.html
 
-![](/img/img3.png)
+![](img/img3.png)
 
 - 구글 설문조사 설문 제작 사이트 클론
 - CRUD 활용하면 되지 않을까?
