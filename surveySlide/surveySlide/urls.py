@@ -21,5 +21,5 @@ import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', pages.views.index, name='index'),
+    path('', pages.views.index, name='index'),
 ]
