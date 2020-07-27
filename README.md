@@ -2,6 +2,10 @@
 
 해커톤을 향해! 
 
+[구글독](https://docs.google.com/document/d/1XZCP1MxqWVhv2nqjzUlk0TddqXnlzX_GbkSbKYpatqs/edit?usp=sharing) 
+
+[데이터베이스 구조 예시](https://docs.google.com/spreadsheets/d/1Z5tycA0LzGOusHoBt94dwG9l6CGxMWActRw-Y4dbcBY/edit?usp=sharing)
+
 ## 1. 일정
 
 설입 커피나무(예정)
