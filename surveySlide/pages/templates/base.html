@@ -6,11 +6,13 @@
     <meta charset="utf-8">
     <title>surveySlide</title>
     <link rel="stylesheet" href="{% static 'pages/style.css' %}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
+    <div class="header">
       <div>
-        <img class="icon" src="{% static "pages/imgs/icon.png" %}" alt="icon"/>
+        <a href=""><img class="icon" src="{% static "pages/imgs/icon.png" %}" alt="icon"/></a>
       </div>
       <div class="header_menus">
         <a href="">서비스 소개</a>
@@ -22,13 +24,14 @@
           <ul class="additional_menus">
             <li><a href='accounts/<int:id>/myinfo/'>내 프로필</a></li>  
             <li><a href="">충전/환전</a></li>  
-            <li><a href="">환전</a></li>  
             <li><a href="">설정</a></li>  
+            <li><a href="">로그아웃</a></li>  
           </ul>
         {% else %}
           <a href="">가입하기</a>
           <a href="">로그인</a>
         {% endif %}
+      </div>
       </div>
     </header>
     {% block content %}
