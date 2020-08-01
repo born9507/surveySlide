@@ -82,6 +82,7 @@ body {
 
 .serviceintroduction_title {
     font-size: 20px;
+    
 }
 
 .serviceintroduction_content {
@@ -113,6 +114,7 @@ body {
 
 .interviewer_title {
     font-size: 15px;
+    font-weight: 500;
 }
 
 .interviewer_engtitle {
@@ -128,6 +130,7 @@ body {
 
 .interviewee_title {
     font-size: 15px;
+    font-weight: 500;
 }
 
 .interviewee_engtitle {
