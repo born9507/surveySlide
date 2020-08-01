@@ -4,9 +4,23 @@ from django.contrib import auth
 from django.shortcuts import redirect
 
 def signup(request):
-    if request.method  == 'POST':
+    if request.method=='POST':
         if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
-            auth.login(request, user)
-            return redirect('/feeds')
-    return render(request, 'accounts/signup.html')
+            user=User.objects.create_user(username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'], first_name=request.POST['first_name'], last_name=request.POST['last_name'])
+            auth.login(request,user)
+            return redirect('index')
+    return render(request, 'index')
+
+def changeinfo(request, id):
+    user=User.objects.get(id=id)
+    if request.method=='POST':
+        User.objects.filter(id=id).update(username=request.POST['username'])
+        Profile.objects.filter(user=user).update(college=request.POST['college'], major=request.POST['major'])
+        user.refresh_from_db()
+        return redirect('accounts/myinfo.html')
+    else:
+        return render(request, 'accounts/changeinfo.html')
+
+def myinfo(request, id):
+    user=User.objects.get(id=id)
+    return redirect('accounts/myinfo.html')
