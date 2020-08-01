@@ -1,14 +1,28 @@
+
 {% extends 'base.html' %}
 
+{% load static %}
 {% block content %}
+
 {% if user.is_authenticated %}
-    <h2> 서베이 슬라이더에 </h2>
-    <h2>오신 것을 환영합니다 </h2>
+<div class = "introduction">
+    <div class = "title"><p>서베이 슬라이더에<br>오신 것을 환영합니다</p></div>
+    <div class = "content"><p> 리도 못 가서 발병난다. 내가 그의 이름을 불러<br>주었을 때 그는  돌같이 하라 뭉치면 살고 흩어지면<br>죽는다. 이 몸이 죽고 죽어 일백번 고쳐 죽어고 임<br>향한 일편단심 가실 줄이 리도 못 가서 발병난다.<br>내가 그의 이름을 불러 주었을 때 그는  돌같이 하라<br>뭉치면 살고 흩어지면 죽는다. 이 몸이 죽고 죽어<br>일백번 고쳐 죽어고 임 향한 일편단심 가실 줄이<br>리도 못 가서 발병난다. 내가 그죽고 죽어 일백번 </p></div>
+</div>
+
 {%else%}
-    <div style="border: 4px solid grey; border-radius: 3%;">
-        <h2> 서베이 슬라이더에 </h2>
-        <h2> 오신 것을 환영합니다 </h2>
-    </div>
+
+<div class = "introduction">
+    <div class = "title"><p>서베이 슬라이더에<br>오신 것을 환영합니다</p></div>
+    <div class = "content"><p> 리도 못 가서 발병난다. 내가 그의 이름을 불러<br>주었을 때 그는  돌같이 하라 뭉치면 살고 흩어지면<br>죽는다. 이 몸이 죽고 죽어 일백번 고쳐 죽어고 임<br>향한 일편단심 가실 줄이 리도 못 가서 발병난다.<br>내가 그의 이름을 불러 주었을 때 그는  돌같이 하라<br>뭉치면 살고 흩어지면 죽는다. 이 몸이 죽고 죽어<br>일백번 고쳐 죽어고 임 향한 일편단심 가실 줄이<br>리도 못 가서 발병난다. 내가 그죽고 죽어 일백번 </p></div>
+</div>
+<div class = "service_introduction">
+    <div class = "serviceintroduction_title"><p>서비스 소개</p></div>
+    <div class = "serviceintroduction_content"><p>서베이 슬라이더는 설문 의뢰인과 설문 대상자 양방의 만족을 추구합니다<br>웹 앱 플랫폼을 통해 누구나 간편하게 설문하고 즉각적인 리워드를 얻을 수 있습니다</div>
+    <br>
+    <br>
+    <br>
+    <br>
     <div style="border: 4px solid grey; border-radius: 3%;">
         <h5>계정만들기</h5>
         <form method="POST" action="{%url 'signup'%}">
@@ -34,5 +48,87 @@
             <input type="submit" value="회원가입">
         </form>
     </div>
+    <div class = "interview">
+        <div class = "interviewer">
+            <img class="interviewer_image" src="{% static "pages\imgs\download-for-free-10-png-iphone-png-white-top-images-at-carlisle-white-iphone-png-1258_944.png" %}"/>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div>
+                <div class = "interviewer_title"><p>설문 의뢰인</p></div>
+                <div class = "interviewer_engtitle"><p >Interviewer</p></div><br>
+                <div class = "interviewer_content">
+                <p>사이트에서 간편하게 설문조사를 제작 및 배포할 수 있습니다</p>
+                <p>광고 수익의 일부를 설문 비용에 충당함으로써 낮은 단가를 유지합니다</p>
+                <p>연령, 성별, 거주지 등에 따른 세분화된 설문 대상 설정이 가능합니다</p>
+                <p>문항 개수, 종류에 따라 가격 책정이 이루어집니다</p>
+                <p>정해진 기한까지 설문 시행 완료를 보장합니다</p>
+                <p>추가 금액 지불하고 설문 기한을 단축시킬 수 있습니다</p>
+                </div>
+            </div>
+        </div>
+        <div class = "interviewee">
+            <img class="interviewer_image" src="{% static "pages\imgs\download-for-free-10-png-iphone-png-white-top-images-at-carlisle-white-iphone-png-1258_944.png" %}"/>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div>
+                <div class = "interviewee_title"><p>설문 대상자</p></div>
+                <div class = "interviewee_engtitle"><p >Interviewee</p></div><br>
+                <div class = "interviewee_content">
+                <p>사이트 및 App에서 간편한 설문 시행이 가능합니다</p>
+                <p>기존의 설문 조사 양식에서 벗어나 문제 단위로 답변할 수 있습니다</p>
+                <p>답변에 따른 리워드를 랜덤으로 제공하며 현금으로 환전이 가능합니다</p>
+                <p>설문에 성실히 참여할수록 높은 리워드를 받을 확률이 올라갑니다</p>
+                <p>App에서 알림 설정을 해두면 더 많은 리워드를 획득할 수 있습니다</p>
+                <p>잠금화면 설정을 해두면 더 많은 리워드를 획득할 수 있습니다</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "price_information">
+        <div class = "priceinformation_title"><p>가격 정책</p></div>
+        <div class = "priceinformation_content"><p>설문 비용은 문항수에 따른 1인 설문 비용과 응답자 수의 곱으로 가격 책정이 이루어집니다<br>기존의 다른 설문 서비스들보다 싸고 합리적인 단가를 제공하여 설문 의뢰인 여러분들의 만족을 추구합니다</div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="price_align">
+            <ul class="items">
+                <div class="items_name">문항수</div>
+                <li>1 ~ 4</li>  
+                <li>5 ~ 9</li>  
+                <li>10 ~ 14</li>  
+                <li>15 ~ 19</li> 
+                <li>20 ~ 24</li> 
+                <li>25 ~ 30</li>
+            </ul>
+            <ul class="price">
+                <div class="price_name">1인 설문 비용</div>
+                <li>100 ￦</li>  
+                <li>200 ￦</li>  
+                <li>400 ￦</li>  
+                <li>650 ￦</li> 
+                <li>900 ￦</li> 
+                <li>1200 ￦</li>
+            </ul>
+            <div class="x">×</div>
+            <div class="person">응답자 수</div>
+        </div>
+    </div>
+</div> 
+<footer class = "footer">
+    <div class = "allrights"><p>ⓒ 2020 SURVEY SLIDER, Inc. All rights reserved</p></div>
+    <div class = "·"><p>·</p></div>
+    <div class = "my_information"><p>개인정보 처리방침</p></div>
+    <div class = "·"><p>·</p></div>
+    <div class = "terms"><p>이용약관</p></div>
+    <div class = "·"><p>·</p></div>
+    <div class = "sitemap"><p>사이트맵</p></div>
+    <div class = "refund"><p>한국의 변경된 환불 정책</p></div>
+</footer>
+
 {%endif%}
 {% endblock content %}
