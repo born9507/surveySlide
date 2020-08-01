@@ -27,4 +27,6 @@ urlpatterns = [
     path('new/', pages.views.new),
     path('new/survey/', pages.views.surveyMake)
     path('accounts/signup/',accounts.views.signup, name='signup'),
+    path('accounts/<int:id>/changeinfo/',accounts.views.changeinfo,name='changeinfo'),
+    path('accounts/<int:id>/myinfo/',accounts.views.myinfo,name='myinfo'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
