@@ -2,6 +2,33 @@
 
 {% block content %}
 {% comment %} 코드 {% endcomment %}
-<h1>surveySlide</h1>
-
+<div style="border: 4px solid grey; border-radius: 3%;">
+    <h2> 서베이 슬라이더에 </h2>
+         오신 것을 환영합니다 </h2>
+</div>
+<div style="border: 4px solid grey; border-radius: 3%;">
+    <h5>계정만들기</h5>
+    <form method="POST" action="{%url 'signup'%}">
+        {% csrf_token %}
+        <br>
+        <input name="username" type="text" placeholder="아이디">
+        <br>
+        <br>
+        <br>
+        <input name="password1" type="password" value="">
+        <br>
+        <br>
+        <br>
+        <input name="password2" type="password" value="">
+        <br>
+        <br>
+        <input name="e-mail" type="text" placeholder="이메일 주소">
+        <br>
+        <br>
+        <input name="last-name" type="text" placeholder="성">  <input name="first-name" type="text" placeholder="이름">
+        <br>
+        <br>
+        <input type="submit" value="회원가입">
+    </form>
+</div>
 {% endblock content %}
