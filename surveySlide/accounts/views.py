@@ -10,3 +10,17 @@ def signup(request):
             auth.login(request,user)
             return redirect('index')
     return render(request, 'index')
+
+def changeinfo(request, id):
+    user=User.objects.get(id=id)
+    if request.method=='POST':
+        User.objects.filter(id=id).update(username=request.POST['username'])
+        Profile.objects.filter(user=user).update(college=request.POST['college'], major=request.POST['major'])
+        user.refresh_from_db()
+        return redirect('accounts/myinfo.html')
+    else:
+        return render(request, 'accounts/changeinfo.html')
+
+def myinfo(request, id):
+    user=User.objects.get(id=id)
+    return redirect('accounts/myinfo.html')
