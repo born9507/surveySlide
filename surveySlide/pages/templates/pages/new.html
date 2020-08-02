@@ -1,15 +1,58 @@
-{% extends 'base.html' %}
+{% comment %} {% extends 'base.html' %}
 
-{% block content %}
+{% block content %} {% endcomment %}
 
 <h1>New Survey</h1>
-<form action="/new/survey/" method="POST">
-	{% csrf token %}
-	<p>title</p>
-	<input name="title"/>
-	<input type="submit" value="submit"/>
-</form>
 
+<p>안녕하세요! {{user.get_username}} 님!</p>
+
+{% if not survey %}
+	<form action="/new/survey/" method="POST">
+		{% csrf_token %}
+		<p>설문조사 제목을 입력하세요</p>
+		<input name="title"/>
+		<input type="submit" value="submit"/>
+	</form>
+
+{% else %}
+	<p>설문조사 제목</p>
+	<p>{{survey.title}}</p>
+	<p>질문 갯수: {{survey.question_set.all.count}}</p>
+	{% for question in survey.question_set.all %}
+		<p>질문</p>
+		<p>{{question.question_text}}</p>
+
+		<p>선택지 목록</p>
+		<p>{{question.choice_set.all}}</p>
+
+		<ul>
+		{% for choice in question.choice_set.all%}
+			<p>선택지</p>
+			<li>{{choice.choice_text}}</li>
+		{% endfor %}
+		</ul>
+
+		<form action="/new/survey/{{survey.id}}/{{question.id}}/" method="POST">
+			{% csrf_token %}
+			<p>선택지를 입력하세요</p>
+			<input name="choice_text"/>
+			<input type="submit" value="submit"/>
+		</form>
+
+
+
+	{% endfor %}
+
+	<form action="/new/survey/{{survey.id}}/" method="POST">
+		{% csrf_token %}
+		<p>질문을 입력하세요</p>
+		<input name="question_text"/>
+		<input type="submit" value="submit"/>
+	</form>
+
+
+
+{% endif %}
 
 
 {% comment %} {% for feed in feeds %}
@@ -26,6 +69,3 @@
 	<input name="qtext"/>
 	<input type="submit" value="submit"/>
 </form> {% endcomment %}
-
-
-{% endblock content%}
