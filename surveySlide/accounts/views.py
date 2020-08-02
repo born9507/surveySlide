@@ -29,8 +29,21 @@ def myinfo(request, id):
     user=User.objects.get(id=id)
     return render(request, 'account/myinfo.html')
 
-def login(request):
-    return render(request, 'account/login.html')
-
-def logout(request):
-    return render(request, 'account/logout.html')
+def charge(request, id):
+    user=User.objects.get(id=id)
+    if request.method=='POST':
+       point=user.profile.point
+       chargedpoint=user.profile.chargedpoint
+       Profile.objects.filter(user=user).update(point=point+int(request.POST['chargepoint']), chargedpoint=chargedpoint+int(request.POST['chargepoint']))
+       return render(request, 'account/charge.html')
+    else:
+        return render(request, 'account/charge.html')
+def change(request, id):
+    user=User.objects.get(id=id)
+    if request.method=='POST':
+       point=user.profile.point
+       changedpoint=user.profile.changedpoint
+       Profile.objects.filter(user=user).update(point=point-int(request.POST['changepoint']),changedpoint=changedpoint+int(request.POST['changepoint']))
+       return render(request, 'account/charge.html')
+    else:
+        return render(request, 'account/charge.html')
