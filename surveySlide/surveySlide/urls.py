@@ -35,5 +35,7 @@ urlpatterns = [
     path('account/signup/',accounts.views.signup, name='signup'),
     path('account/<int:id>/changeinfo/',accounts.views.changeinfo,name='changeinfo'),
     path('account/<int:id>/myinfo/',accounts.views.myinfo,name='myinfo'),
+    path('account/<int:id>/charge/',accounts.views.charge, name='charge'),
+    path('account/<int:id>/change/',accounts.views.change, name='change'),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
