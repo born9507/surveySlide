@@ -385,8 +385,10 @@ ul.price {
 
 
 .component {
-    position: relative;
-    display: inline-block;
+    position: absolute;
+    text-align: end;
+    right: 120px;
+    top: 37px;
   }
   
 .component_title {
@@ -400,22 +402,44 @@ ul.price {
     z-index: 1;
     text-decoration: none;
     list-style: none;
-    padding: 15px;
-    background-color: lightgrey;
-    border-radius: 1px;
+    padding: 10px 25px 20px 25px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
     margin: 10px;
-    color: #30426a;
+    color: #ffffff;
     display: none;
+    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+}
+
+.additional_menus li {
+    padding-top: 10px;
 }
   
-.additional_menus li {
-    padding: 10px;
+.additional_menus a {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgb(152, 152, 152);
+    text-decoration: none !important;
+}
+
+.additional_menus a:hover {
+    font-weight: 500;
+    color: rgb(19, 145, 255);
 }
 
 .additional_menus li:hover {
-    background-color: #6c7280;
+    background-color: #ffffff;
 }
 
 .component:hover .additional_menus {
     display: block;
 }
+
+.arrowDown {
+    width: 20px;
+    opacity: 70%;
+}
+
+#logout {
+    color:  rgb(19, 145, 255);
+    letter-spacing: 1px;
