@@ -28,11 +28,11 @@
 			<form method="POST" action="{%url 'signup'%}">
 				{% csrf_token %}
 				<br>
-				<input name="username" type="text" placeholder="아이디">
+				<input name="username" type="text" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="아이디">
 				<br>
 				<br>
 				<br>
-				<input name="password1" type="password" placeholder="비밀번호" value="">
+				<input name="password1" type="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="비밀번호" value="">
 				<br>
 				<br>
 				<br>
