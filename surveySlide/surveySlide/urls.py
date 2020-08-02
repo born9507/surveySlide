@@ -25,10 +25,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', pages.views.index, name='index'),
 
-    path('new/', pages.views.new),
-    path('new/survey/', pages.views.surveyCreate),
-    path('new/survey/<int:sid>/', pages.views.questionCreate),
-    path('new/survey/<int:sid>/<int:qid>/', pages.views.choiceCreate),
+    path('new/', pages.views.surveyCreate),
+    path('new/<int:sid>/', pages.views.questionCreate),
+    path('new/<int:sid>/<int:qid>/', pages.views.choiceCreate),
+    
+    path('result/', pages.views.result),
+
+    path('edit/<int:sid>/', pages.views.surveyUpdate),
+    
+    path('delete/<int:sid>/', pages.views.surveyDelete),
     
     path('account/', include('django.contrib.auth.urls')),
     path('accounts/', include('allauth.urls')),
