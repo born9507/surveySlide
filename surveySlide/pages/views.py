@@ -21,7 +21,7 @@ def surveyCreate(request):
 def questionCreate(request, sid):
     survey = Survey.objects.get(id=sid)
     question_text = request.POST['question_text']
-    question = Question(survey_id=id, question_text=question_text)
+    question = Question(survey_id=sid, question_text=question_text)
     question.save()
     return render(request, 'pages/new.html', {'survey':survey})
 
