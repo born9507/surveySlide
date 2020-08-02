@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import redirect
 from .models import Profile
+from django.contrib.auth import login as django_login
+from django.contrib.auth import authenticate as django_authenticate
+from django.http import JsonResponse
 
 def signup(request):
     if request.method=='POST':
@@ -18,16 +21,16 @@ def changeinfo(request, id):
         User.objects.filter(id=id).update(username=request.POST['username'])
         Profile.objects.filter(user=user).update(college=request.POST['college'], major=request.POST['major'])
         user.refresh_from_db()
-        return render(request, 'accounts/myinfo.html')
+        return render(request, 'account/myinfo.html')
     else:
-        return render(request, 'accounts/changeinfo.html')
+        return render(request, 'account/changeinfo.html')
 
 def myinfo(request, id):
     user=User.objects.get(id=id)
-    return render(request, 'accounts/myinfo.html')
+    return render(request, 'account/myinfo.html')
 
 def login(request):
-    return render(request, 'accounts/login.html')
+    return render(request, 'account/login.html')
 
 def logout(request):
-    return render(request, 'accounts/logout.html')
+    return render(request, 'account/logout.html')

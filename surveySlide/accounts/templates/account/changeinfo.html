@@ -1,6 +1,6 @@
 <h1> Change your info! </h1>
 
-<form method="POST" action="/accounts/{{ user.id }}/changeinfo/">
+<form method="POST" action="/account/{{ user.id }}/changeinfo/">
     {% csrf_token %}
     사용자 이름:
     <br>
