@@ -132,3 +132,5 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'seminar', 'static'),)
 
 SITE_ID = 1
 ACCOUNT_LOGOUT_ON_GET = True
+
+LOGOUT_REDIRECT_URL = '/'

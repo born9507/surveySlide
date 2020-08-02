@@ -22,6 +22,7 @@
         <button type="button" onclick="go_introduction()"><span>서비스 소개</span></button>
         <button type="button" onclick="go_price()"><span>가격 정책</span></button>
         {% if user.is_authenticated %}
+<<<<<<< HEAD
 
         <button type="button" onclick="location.href='/new/'"><span>설문 제작</span></button>
         <button type="button" onclick="location.href='/result/'"><span>설문 결과</span></button>
@@ -37,6 +38,17 @@
         </ul> 
       </div>
 
+=======
+          <a href="/new/">설문 제작</a>
+          <a href="/result/">설문 결과</a>
+          <img src="" />
+          <ul class="additional_menus">
+            <li><a href="/account/{{ user.id }}/myinfo">내 프로필</a></li>  
+            <li><a href="/account/{{ user.id }}/charge">충전/환전</a></li>  
+            <li><a href="">설정</a></li>  
+            <li><a href="{% url 'logout'%}">로그아웃</a></li>  
+          </ul>
+>>>>>>> 75c199afe1930b27a8f5f12c2bee61562a3dccee
         {% else %}
         <button type="button" onclick="go_makeaccount()"><span>가입하기</span></button>
         <button href="#loginModal" data-toggle="modal"><span>로그인</span></a>
