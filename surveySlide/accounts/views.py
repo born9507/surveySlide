@@ -24,3 +24,9 @@ def changeinfo(request, id):
 def myinfo(request, id):
     user=User.objects.get(id=id)
     return redirect('accounts/myinfo.html')
+
+def login(request):
+    return render(request, 'accounts/login.html')
+
+def logout(request):
+    return render(request, 'accounts/logout.html')
