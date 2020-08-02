@@ -22,20 +22,26 @@
         <button type="button" onclick="go_introduction()"><span>서비스 소개</span></button>
         <button type="button" onclick="go_price()"><span>가격 정책</span></button>
         {% if user.is_authenticated %}
-          <a href="/new/">설문 제작</a>
-          <a href="/result/">설문 결과</a>
-          <img src="" />
-          <ul class="additional_menus">
-            <li><a href="/account/{{ user.id }}/myinfo">내 프로필</a></li>  
-            <li><a href="/account/{{ user.id }}/charge">충전/환전</a></li>  
-            <li><a href="">설정</a></li>  
-            <li><a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a></li>  
-          </ul>
-        {% else %}
-          <button type="button" onclick="go_makeaccount()"><span>가입하기</span></button>
-          <button href="#loginModal" data-toggle="modal"><span>로그인</span></a>
-        {% endif %}
+        <a href="/new/">설문 제작</a>
+        <a href="/result/">설문 결과</a>
       </div>
+        
+      <div class="component">
+        <div class="component_title"><img src="{% static "pages/imgs/arrowDown.png"%}"/></div>
+        <ul class="additional_menus">
+          <li><a href="/account/{{ user.id }}/myinfo">내 프로필</a></li>  
+          <li><a href="/account/{{ user.id }}/charge">충전/환전</a></li>  
+          <li><a href="">설정</a></li>  
+          <li><a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a></li>  
+        </ul> 
+      </div>
+
+        {% else %}
+        <button type="button" onclick="go_makeaccount()"><span>가입하기</span></button>
+        <button href="#loginModal" data-toggle="modal"><span>로그인</span></a>
+      </div>
+
+        {% endif %}
       </div>
     </header>
     {% block content %}

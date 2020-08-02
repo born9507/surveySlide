@@ -384,3 +384,38 @@ ul.price {
 }
 
 
+.component {
+    position: relative;
+    display: inline-block;
+  }
+  
+.component_title {
+    color: #d8e8f5;
+    font-weight: 700;
+    font-size: 24px;
+    padding: 15px;
+    margin: 10px;
+}
+.additional_menus {
+    z-index: 1;
+    text-decoration: none;
+    list-style: none;
+    padding: 15px;
+    background-color: lightgrey;
+    border-radius: 1px;
+    margin: 10px;
+    color: #30426a;
+    display: none;
+}
+  
+.additional_menus li {
+    padding: 10px;
+}
+
+.additional_menus li:hover {
+    background-color: #6c7280;
+}
+
+.component:hover .additional_menus {
+    display: block;
+}
