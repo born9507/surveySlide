@@ -30,6 +30,14 @@
     z-index: 5;
 }
 
+.scroll_button{
+    color: rgb(145, 145, 145);
+    padding-left: 50px;
+    background-color: white;
+    border: 0;
+    outline: 0;
+}
+
 .header_menus a {
     color: rgb(145, 145, 145);
     padding-left: 50px;

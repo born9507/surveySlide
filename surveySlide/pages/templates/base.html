@@ -17,8 +17,8 @@
         <a href=""><img class="icon" src="{% static "pages/imgs/icon.png" %}" alt="icon"/></a>
       </div>
       <div class="header_menus">
-        <a href="">서비스 소개</a>
-        <a href="">가격 정책</a>
+        <button class="scroll_button" type="button" onclick="go_introduction()">서비스 소개</button>
+        <button class="scroll_button" type="button" onclick="go_price()">가격 정책</button>
         {% if user.is_authenticated %}
           <a href="">설문 제작</a>
           <a href="">설문 결과</a>
@@ -30,7 +30,7 @@
             <li><a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a></li>  
           </ul>
         {% else %}
-          <a href="">가입하기</a>
+          <button class="scroll_button" type="button" onclick="go_makeaccount()">가입하기</button>
           <a href="">로그인</a>
         {% endif %}
       </div>
