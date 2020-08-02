@@ -43,10 +43,6 @@ button{
     position: relative;
 }
 
-.scrollbutton:hover {
-    color : rgb(29, 150, 255);
-    transition: all .3s ease;
-}
 
 button > span {
     position: relative;
@@ -55,7 +51,7 @@ button > span {
 button > span::after {
     content: '';
     width: 0%;
-    left: 50%;
+    right: 100%;
     height: 1px;
     display: block;
     position: absolute;
@@ -67,7 +63,7 @@ button > span::after {
   button:hover > span::after {
     content: '';
     width: 100%;
-    left: 0px;
+    right: 0px;
     height: 1px;
     display: block;
     position: absolute;
@@ -89,7 +85,7 @@ body {
 .introduction {
     position : absolute;
     top: 100px;
-    height: 680px;
+    height: 750px;
     width: 100%;
     text-align: center;
     background-color: #f5f5f5fd; 
@@ -98,7 +94,6 @@ body {
 
 .intro {
     margin: 0px auto;
-    display: inline-block;
     margin-top: 100px;
 }
 
@@ -118,14 +113,97 @@ body {
 
 .introgroup_a {
     display: inline-block;
-    margin: 0px 100px;
+    margin-right: 40px;
     vertical-align: middle;
 }
 
 .introgroup_b {
+    margin-left: 40px;
     display: inline-block;
-    margin: 0px 100px;
+    width: 450px;
+    height: 480px;
+    background-color: rgb(255, 255, 255);
+    padding: 35px 50px 20px 50px;
+    border: none;
+    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+    border-radius: 20px;
     vertical-align: middle;
+}
+
+.introgroup_b > span {
+    font-size: 13px;
+    font-weight: 500;
+    color: grey;
+}
+
+::placeholder {
+    color: rgb(213, 213, 213);
+    font-size: 13px;
+    font-weight: 300;
+}
+
+input {
+    font-weight: 300;
+    height: 35px;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 1.5px;
+    border-color: rgb(208, 208, 208);
+}
+
+#username{
+    width: 300px;
+    margin-top: 30px;
+}
+
+#password1{
+    width: 300px;
+    margin-top: 8px;
+}
+
+#password2{
+    width: 300px;
+    margin-top: 8px;
+}
+
+#email{
+    width: 300px;
+    margin-top: 8px;
+}
+
+#familyname {
+    width: 145px;
+    margin-right:6.5px;
+    margin-top: 8px;
+}
+
+#name {
+    width: 145px;
+    margin-top: 8px;
+}
+
+#submit {
+    width: 200px;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgb(29, 150, 255);
+    background-color: white;
+    letter-spacing: 1.5px;
+    border: none;
+    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+    margin-top: 30px;
+}
+
+.contract {
+    font-size: 8px;
+    width: 275px;
+    line-height: 120%;
+    letter-spacing: 0.5px;
+    margin-top: 35px;
+    border-width: 10px;
+    position: relative;
+    left: 35px;
 }
 
 .service_introduction {
@@ -136,8 +214,7 @@ body {
 }
 
 .serviceintroduction_title {
-    font-size: 20px;
-    
+    font-size: 20px;   
 }
 
 .serviceintroduction_content {

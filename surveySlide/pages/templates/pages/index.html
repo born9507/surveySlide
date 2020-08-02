@@ -24,28 +24,16 @@
 			<div class="content"><p> 리도 못 가서 발병난다. 내가 그의 이름을 불러<br>주었을 때 그는  돌같이 하라 뭉치면 살고 흩어지면<br>죽는다. 이 몸이 죽고 죽어 일백번 고쳐 죽어고 임<br>향한 일편단심 가실 줄이 리도 못 가서 발병난다.<br>내가 그의 이름을 불러 주었을 때 그는  돌같이 하라<br>뭉치면 살고 흩어지면 죽는다. 이 몸이 죽고 죽어<br>일백번 고쳐 죽어고 임 향한 일편단심 가실 줄이<br>리도 못 가서 발병난다. 내가 그죽고 죽어 일백번 </p></div>
 		</div>
 		<div class="introgroup_b">
-			<h5>계정만들기</h5>
+			<span>계정 만들기</span>
 			<form method="POST" action="{%url 'signup'%}">
 				{% csrf_token %}
-				<br>
-				<input name="username" type="text" placeholder="아이디">
-				<br>
-				<br>
-				<br>
-				<input name="password1" type="password" placeholder="비밀번호" value="">
-				<br>
-				<br>
-				<br>
-				<input name="password2" type="password" placeholder="비밀번호 확인"value="">
-				<br>
-				<br>
-				<input name="email" type="text" placeholder="이메일 주소">
-				<br>
-				<br>
-				<input name="last_name" type="text" placeholder="성">  <input name="first_name" type="text" placeholder="이름">
-				<br>
-				<br>
-				<input type="submit" value="회원가입">
+				<input id="username" name="username" type="text" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   아이디">
+				<input id="password1" name="password1" type="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   비밀번호" value="">
+				<input id="password2" name="password2" type="password" placeholder="   비밀번호 확인"value="">
+				<input id="email" name="email" type="text" placeholder="   이메일 주소">
+				<input id="familyname" name="last_name" type="text" placeholder="   성">  <input id="name" name="first_name" type="text" placeholder="   이름">
+				<input id="submit" type="submit" value="회원가입">
+				<div class="contract">‘계정 만들기’를 클릭하거나 회원가입을 하면  surveySlide의 <a href="">이용 약관</a> 및  <a href="">개인정보 보호정책</a>에 동의하고, 아울러 surveySlide 서비스에 관련된 정보와 제공 사항을 이메일로 수신하는 것에 동의하는 것입니다.</div>
 			</form>
 		</div>
 	</div>
