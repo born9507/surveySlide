@@ -1,9 +1,9 @@
 function go_introduction(){
-	document.documentElement.scrollTop = 800;
+	document.documentElement.scrollTop = 885;
 }
 
 function go_price(){
-	document.documentElement.scrollTop = 2036;
+	document.documentElement.scrollTop = 2260;
 }
 
 function go_makeaccount(){
