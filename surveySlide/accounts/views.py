@@ -60,6 +60,6 @@ def firstsetting2(request):
     user=request.user
     if request.method=='POST':
         Profile.objects.filter(user=user).update(major=request.POST['major'])
-        return render(request, 'pages/index.html')
+        return redirect('/')
     else:
         return render(request, 'account/firstsetting2.html')
