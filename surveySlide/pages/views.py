@@ -30,6 +30,7 @@ def choiceCreate(request, sid, qid):
     question = Question.objects.get(id=qid)
     choice_text = request.POST['choice_text']
     choice = Choice(question_id=qid, choice_text=choice_text)
+    choice.save()
     return render(request, 'pages/new.html', {'survey':survey, 'question':question})
 
 def result(request):

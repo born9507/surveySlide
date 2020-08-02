@@ -12,26 +12,23 @@
 {% if not survey %}
 	<form action="/new/survey/" method="POST">
 		{% csrf_token %}
-		<p>설문조사 제목을 입력하세요</p>
+		<label for="title">설문조사 제목을 입력하세요</label>
 		<input name="title"/>
 		<input type="submit" value="submit"/>
 	</form>
 
 {% else %}
-	<p>설문조사 제목</p>
-	<p>{{survey.title}}</p>
+	<h2>제목: {{survey.title}}</h2>
 	<p>질문 갯수: {{survey.question_set.all.count}}</p>
 	{% for question in survey.question_set.all %}
-		<p>질문</p>
-		<p>{{question.question_text}}</p>
+		
+		<p>Q. {{question.question_text}}</p>
 
-		<p>선택지 목록</p>
 		<p>{{survey.question.choice_set.all}}</p>
 
 		<ul>
 		{% for choice in question.choice_set.all%}
-			<p>선택지</p>
-			<li>{{choice.choice_text}}</li>
+			<li>A. {{choice.choice_text}}</li>
 		{% endfor %}
 		</ul>
 
