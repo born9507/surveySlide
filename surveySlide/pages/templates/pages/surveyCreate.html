@@ -20,7 +20,7 @@
 		<a href="">포인트 충전</a>
 
 		{% if not survey %}
-			<form action="/new/survey/" method="POST">
+			<form action="/new/" method="POST">
 				{% csrf_token %}
 				<label for="title">설문조사 제목을 입력하세요</label>
 				<input name="title"/>
@@ -47,7 +47,7 @@
 						</ul>
 					</div>
 					<div class="choice">
-						<form action="/new/survey/{{survey.id}}/{{question.id}}/" method="POST">
+						<form action="/new/{{survey.id}}/{{question.id}}/" method="POST">
 							{% csrf_token %}
 							<p>선택지를 입력하세요</p>
 							<input name="choice_text"/>
@@ -57,7 +57,7 @@
 				</div>
 				{% endfor %}
 
-			<form action="/new/survey/{{survey.id}}/" method="POST">
+			<form action="/new/{{survey.id}}/" method="POST">
 				{% csrf_token %}
 				<p>질문을 입력하세요</p>
 				<input name="question_text"/>
