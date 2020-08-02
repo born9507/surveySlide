@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 class Survey(models.Model):
     title = models.CharField(max_length=50)
-    # author = models.ForeignKey(User, null=False, on_delete=models.CASCADE) #유저가 탈퇴하면 누가 만든지는 삭제?
-    # total_reward = models.IntegerField()
+    author = models.ForeignKey(User, null=False, on_delete=models.CASCADE) #유저가 탈퇴하면 누가 만든지는 삭제?
+    total_reward = models.IntegerField(null=True)
 
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)

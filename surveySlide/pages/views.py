@@ -10,7 +10,7 @@ def new(request):
 
 def surveyCreate(request):
     title = request.POST['title']
-    survey = Survey(title=title)
+    survey = Survey(title=title, author=request.user)
     survey.save()
     return render(request, 'pages/new.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
 
@@ -31,3 +31,6 @@ def choiceCreate(request, sid, qid):
     choice_text = request.POST['choice_text']
     choice = Choice(question_id=qid, choice_text=choice_text)
     return render(request, 'pages/new.html', {'survey':survey, 'question':question})
+
+def result(request):
+    return render(request, 'pages/result.html')

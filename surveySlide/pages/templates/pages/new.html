@@ -5,6 +5,9 @@
 <h1>New Survey</h1>
 
 <p>안녕하세요! {{user.get_username}} 님!</p>
+<p>당신의 현재 총 포인트: {{user.profile.point}}</p> 
+{% comment %} 여기 위에 account 에서 모델 수정할 것! {% endcomment %}
+<a href="">포인트 충전</a>
 
 {% if not survey %}
 	<form action="/new/survey/" method="POST">
@@ -23,7 +26,7 @@
 		<p>{{question.question_text}}</p>
 
 		<p>선택지 목록</p>
-		<p>{{question.choice_set.all}}</p>
+		<p>{{survey.question.choice_set.all}}</p>
 
 		<ul>
 		{% for choice in question.choice_set.all%}
