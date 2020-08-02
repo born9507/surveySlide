@@ -9,9 +9,13 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     college = models.CharField(max_length=20, blank=True, null=True)
     major = models.CharField(max_length=20, blank=True, null=True)
+    point = models.IntegerField(default=1000)
+    changedpoint = models.IntegerField(default=0)
+    chargedpoint = models.IntegerField(default=0)
+    gainedpoint= models.IntegerField(default=0)
 
     def __str__(self):
-        return 'id=%d, user_id=%d, college=%s, major=%s' % (self.id, self.user.id, self.college, self.major)
+        return f'id={self.id}, user_id={self.user.id}, college={self.college}, major={self.major}, point={self.point}, changedpoint={self.changedpoint}'
     
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):  

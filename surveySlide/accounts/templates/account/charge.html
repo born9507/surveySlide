@@ -1,0 +1,18 @@
+{{ user.last_name }} {{user.first_name}} 님의 정보입니다.
+<br>
+보유 포인트: {{user.profile.point}} 획득 포인트: {{user.profile.gainedpoint}}
+<br>
+총 충전 포인트: {{user.profile.chargedpoint}}
+<br>
+총 환전 포인트: {{user.profile.changedpoint}}
+<br>                              
+<form method="POST" action="/account/{{ user.id }}/charge/">
+    {% csrf_token %}
+    충전할 포인트: <input name="chargepoint" type="integer" placeholder="금액을 입력하세요" default=0> <input type="submit" value="충전하기">
+    <br>
+</form>
+<form method="POST" action="/account/{{ user.id }}/change/">
+    {% csrf_token %}
+    환전할 포인트: <input name="changepoint" type="integer" placeholder="금액을 입력하세요" default=0> <input type="submit" value="환전하기">
+    <br>
+</form>
