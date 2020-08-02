@@ -24,7 +24,7 @@
           <a href="">설문 결과</a>
           <img src="" />
           <ul class="additional_menus">
-            <li><a href='accounts/<int:id>/myinfo/'>내 프로필</a></li>  
+            <li><a href="/accounts/{{ user.id }}/myinfo">내 프로필</a></li>  
             <li><a href="">충전/환전</a></li>  
             <li><a href="">설정</a></li>  
             <li><a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a></li>  
