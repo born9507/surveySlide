@@ -28,12 +28,12 @@
       </div>
         
       <div class="component">
-        <div class="component_title"><img src="{% static "pages/imgs/arrowDown.png"%}"/></div>
+        <img class="arrowDown" src="{% static "pages/imgs/arrowDown.png"%}"/>
         <ul class="additional_menus">
           <li><a href="/account/{{ user.id }}/myinfo">내 프로필</a></li>  
           <li><a href="/account/{{ user.id }}/charge">충전/환전</a></li>  
           <li><a href="">설정</a></li>  
-          <li><a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a></li>  
+          <li><a id="logout" href="{% url 'logout'%}?next={{request.path}}">로그아웃</a></li>  
         </ul> 
       </div>
 
