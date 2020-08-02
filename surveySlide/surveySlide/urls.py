@@ -24,8 +24,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', pages.views.index, name='index'),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/',accounts.views.signup, name='signup'),
-    path('accounts/<int:id>/changeinfo/',accounts.views.changeinfo,name='changeinfo'),
-    path('accounts/<int:id>/myinfo/',accounts.views.myinfo,name='myinfo'),
+    path('account/', include('django.contrib.auth.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('account/signup/',accounts.views.signup, name='signup'),
+    path('account/<int:id>/changeinfo/',accounts.views.changeinfo,name='changeinfo'),
+    path('account/<int:id>/myinfo/',accounts.views.myinfo,name='myinfo'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
