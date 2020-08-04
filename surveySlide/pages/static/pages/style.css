@@ -5,11 +5,16 @@
     text-decoration: none;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 
 .header {
     width: 100%;
     height: 100px;
     position: fixed;
+    top: 0;
     z-index: 4;
     background-color: white;
 }
@@ -83,8 +88,9 @@ body {
 }
 
 .introduction {
+    z-index: 0;
     position : absolute;
-    top: 100px;
+    top: 90px;
     height: 750px;
     width: 100%;
     text-align: center;
@@ -94,13 +100,23 @@ body {
 
 .intro {
     margin: 0px auto;
-    margin-top: 100px;
+    margin-top: 90px;
 }
 
 .title {
     font-size: 32px;
     line-height: 130%;
     text-align: left;
+}
+
+.swipe {
+    z-index: -1;
+    width: 450px;
+    height: 140px;
+    position: absolute;
+    left: -115px;
+    top: -40px;
+    opacity: 70%;
 }
 
 .content {
@@ -113,12 +129,14 @@ body {
 
 .introgroup_a {
     display: inline-block;
-    margin-right: 50px;
     vertical-align: middle;
+    position: relative;
+    left: -80px;
 }
 
 .introgroup_b {
-    margin-left: 50px;
+    position: relative;
+    left: 80px;
     display: inline-block;
     width: 450px;
     height: 480px;
@@ -131,9 +149,10 @@ body {
 }
 
 .introgroup_b > span {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
-    color: grey;
+    color: rgb(169, 169, 169);
+    letter-spacing: 2px;
 }
 
 ::placeholder {
@@ -149,6 +168,12 @@ input {
     border-radius: 8px;
     border-width: 1.5px;
     border-color: rgb(208, 208, 208);
+    transition:all .3s ease;
+}
+
+input:hover{
+    transition:all .3s ease;
+    transform: scale(1.02);
 }
 
 #username{
@@ -187,13 +212,19 @@ input {
     height: 50px;
     font-size: 15px;
     font-weight: 500;
-    color: rgb(29, 150, 255);
+    color: rgba(41, 155, 255, 0.918);
     background-color: white;
-    letter-spacing: 1.5px;
+    letter-spacing: 2.5px;
     border: none;
-    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+    box-shadow: 0px 0px 5px 2px rgb(226, 226, 226);
     margin-top: 30px;
+    transition: all .3s ease;
+    position: relative;
 }
+
+#submit:hover {
+    box-shadow: 0px 0px 5px 2px rgb(183, 221, 255);;
+  }
 
 .contract {
     font-size: 8px;
@@ -245,7 +276,7 @@ input {
 }
 
 .interviewer_title {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
 }
 
@@ -261,7 +292,7 @@ input {
 }
 
 .interviewee_title {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
 }
 
@@ -443,3 +474,8 @@ ul.price {
 #logout {
     color:  rgb(19, 145, 255);
     letter-spacing: 1px;
+}
+
+.body_ {
+    margin-top: 100px;
+}

@@ -29,7 +29,7 @@
             <li><a href="/account/{{ user.id }}/myinfo">내 프로필</a></li>  
             <li><a href="">충전/환전</a></li>  
             <li><a href="">설정</a></li>  
-            <li><a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a></li>  
+            <li><a href="{% url 'logout'%}">로그아웃</a></li>  
           </ul>
         {% else %}
           <button class="scroll_button" type="button" onclick="go_makeaccount()">가입하기</button>

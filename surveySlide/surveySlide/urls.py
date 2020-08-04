@@ -29,6 +29,10 @@ urlpatterns = [
     path('new/<int:sid>/', pages.views.questionCreate),
     path('new/<int:sid>/<int:qid>/', pages.views.choiceCreate),
     
+    path('serviceIntro/', pages.views.serviceIntro),
+    path('pricePolicy/', pages.views.pricePolicy),
+
+
     path('result/', pages.views.result),
 
     path('edit/<int:sid>/', pages.views.surveyUpdate),
@@ -42,6 +46,7 @@ urlpatterns = [
     path('account/<int:id>/myinfo/',accounts.views.myinfo,name='myinfo'),
     path('account/<int:id>/charge/',accounts.views.charge, name='charge'),
     path('account/<int:id>/change/',accounts.views.change, name='change'),
+    
     path('account/firstsetting1/', accounts.views.firstsetting1, name='firstsetting1'),
     path('account/firstsetting2/', accounts.views.firstsetting2, name='firstsetting2'),
     

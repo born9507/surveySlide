@@ -1,0 +1,224 @@
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body {
+    background-color: chartreuse;
+}
+
+
+.header {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    z-index: 4;
+    background-color: white;
+}
+
+.icon {
+    float: left;
+    margin-left: 200px;
+    height: 38px;
+    margin-top: 35px;
+}
+
+.header_menus {
+    float: right;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 40px;
+    margin-right:200px;
+    z-index: 5;
+}
+
+button{
+    border: none;
+    outline: 0 !important;
+    outline-color: white;
+    color: rgb(145, 145, 145);
+    padding-left: 50px;
+    background-color: white;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: all .3s ease;
+    position: relative;
+}
+
+
+button > span {
+    position: relative;
+}
+
+button > span::after {
+    content: '';
+    width: 0%;
+    right: 100%;
+    height: 1px;
+    display: block;
+    position: absolute;
+    margin-top: 3px;
+    border-bottom: 2px solid rgb(29, 150, 255);
+    transition:all .3s ease;
+  }
+
+  button:hover > span::after {
+    content: '';
+    width: 100%;
+    right: 0px;
+    height: 1px;
+    display: block;
+    position: absolute;
+    margin-top: 3px;
+    border-bottom: 2px solid rgb(29, 150, 255);
+    transition:all .3s ease;
+  }
+
+.header_menus a {
+    color: rgb(145, 145, 145);
+    padding-left: 50px;
+}
+
+.service_introduction {
+    position: relative;
+    top: 150px;
+    text-align: center;
+    margin: 0px auto;
+    margin-bottom: 200px;
+}
+
+.serviceintroduction_title {
+    font-size: 20px;   
+}
+
+.serviceintroduction_content {
+    margin-top: 30px;
+    font-size: 12px;
+    line-height: 160%;
+}
+
+.interview {
+    position: relative;
+    margin: 0px auto;
+    top: 20px;
+    text-align: center;
+}
+
+.interviewer {
+    display: inline-block;
+    margin: 0px 100px;
+}
+
+.interviewee {
+    display: inline-block;
+    margin: 0px 100px;
+}
+
+.interviewer_image {
+    width: 400px;
+}
+
+.interviewer_title {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.interviewer_engtitle {
+    font-size: 10px;
+    color: grey;
+    margin-top: 5px;
+}
+
+.interviewer_content {
+    font-size: 12px;
+    line-height: 300%;
+}
+
+.interviewee_title {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.interviewee_engtitle {
+    font-size: 10px;
+    color: grey;
+    margin-top: 5px;
+}
+
+.interviewee_content {
+    font-size: 12px;
+    line-height: 300%;
+}
+
+.component {
+    position: absolute;
+    text-align: end;
+    right: 120px;
+    top: 37px;
+  }
+  
+.component_title {
+    color: #d8e8f5;
+    font-weight: 700;
+    font-size: 24px;
+    padding: 15px;
+    margin: 10px;
+}
+.additional_menus {
+    z-index: 1;
+    text-decoration: none;
+    list-style: none;
+    padding: 10px 25px 20px 25px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin: 10px;
+    color: #ffffff;
+    display: none;
+    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+}
+
+.additional_menus li {
+    padding-top: 10px;
+}
+  
+.additional_menus a {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgb(152, 152, 152);
+    text-decoration: none !important;
+}
+
+.additional_menus a:hover {
+    font-weight: 500;
+    color: rgb(19, 145, 255);
+}
+
+.additional_menus li:hover {
+    background-color: #ffffff;
+}
+
+.component:hover .additional_menus {
+    display: block;
+}
+
+.arrowDown {
+    width: 20px;
+    opacity: 70%;
+}
+
+#logout {
+    color:  rgb(19, 145, 255);
+    letter-spacing: 1px;
+}
+
+.footer {
+    float: right;
+    position: relative;
+    top: 50px;
+    right: 200px;
+    font-size: 9px;
+    display: flex;
+    background-color: #f5f5f5fd;
+}
