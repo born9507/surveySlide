@@ -13,14 +13,14 @@ def surveyCreate(request):
         return render(request, 'pages/surveyCreate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
     return render(request, 'pages/surveyCreate.html')
 
-def surveyDelete():
+def surveyDelete(request):
     # 이건 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록!!
     # 함수 구현
     return redirect('/result/')
 
-def surveyUpdate():
-    return render(request, 'pages/surveyUpdate.html')
-
+def surveyUpdate(request, sid):
+    survey = Survey.objects.get(id=sid)
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
 def questionCreate(request, sid):
     survey = Survey.objects.get(id=sid)
