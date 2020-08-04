@@ -46,9 +46,12 @@
         </div>
       </div>
     </header>
-    {% block content %}
-    {% endblock %}
-    
+
+    <div class="body_">
+      {% block content %}
+      {% endblock %}
+    </div>
+
     {% include 'accounts/login.html' %}
     <script src="{% static 'pages/modal.js' %}"></script>
     <script src="{% static 'pages/script.js' %}"></script>
