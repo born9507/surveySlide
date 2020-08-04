@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
 <h1> Change your info! </h1>
 
 <form method="POST" action="/account/{{ user.id }}/changeinfo/">
@@ -19,3 +24,5 @@
     <br>
     <input type="submit" value="Change!">
 </form>
+
+{% endblock %}

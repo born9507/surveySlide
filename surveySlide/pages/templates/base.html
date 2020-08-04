@@ -14,15 +14,14 @@
   </head>
   <body>
     <header>
-      <div class="header">
-        <div>
-          <a href="/"><img class="icon" src="{% static "pages/imgs/icon.png" %}" alt="icon"/></a>
-        </div>
-        <div class="header_menus">
-          <button type="button" onclick="go_introduction()"><span>서비스 소개</span></button>
-          <button type="button" onclick="go_price()"><span>가격 정책</span></button>
-          {% if user.is_authenticated %}
-
+    <div class="header">
+      <div>
+        <a href="/"><img class="icon" src="{% static "pages/imgs/icon.png" %}" alt="icon"/></a>
+      </div>
+      <div class="header_menus">
+        {% if user.is_authenticated %}
+        <button type="button" onclick="location.href='/serviceIntro/'"><span>서비스 소개</span></button>
+        <button type="button" onclick="location.href='/pricePolicy/'"><span>가격 정책</span></button>
         <button type="button" onclick="location.href='/new/'"><span>설문 제작</span></button>
         <button type="button" onclick="location.href='/result/'"><span>설문 결과</span></button>
       </div>
@@ -38,6 +37,8 @@
       </div>
 
         {% else %}
+        <button type="button" onclick="go_introduction()"><span>서비스 소개</span></button>
+        <button type="button" onclick="go_price()"><span>가격 정책</span></button>
         <button type="button" onclick="go_makeaccount()"><span>회원 가입</span></button>
         <button href="#loginModal" data-toggle="modal"><span>로그인</span></a>
       </div>
