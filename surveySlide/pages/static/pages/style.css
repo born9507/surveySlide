@@ -87,8 +87,9 @@ body {
 }
 
 .introduction {
+    z-index: 0;
     position : absolute;
-    top: 100px;
+    top: 90px;
     height: 750px;
     width: 100%;
     text-align: center;
@@ -98,7 +99,7 @@ body {
 
 .intro {
     margin: 0px auto;
-    margin-top: 100px;
+    margin-top: 90px;
 }
 
 .title {
@@ -107,11 +108,14 @@ body {
     text-align: left;
 }
 
-.title_eng {
-    font-size: 20px;
-    text-align: left;
-    color: rgb(174, 174, 174);
-    margin-bottom: 20px;
+.swipe {
+    z-index: -1;
+    width: 450px;
+    height: 140px;
+    position: absolute;
+    left: -115px;
+    top: -40px;
+    opacity: 70%;
 }
 
 .content {
@@ -124,12 +128,14 @@ body {
 
 .introgroup_a {
     display: inline-block;
-    margin-right: 80px;
     vertical-align: middle;
+    position: relative;
+    left: -80px;
 }
 
 .introgroup_b {
-    margin-left: 80px;
+    position: relative;
+    left: 80px;
     display: inline-block;
     width: 450px;
     height: 480px;
@@ -142,9 +148,10 @@ body {
 }
 
 .introgroup_b > span {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
-    color: grey;
+    color: rgb(169, 169, 169);
+    letter-spacing: 2px;
 }
 
 ::placeholder {
@@ -160,6 +167,12 @@ input {
     border-radius: 8px;
     border-width: 1.5px;
     border-color: rgb(208, 208, 208);
+    transition:all .3s ease;
+}
+
+input:hover{
+    transition:all .3s ease;
+    transform: scale(1.02);
 }
 
 #username{
@@ -262,7 +275,7 @@ input {
 }
 
 .interviewer_title {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
 }
 
@@ -278,7 +291,7 @@ input {
 }
 
 .interviewee_title {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
 }
 
