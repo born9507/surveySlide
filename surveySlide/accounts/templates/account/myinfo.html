@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
 {{ user.last_name }} {{user.first_name}} 님의 정보입니다.
 <br>
 아이디: {{ user.get_username }}
@@ -11,3 +16,5 @@
 포인트: {{user.profile.point}}
 <br>                              
 <a href="/account/{{ user.id }}/changeinfo">정보 수정</a>
+
+{% endblock %}

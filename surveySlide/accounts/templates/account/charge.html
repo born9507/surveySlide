@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
 {{ user.last_name }} {{user.first_name}} 님의 포인트 정보입니다.
 <br>
 보유 포인트: {{user.profile.point}} 획득 포인트: {{user.profile.gainedpoint}}
@@ -16,3 +21,5 @@
     환전할 포인트: <input name="changepoint" type="integer" placeholder="금액을 입력하세요" default=0> <input type="submit" value="환전하기">
     <br>
 </form>
+
+{% endblock %}
