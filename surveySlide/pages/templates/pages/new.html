@@ -18,7 +18,7 @@
 		<p>안녕하세요! {{user.get_username}} 님!</p>
 		<p>당신의 현재 총 포인트: {{user.profile.point}}</p> 
 		{% comment %} 여기 위에 account 에서 모델 수정할 것! {% endcomment %}
-		<a href="">포인트 충전</a>
+		<a href="/account/{{user.id}}/charge/">포인트 충전</a>
 
 		{% if not survey %}
 			<form action="/new/" method="POST">

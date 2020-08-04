@@ -38,6 +38,7 @@ def charge(request, id):
        return render(request, 'account/charge.html')
     else:
         return render(request, 'account/charge.html')
+        
 def change(request, id):
     user=User.objects.get(id=id)
     if request.method=='POST':
