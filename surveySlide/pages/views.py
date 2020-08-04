@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
-from pages.models import Survey, Question, Choice
+from pages.models import Survey, Question, Choice, Answer
 
 # Create your views here.
 def index(request):
-    return render(request, 'pages/index.html')
+    if request.method=='GET':
+        questions=Question.objects.all()
+    return render(request, 'pages/index.html',{'questions': questions})
+
 
 def surveyCreate(request):
     if request.method == 'POST':

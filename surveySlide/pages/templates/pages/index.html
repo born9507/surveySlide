@@ -4,7 +4,18 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    
+    {% for question in questions %}
+        <div style="border: 4px solid grey; border-radius: 3%;">
+        <br>
+        질문: {{ question.question_text }}
+        <br>
+        {% for c in question.choice_set.all%}
+            <br>
+            보기: {{c.choice_text}}
+            <br>
+        {% endfor %}
+        </div>
+    {% endfor %}
 {%else%}
 
 <div style="border: 4px solid grey; border-radius: 3%;">

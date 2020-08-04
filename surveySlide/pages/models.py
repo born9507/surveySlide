@@ -28,6 +28,7 @@ class Survey(models.Model):
 class Question(models.Model):
     survey = models.ForeignKey(Survey, null=False, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=500 ,blank=False, null=False)
+    answered_users = models.ManyToManyField(User, blank=True, related_name='answer_question', through='Answer')
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, null=False, on_delete=models.CASCADE)
@@ -39,3 +40,8 @@ class Result(models.Model):
     question = models.ForeignKey(Question, null=False, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, null=False, on_delete=models.CASCADE)
     content = models.TextField()
+
+class Answer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    survey = models.ForeignKey(Survey, blank=True, null=True, on_delete=models.CASCADE)
+    question =models.ForeignKey(Question,blank=True,null=True, on_delete=models.CASCADE)
