@@ -593,8 +593,6 @@ ul.price {
 
 #forcharge_submit {
     background-color: white;
-    transition: all .3s ease;
-    transform: none;
     width: 70px;
     height: 32px;
     border: none !important;
@@ -604,4 +602,74 @@ ul.price {
     margin-left: 5px;
     color: grey;
     font-weight: 300;
+}
+
+
+.newsurvey {
+    background-color: rgb(250, 250, 250);
+    position: relative;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 65px;
+    position: relative;
+    text-align: center;
+    margin: 0px auto;
+}
+
+.newsurvey span {
+    font-size: 20px;
+}
+
+.newsurvey p {
+    margin-top: 30px;
+    font-size: 12px;
+    line-height: 160%;
+}
+
+#newsurvey_chargebutton {
+    position: relative;
+    top: 10px;
+    padding: 4px 10px 4px 10px;
+    text-decoration: none;
+    box-shadow: 0px 0px 3px 1px rgb(226, 226, 226);
+    letter-spacing: 1px;
+    color: grey;
+    font-size: 12px;
+    border-radius: 4px;
+    font-weight: 300;
+}
+
+#newsurvey_title_1 {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 50px;
+}
+
+#newsurvey_title_2 {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 20px;
+}
+
+#newsurvey_box {
+    border-color:rgb(230, 230, 230);
+}
+
+#newsurvey_submit {
+    transform: none;
+    background-color: white;
+    width: 60px;
+    height: 28px;
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0px 0px 3px 1px rgb(226, 226, 226);
+    letter-spacing: 1px;
+    margin-left: 5px;
+    color: grey;
+    font-weight: 300;
+    font-size: 14px;
 }
