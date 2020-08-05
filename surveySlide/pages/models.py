@@ -7,7 +7,10 @@ from django.contrib.auth.models import User
 class Survey(models.Model):
     title = models.CharField(max_length=50)
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE) #유저가 탈퇴하면 누가 만든지는 삭제?
-    total_reward = models.IntegerField(null=True)   
+    total_reward = models.IntegerField(null=True)  
+    isCompleted = models.BooleanField(default=False)
+    # 제작 완료 됐는지를 알리는 요소가 필요함
+    # 제작이 완료되지 않으면 설문조사가 배포되면 안되므로! 
 
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)

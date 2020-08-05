@@ -3,8 +3,17 @@
 {% load static %}
 {% block content %}
 
-    <h1>Edit Survey</h1>
-    <a href="/">홈으로</a>
-    <p></p>
+	<h1>설문조사 수정</h1>
+	<a href="/">홈으로</a>
+	<a href="/result/">이전 페이지</a>
+	<h2>제목: {{survey.title}}</h2>
+	{% for question in survey.question_set.all %}
+		<p>Q. {{question.question_text}}</p>
+		{% for choice in question.choice_set.all %}
+			<p>A. {{choice.choice_text}}</p>
+		{% endfor %}
+	{% endfor %}
+
+	<p></p>
 
 {% endblock content %}
