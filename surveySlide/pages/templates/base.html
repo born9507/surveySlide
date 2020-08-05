@@ -23,12 +23,13 @@
         <button type="button" onclick="location.href='/serviceIntro/'"><span>서비스 소개</span></button>
         <button type="button" onclick="location.href='/pricePolicy/'"><span>가격 정책</span></button>
         <button type="button" onclick="location.href='/new/'"><span>설문 제작</span></button>
-        <button type="button" onclick="location.href='/result/'"><span>설문 결과</span></button>
+        <button type="button" onclick="location.href='/show/'"><span>설문 편집</span></button>
       </div>
         
       <div class="component">
         <img class="arrowDown" src="{% static "pages/imgs/arrowDown.png"%}"/>
         <ul class="additional_menus">
+          <li><a href="/result/">설문 결과</a></li>  
           <li><a href="/account/{{ user.id }}/myinfo">내 프로필</a></li>  
           <li><a href="/account/{{ user.id }}/charge">충전/환전</a></li>  
           <li><a href="">설정</a></li>  
