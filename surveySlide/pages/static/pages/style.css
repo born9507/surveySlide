@@ -539,7 +539,7 @@ ul.price {
     margin-top: 200px;
     width: 400px;
     background-color: rgb(255, 255, 255);
-    padding: 40px 50px 80px 50px;
+    padding: 40px 50px 100px 50px;
     border: none;
     box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
     border-radius: 20px;
@@ -551,10 +551,57 @@ ul.price {
     text-decoration: none !important;
     position: relative;
     float: right;
-    margin-top: 20px;
+    margin-top: 40px;
     font-size: 14px;
+    font-weight: 500;
     color: rgb(19, 145, 255);
     background-color: transparent;
     border: none !important;
     outline: none !important;
+    transform: none;
+}
+
+#infochange_subtitle {
+    margin-top: 5px;
+}
+
+.charge {
+    position: relative;
+    margin: auto;
+    margin-top: 200px;
+    width: 500px;
+    background-color: rgb(255, 255, 255);
+    padding: 40px 50px 8px 50px;
+    border: none;
+    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 160%;
+}
+
+.charge_detail {
+    margin-top: 20px;
+    font-size: 13px;
+    margin-bottom: 40px;
+}
+
+#forcharge {
+    margin-top: 20px;
+    margin-left: 5px;
+    border-color: rgb(230, 230, 230);
+}
+
+#forcharge_submit {
+    background-color: white;
+    transition: all .3s ease;
+    transform: none;
+    width: 70px;
+    height: 32px;
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0.5px 0.5px 3px 1px rgb(226, 226, 226);
+    letter-spacing: 1px;
+    margin-left: 5px;
+    color: grey;
+    font-weight: 300;
 }
