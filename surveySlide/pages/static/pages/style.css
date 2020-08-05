@@ -41,7 +41,7 @@ button{
     outline-color: white;
     color: rgb(145, 145, 145);
     padding-left: 50px;
-    background-color: white;
+    background-color: transparent;
     text-decoration: none !important;
     cursor: pointer;
     transition: all .3s ease;
@@ -503,4 +503,58 @@ ul.price {
 
 .body_ {
     margin-top: 100px;
+}
+
+.myinfo {
+    position: relative;
+    margin: auto;
+    margin-top: 200px;
+    width: 400px;
+    background-color: rgb(255, 255, 255);
+    padding: 40px 50px 50px 50px;
+    border: none;
+    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 160%;
+}
+
+.myinfo a {
+    text-decoration: none !important;
+    position: relative;
+    float: right;
+    font-size: 14px;
+    color: rgb(19, 145, 255);
+}
+
+.myinfo_detail {
+    margin-top: 20px;
+    font-size: 13px;
+    margin-bottom: 40px;
+}
+
+.changeinfo {
+    position: relative;
+    margin: auto;
+    margin-top: 200px;
+    width: 400px;
+    background-color: rgb(255, 255, 255);
+    padding: 40px 50px 80px 50px;
+    border: none;
+    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 160%;
+}
+
+#info_change {
+    text-decoration: none !important;
+    position: relative;
+    float: right;
+    margin-top: 20px;
+    font-size: 14px;
+    color: rgb(19, 145, 255);
+    background-color: transparent;
+    border: none !important;
+    outline: none !important;
 }
