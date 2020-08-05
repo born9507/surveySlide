@@ -11,10 +11,15 @@ def index(request):
 def surveyCreate(request):
     if request.method == 'POST':
         title = request.POST['title']
-        survey = Survey(title=title, author=request.user)
+        survey = Survey(title=title, author=request.user, isCompleted=False)
         survey.save()
         return render(request, 'pages/surveyCreate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
     return render(request, 'pages/surveyCreate.html')
+
+def surveyRead(request):
+    user = request.user
+    return render(request, 'pages/surveyRead.html', {'user':user})
+
 
 def surveyDelete(request):
     # 이건 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록!!
@@ -40,7 +45,7 @@ def choiceCreate(request, sid, qid):
     choice.save()
     return render(request, 'pages/surveyCreate.html', {'survey':survey, 'question':question})
 
-def result(request):
+def surveyResult(request):
     user = request.user
     return render(request, 'pages/surveyResult.html', {'user':user})
 
