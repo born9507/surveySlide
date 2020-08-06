@@ -20,10 +20,10 @@
       </div>
       <div class="header_menus">
         {% if user.is_authenticated %}
-        <button type="button" onclick="location.href='/serviceIntro/'"><span>서비스 소개</span></button>
-        <button type="button" onclick="location.href='/pricePolicy/'"><span>가격 정책</span></button>
-        <button type="button" onclick="location.href='/new/'"><span>설문 제작</span></button>
-        <button type="button" onclick="location.href='/show/'"><span>설문 편집</span></button>
+        <button class="header_button" type="button" onclick="location.href='/serviceIntro/'"><span>서비스 소개</span></button>
+        <button class="header_button" type="button" onclick="location.href='/pricePolicy/'"><span>가격 정책</span></button>
+        <button class="header_button" type="button" onclick="location.href='/new/'"><span>설문 제작</span></button>
+        <button class="header_button" type="button" onclick="location.href='/show/'"><span>설문 편집</span></button>
       </div>
         
       <div class="component">
@@ -38,10 +38,10 @@
       </div>
 
         {% else %}
-        <button type="button" onclick="go_introduction()"><span>서비스 소개</span></button>
-        <button type="button" onclick="go_price()"><span>가격 정책</span></button>
-        <button type="button" onclick="go_makeaccount()"><span>회원 가입</span></button>
-        <button href="#loginModal" data-toggle="modal"><span>로그인</span></a>
+        <button class="header_button" type="button" onclick="go_introduction()"><span>서비스 소개</span></button>
+        <button class="header_button" type="button" onclick="go_price()"><span>가격 정책</span></button>
+        <button class="header_button" type="button" onclick="go_makeaccount()"><span>회원 가입</span></button>
+        <button class="header_button" href="#loginModal" data-toggle="modal"><span>로그인</span></a>
       </div>
 
           {% endif %}

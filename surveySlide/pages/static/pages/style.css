@@ -35,7 +35,7 @@ html {
     z-index: 5;
 }
 
-button{
+.header_button{
     border: none;
     outline: 0 !important;
     outline-color: white;
@@ -49,11 +49,11 @@ button{
 }
 
 
-button > span {
+.header_button > span {
     position: relative;
 }
 
-button > span::after {
+.header_button > span::after {
     content: '';
     width: 0%;
     right: 100%;
@@ -65,7 +65,7 @@ button > span::after {
     transition:all .3s ease;
   }
 
-  button:hover > span::after {
+  .header_button:hover > span::after {
     content: '';
     width: 100%;
     right: 0px;
@@ -502,7 +502,7 @@ ul.price {
 }
 
 .body_ {
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
 .myinfo {
@@ -672,4 +672,31 @@ ul.price {
     color: grey;
     font-weight: 300;
     font-size: 14px;
+}
+.questionBox {
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+    width: 700px;
+    background-color: rgb(255, 255, 255);
+    padding: 40px 50px 50px 50px;
+    border: none;
+    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 160%;
+}
+
+.surveyBox {
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+    width: 800px;
+    background-color: rgb(255, 255, 255);
+    padding: 40px 50px 50px 50px;
+    border: none;
+    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 160%;
 }
