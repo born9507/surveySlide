@@ -52,10 +52,15 @@ def questionCreate(request, sid):
     return render(request, 'pages/surveyCreate.html', {'survey':survey})
 
 def questionUpdate(request, sid, qid):
-    return render(request, 'pages/surveyCreate.html', {'survey':survey})
+    survey = Survey.objects.get(id=sid)
+    question = Question.objects.get(id=qid)
+    question_text = request.POST['question_text']
+    question.question_text = question_text
+    question.save()
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
 def questionDelete(request, sid, qid):
-    return render(request, 'pages/surveyCreate.html', {'survey':survey})
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
 def choiceCreate(request, sid, qid):
     survey = Survey.objects.get(id=sid)
@@ -66,15 +71,15 @@ def choiceCreate(request, sid, qid):
     return render(request, 'pages/surveyCreate.html', {'survey':survey, 'question':question})
 
 def choiceUpdate(request, sid, qid):
-    return render(request, 'pages/surveyCreate.html', {'survey':survey, 'question':question})
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
 
 def choiceDelete(request, sid, qid):
-    return render(request, 'pages/surveyCreate.html', {'survey':survey, 'question':question})
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
 
 
 def surveyResult(request):
     user = request.user
-    return render(request, 'pages/surveyResult.html', {'user':user})
+    return render(request, 'pages/surveyUpdate.html', {'user':user})
 
 
 def pricePolicy(request):

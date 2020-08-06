@@ -17,12 +17,13 @@
   {% for question in survey.question_set.all %}
     <div class="questionBox">
 
-
-      <p>Q. 
-        <input type="text" value="{{question.question_text}}"/> 
-        <input type="submit" value="삭제"/>
-      </p>
-    
+      <form action="/edit/{{survey.id}}/{{question.id}}/" method="POST">
+        {% csrf_token %}
+        <p>Q. <input name="question_text" type="text" value="{{question.question_text}}"/> </p>
+      </form>
+      <form action="/delete/{{survey.id}}/{{question.id}}">
+        <input type="submit" value="삭제" /> 
+      </form>
     
       {% for choice in question.choice_set.all %}
         <p>A. <input type="text" value="{{choice.choice_text}}"/> <input type="submit" value="삭제"/></p>
