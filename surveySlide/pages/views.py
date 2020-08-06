@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from pages.models import Survey, Question, Choice, Answer
+import random
 
 # Create your views here.
 def index(request):
     if request.method=='GET':
         questions=Question.objects.all()
+        total=questions.count
     return render(request, 'pages/index.html',{'questions': questions})
 
 

@@ -5,16 +5,20 @@
 
 {% if user.is_authenticated %}
     {% for question in questions %}
+    <form method="POST" action="/account/{{ user.id }}/myinfo/">
+    {% csrf_token %}
         <div style="border: 4px solid grey; border-radius: 3%;">
         <br>
-        질문: {{ question.question_text }}
+        질문{{question.id}}: {{ question.question_text }}
         <br>
         {% for c in question.choice_set.all%}
             <br>
-            보기: {{c.choice_text}}
+            보기: {{c.choice_text}} <input type="submit" value="선택">
             <br>
         {% endfor %}
         </div>
+    </form>
+    <br>
     {% endfor %}
 {%else%}
 
