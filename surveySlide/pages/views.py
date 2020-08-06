@@ -22,6 +22,8 @@ def surveyRead(request):
 
 def surveyUpdate(request, sid):
     survey = Survey.objects.get(id=sid)
+    survey.isCompleted = False #수정 누르면 다시 '작성중'으로 바뀌도록
+    survey.save()
     if request.method == 'POST':
         title = request.POST['title']
         survey.title = title
@@ -37,7 +39,10 @@ def surveyDelete(request, sid):
     return redirect('/show/')
 
 def surveyComplete(request, sid):
-    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
+    survey = Survey.objects.get(id=sid)
+    survey.isCompleted = True
+    survey.save()
+    return redirect('/show/')
 
 def questionCreate(request, sid):
     survey = Survey.objects.get(id=sid)

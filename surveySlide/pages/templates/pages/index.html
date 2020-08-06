@@ -8,8 +8,7 @@
   {% for question in questions %}
   {% comment %} isCompleted 가 참인 질문만 보이도록! {% endcomment %}
   {% comment %} isDeleted 가 참인 것은 안보이도록 {% endcomment %}
-  <p>isDeleted: {{question.survey.isDeleted}}</p>
-  <p>isCompleted:{{question.survey.isCompleted}}</p>
+  <p>isDeleted, isCompleted: {{question.survey.isDeleted}}, {{question.survey.isCompleted}}</p>
 
     {% if not question.survey.isDeleted and question.survey.isCompleted %}
       <div class="questionBox">

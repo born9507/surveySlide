@@ -37,6 +37,9 @@
       <input type="submit" value="submit"/>
     </form>
   </div> {% endcomment %}
-
+  <form action="/complete/{{survey.id}}/" style="margin-top:50px">
+    {% csrf_token %}
+    <input type="submit" value="설문지 제작 완료!"/> 
+  </form>
 </div>
 {% endblock content %}
