@@ -3,67 +3,69 @@
 {% load static %}
 {% block content %}
 
-<body>
-	<h1>새로운 설문조사</h1>
-	<a href="/">홈으로</a>
+<div class="surveyBox">
+  <h1>설문조사 제작</h1>
+  <a href="/">홈으로</a>
 
-	<p>안녕하세요! {{user.get_username}} 님!</p>
-	<p>당신의 현재 총 포인트: {{user.profile.point}}</p> 
-	{% comment %} 여기 위에 account 에서 모델 수정할 것! {% endcomment %}
-	<a href="/account/{{user.id}}/charge/">포인트 충전</a>
+  <p>안녕하세요! {{user.get_username}} 님!</p>
+  <p>당신의 현재 총 포인트: {{user.profile.point}}</p> 
+  {% comment %} 여기 위에 account 에서 모델 수정할 것! {% endcomment %}
+  <a href="/account/{{user.id}}/charge/">포인트 충전</a>
+</div>
+<div class="surveyBox">
+  {% if not survey %}
+    <form action="/new/" method="POST">
+      {% csrf_token %}
+      <label for="title">설문조사 제목을 입력하세요</label>
+      <input name="title"/>
+      <input type="submit" value="submit"/>
+    </form>
 
-	{% if not survey %}
-		<form action="/new/" method="POST">
-			{% csrf_token %}
-			<label for="title">설문조사 제목을 입력하세요</label>
-			<input name="title"/>
-			<input type="submit" value="submit"/>
-		</form>
-
-	{% else %}
-		<h2>제목: {{survey.title}}</h2>
-		<p>질문 갯수: {{survey.question_set.all.count}}</p>
-		
-			{% for question in survey.question_set.all %}
-			<div class="questionbox_a">
-				<div class="questionbox_b">
-					
-					<p>Q. {{question.question_text}}</p>
-
-					<p>{{survey.question.choice_set.all}}</p>
-
-					<ul>
-					{% for choice in question.choice_set.all%}
-						<li>A. {{choice.choice_text}}</li>
-						
-					{% endfor %}
-					</ul>
-				</div>
-				<div class="choice">
-					<form action="/new/{{survey.id}}/{{question.id}}/" method="POST">
-						{% csrf_token %}
-						<p>선택지를 입력하세요</p>
-						<input name="choice_text"/>
-						<input type="submit" value="submit"/>
-					</form>
-				</div>
-			</div>
-			{% endfor %}
-
-		<form action="/new/{{survey.id}}/" method="POST">
-			{% csrf_token %}
-			<p>질문을 입력하세요</p>
-			<input name="question_text"/>
-			<input type="submit" value="submit"/>
-		</form>
-	{% endif %}
-</body>
+  {% else %}
+    <h2>
+      <form action="/edit/{{survey.id}}" method="POST">
+        {% csrf_token %}
+        <input name="title" type="text" value="{{survey.title}}"/> 
+        <input type="submit" value="삭제"/> 
+      </form>
+    </h2>
+    <p>질문 갯수: {{survey.question_set.all.count}}</p>
+    {% for question in survey.question_set.all %}
+      <div class="questionBox">
+        <div>
+          <p> Q. <input type="text" value="{{question.question_text}}"/> <input type="submit" value="삭제"/></p>
+          
+          <p>{{survey.question.choice_set.all}}</p>
+          <ul>
+            {% for choice in question.choice_set.all%}
+            <li>A. <input type="text" value="{{choice.choice_text}}"/> <input type="submit" value="삭제"/></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="choice">
+          <form action="/new/{{survey.id}}/{{question.id}}/" method="POST">
+            {% csrf_token %}
+            <input name="choice_text"/>
+            <input type="submit" value="submit"/>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="questionBox">
+      <form action="/new/{{survey.id}}/" method="POST">
+        {% csrf_token %}
+        <p>Q. <input name="question_text"/></p>
+        <input type="submit" value="submit"/>
+      </form>
+    </div>
+  {% endif %}
+</div>
 
 {% endblock content %}
 {% comment %} {% for feed in feeds %}
 <div style="border: 1px solid grey;">
-	<p>{{ feed. title }}</p>
-	<p>{{ feed. title }}</p>
+  <p>{{ feed. title }}</p>
+  <p>{{ feed. title }}</p>
 </div>
 {% endfor %} {% endcomment %}
 

@@ -33,7 +33,10 @@ urlpatterns = [
     path('new/<int:sid>/<int:qid>/', pages.views.choiceCreate),
     
     path('show/', pages.views.surveyRead),
+
     path('edit/<int:sid>/', pages.views.surveyUpdate),
+    path('edit/<int:sid>/<int:qid>/', pages.views.questionUpdate),
+
     path('delete/<int:sid>/', pages.views.surveyDelete),
 
     path('result/', pages.views.surveyResult),

@@ -2,18 +2,41 @@
 
 {% load static %}
 {% block content %}
+<div class="surveyBox">
+  <h1>설문조사 수정</h1>
+  <a href="/">홈으로</a>
+  <a href="/show/">이전 페이지</a>
 
-	<h1>설문조사 수정</h1>
-	<a href="/">홈으로</a>
-	<a href="/result/">이전 페이지</a>
-	<h2>제목: {{survey.title}}</h2>
-	{% for question in survey.question_set.all %}
-		<p>Q. {{question.question_text}}</p>
-		{% for choice in question.choice_set.all %}
-			<p>A. {{choice.choice_text}}</p>
-		{% endfor %}
-	{% endfor %}
+  <h2>
+    <form action="/edit/{{survey.id}}/" method="POST">
+      {% csrf_token %}
+      <input name="title" type="text" value="{{survey.title}}"/> 
+    </form>
+  </h2>
 
-	<p></p>
+  {% for question in survey.question_set.all %}
+    <div class="questionBox">
 
+
+      <p>Q. 
+        <input type="text" value="{{question.question_text}}"/> 
+        <input type="submit" value="삭제"/>
+      </p>
+    
+    
+      {% for choice in question.choice_set.all %}
+        <p>A. <input type="text" value="{{choice.choice_text}}"/> <input type="submit" value="삭제"/></p>
+      {% endfor %}
+    </div>
+  {% endfor %}
+  
+  {% comment %} <div class="questionBox">
+    <form action="/edit/{{survey.id}}/" method="POST">
+      {% csrf_token %}
+      <p>Q. <input name="question_text"/></p>
+      <input type="submit" value="submit"/>
+    </form>
+  </div> {% endcomment %}
+
+</div>
 {% endblock content %}

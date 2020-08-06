@@ -1,12 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>나의 설문조사</h1>
-<ul>
-{% for survey in user.survey_set.all%}
-    <a href="/edit/{{survey.id}}/"><li>{{survey.title}}</li></a>
-    {% comment %} 여기는 surveyEdit 페이지로 연결되게끔 {% endcomment %}
-{% endfor %}
-</ul>
-
+<div class="surveyBox">
+  <h1>나의 설문조사</h1>
+  <ul>
+    {% for survey in user.survey_set.all%}
+      {% if survey.isDeleted %}
+        <li>
+          <a href="/edit/{{survey.id}}/">
+            {{survey.title}} 
+            {% if not survey.isCompleted %} 
+              (작성중...)
+            {% endif %} 
+          </a>
+          <form action="/delete/{{survey.id}}/">
+            <input type="submit" value="삭제"/> 
+          </form>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
 {% endblock content%}

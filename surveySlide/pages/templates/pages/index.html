@@ -4,133 +4,140 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    {% for question in questions %}
-        <div style="border: 4px solid grey; border-radius: 3%;">
-        <br>
-        질문: {{ question.question_text }}
-        <br>
-        {% for c in question.choice_set.all%}
-            <br>
-            보기: {{c.choice_text}}
-            <br>
-        {% endfor %}
+<div class="Questions">
+  {% for question in questions %}
+  {% comment %} isCompleted 가 참인 질문만 보이도록! {% endcomment %}
+  {% comment %} isDeleted 가 참인 것은 안보이도록 {% endcomment %}
+  <p>isDeleted: {{question.survey.isDeleted}}</p>
+  <p>isCompleted:{{question.survey.isCompleted}}</p>
+
+    {% if not question.survey.isDeleted and question.survey.isCompleted %}
+      <div class="questionBox">
+        <div class="question">Q. {{ question.question_text }}</div>
+        <div class="answerBox">
+          {% for c in question.choice_set.all%}
+            <div class="answer"><button class="header_button"><span>{{c.choice_text}}</span></button></div>
+          {% endfor %}
         </div>
-    {% endfor %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
 {%else%}
 
 <div style="border: 4px solid grey; border-radius: 3%;">
-	<h2> 서베이 슬라이더에 </h2>
-	<h2> 오신 것을 환영합니다 </h2>
+  <h2> 서베이 슬라이더에 </h2>
+  <h2> 오신 것을 환영합니다 </h2>
 </div>
 
 <div class = "introduction">
-	<div class = "intro">
-		<div class="introgroup_a">
-            <div class="title"><p>서베이 슬라이더에<br>오신 것을 환영합니다</p></div>
-            <img class="swipe" src="{% static "pages\imgs\swipe.png" %}"/>
-            <div class="content"><p>서베이 슬라이더는 기존 설문 조사 플랫폼들에<br>비하여 우수한 접근성을 제공합니다. 웹과 앱을<br>기반으로 누구나 쉽게 설문을 작성 및 배포하고<br>답변에 따라 리워드를 받는 형식의 설문 조사<br>중개 플랫폼입니다.</p></div>
-		</div>
-		<div class="introgroup_b">
-			<span>계정 만들기</span>
-			<form method="POST" action="{%url 'signup'%}">
-				{% csrf_token %}
-				<input id="username" name="username" type="text" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   아이디">
-				<input id="password1" name="password1" type="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   비밀번호" value="">
-				<input id="password2" name="password2" type="password" placeholder="   비밀번호 확인"value="" >
-				<input id="email" name="email" type="text" placeholder="   이메일 주소">
-				<input id="familyname" name="last_name" type="text" placeholder="   성">  <input id="name" name="first_name" type="text" placeholder="   이름">
-				<input id="submit" type="submit" value="회원가입">
-				<div class="contract">‘계정 만들기’를 클릭하거나 회원가입을 하면  surveySlide의 <a href="">이용 약관</a> 및  <a href="">개인정보 보호정책</a>에 동의하고, 아울러 surveySlide 서비스에 관련된 정보와 제공 사항을 이메일로 수신하는 것에 동의하는 것입니다.</div>
-			</form>
-		</div>
-	</div>
+  <div class = "intro">
+    <div class="introgroup_a">
+      <div class="title"><p>서베이 슬라이더에<br>오신 것을 환영합니다</p></div>
+      <img class="swipe" src="{% static "pages\imgs\swipe.png" %}"/>
+      <div class="content"><p>서베이 슬라이더는 기존 설문 조사 플랫폼들에<br>비하여 우수한 접근성을 제공합니다. 웹과 앱을<br>기반으로 누구나 쉽게 설문을 작성 및 배포하고<br>답변에 따라 리워드를 받는 형식의 설문 조사<br>중개 플랫폼입니다.</p></div>
+    </div>
+    <div class="introgroup_b">
+      <span>계정 만들기</span>
+      <form method="POST" action="{%url 'signup'%}">
+        {% csrf_token %}
+        <input id="username" name="username" type="text" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   아이디">
+        <input id="password1" name="password1" type="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   비밀번호" value="">
+        <input id="password2" name="password2" type="password" placeholder="   비밀번호 확인"value="" >
+        <input id="email" name="email" type="text" placeholder="   이메일 주소">
+        <input id="familyname" name="last_name" type="text" placeholder="   성">  <input id="name" name="first_name" type="text" placeholder="   이름">
+        <input id="submit" type="submit" value="회원가입">
+        <div class="contract">‘계정 만들기’를 클릭하거나 회원가입을 하면  surveySlide의 <a href="">이용 약관</a> 및  <a href="">개인정보 보호정책</a>에 동의하고, 아울러 surveySlide 서비스에 관련된 정보와 제공 사항을 이메일로 수신하는 것에 동의하는 것입니다.</div>
+      </form>
+    </div>
+  </div>
 </div>
 <div class = "service_introduction">
-    <div class = "serviceintroduction_title"><p>서비스 소개</p></div>
-    <div class = "serviceintroduction_content"><p>서베이 슬라이더는 설문 의뢰인과 설문 대상자 양방의 만족을 추구합니다<br>웹 앱 플랫폼을 통해 누구나 간편하게 설문하고 즉각적인 리워드를 얻을 수 있습니다</div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class = "interview">
-        <div class = "interviewer">
-            <img class="interviewer_image" src="{% static "pages\imgs\download-for-free-10-png-iphone-png-white-top-images-at-carlisle-white-iphone-png-1258_944.png" %}"/>
-            <br>
-            <br>
-            <br>
-            <br>
-            <div>
-                <div class = "interviewer_title"><p>설문 의뢰인</p></div>
-                <div class = "interviewer_engtitle"><p >Interviewer</p></div><br>
-                <div class = "interviewer_content">
-                <p>사이트에서 간편하게 설문조사를 제작 및 배포할 수 있습니다</p>
-                <p>광고 수익의 일부를 설문 비용에 충당함으로써 낮은 단가를 유지합니다</p>
-                <p>연령, 성별, 거주지 등에 따른 세분화된 설문 대상 설정이 가능합니다</p>
-                <p>문항 개수, 종류에 따라 가격 책정이 이루어집니다</p>
-                <p>정해진 기한까지 설문 시행 완료를 보장합니다</p>
-                <p>추가 금액 지불하고 설문 기한을 단축시킬 수 있습니다</p>
-                </div>
-            </div>
+  <div class = "serviceintroduction_title"><p>서비스 소개</p></div>
+  <div class = "serviceintroduction_content"><p>서베이 슬라이더는 설문 의뢰인과 설문 대상자 양방의 만족을 추구합니다<br>웹 앱 플랫폼을 통해 누구나 간편하게 설문하고 즉각적인 리워드를 얻을 수 있습니다</div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class = "interview">
+    <div class = "interviewer">
+      <img class="interviewer_image" src="{% static "pages\imgs\download-for-free-10-png-iphone-png-white-top-images-at-carlisle-white-iphone-png-1258_944.png" %}"/>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div>
+        <div class = "interviewer_title"><p>설문 의뢰인</p></div>
+        <div class = "interviewer_engtitle"><p >Interviewer</p></div><br>
+        <div class = "interviewer_content">
+        <p>사이트에서 간편하게 설문조사를 제작 및 배포할 수 있습니다</p>
+        <p>광고 수익의 일부를 설문 비용에 충당함으로써 낮은 단가를 유지합니다</p>
+        <p>연령, 성별, 거주지 등에 따른 세분화된 설문 대상 설정이 가능합니다</p>
+        <p>문항 개수, 종류에 따라 가격 책정이 이루어집니다</p>
+        <p>정해진 기한까지 설문 시행 완료를 보장합니다</p>
+        <p>추가 금액 지불하고 설문 기한을 단축시킬 수 있습니다</p>
         </div>
-        <div class = "interviewee">
-            <img class="interviewer_image" src="{% static "pages\imgs\download-for-free-10-png-iphone-png-white-top-images-at-carlisle-white-iphone-png-1258_944.png" %}"/>
-            <br>
-            <br>
-            <br>
-            <br>
-            <div>
-                <div class = "interviewee_title"><p>설문 대상자</p></div>
-                <div class = "interviewee_engtitle"><p >Interviewee</p></div><br>
-                <div class = "interviewee_content">
-                <p>사이트 및 App에서 간편한 설문 시행이 가능합니다</p>
-                <p>기존의 설문 조사 양식에서 벗어나 문제 단위로 답변할 수 있습니다</p>
-                <p>답변에 따른 리워드를 랜덤으로 제공하며 현금으로 환전이 가능합니다</p>
-                <p>설문에 성실히 참여할수록 높은 리워드를 받을 확률이 올라갑니다</p>
-                <p>App에서 알림 설정을 해두면 더 많은 리워드를 획득할 수 있습니다</p>
-                <p>잠금화면 설정을 해두면 더 많은 리워드를 획득할 수 있습니다</p>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class = "price_information">
-        <div class = "priceinformation_title"><p>가격 정책</p></div>
-        <div class = "priceinformation_content"><p>설문 비용은 문항수에 따른 1인 설문 비용과 응답자 수의 곱으로 가격 책정이 이루어집니다<br>기존의 다른 설문 서비스들보다 싸고 합리적인 단가를 제공하여 설문 의뢰인 여러분들의 만족을 추구합니다</div>
-        <br>
-        <br>
-        <br>
-        <div class="price_align">
-            <ul class="items">
-                <div class="items_name">문항수</div>
-                <li>1 ~ 4</li>  
-                <li>5 ~ 9</li>  
-                <li>10 ~ 14</li>  
-                <li>15 ~ 19</li> 
-                <li>20 ~ 24</li> 
-                <li>25 ~ 30</li>
-            </ul>
-            <ul class="price">
-                <div class="price_name">1인 설문 비용</div>
-                <li>100 ￦</li>  
-                <li>200 ￦</li>  
-                <li>400 ￦</li>  
-                <li>650 ￦</li> 
-                <li>900 ￦</li> 
-                <li>1200 ￦</li>
-            </ul>
-            <div class="x">×</div>
-            <div class="person">응답자 수</div>
+    <div class = "interviewee">
+      <img class="interviewer_image" src="{% static "pages\imgs\download-for-free-10-png-iphone-png-white-top-images-at-carlisle-white-iphone-png-1258_944.png" %}"/>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div>
+        <div class = "interviewee_title"><p>설문 대상자</p></div>
+        <div class = "interviewee_engtitle"><p >Interviewee</p></div><br>
+        <div class = "interviewee_content">
+        <p>사이트 및 App에서 간편한 설문 시행이 가능합니다</p>
+        <p>기존의 설문 조사 양식에서 벗어나 문제 단위로 답변할 수 있습니다</p>
+        <p>답변에 따른 리워드를 랜덤으로 제공하며 현금으로 환전이 가능합니다</p>
+        <p>설문에 성실히 참여할수록 높은 리워드를 받을 확률이 올라갑니다</p>
+        <p>App에서 알림 설정을 해두면 더 많은 리워드를 획득할 수 있습니다</p>
+        <p>잠금화면 설정을 해두면 더 많은 리워드를 획득할 수 있습니다</p>
         </div>
+      </div>
     </div>
+  </div>
+  <div class = "price_information">
+    <div class = "priceinformation_title"><p>가격 정책</p></div>
+    <div class = "priceinformation_content"><p>설문 비용은 문항수에 따른 1인 설문 비용과 응답자 수의 곱으로 가격 책정이 이루어집니다<br>기존의 다른 설문 서비스들보다 싸고 합리적인 단가를 제공하여 설문 의뢰인 여러분들의 만족을 추구합니다</div>
+    <br>
+    <br>
+    <br>
+    <div class="price_align">
+      <ul class="items">
+        <div class="items_name">문항수</div>
+        <li>1 ~ 4</li>  
+        <li>5 ~ 9</li>  
+        <li>10 ~ 14</li>  
+        <li>15 ~ 19</li> 
+        <li>20 ~ 24</li> 
+        <li>25 ~ 30</li>
+      </ul>
+      <ul class="price">
+        <div class="price_name">1인 설문 비용</div>
+        <li>100 ￦</li>  
+        <li>200 ￦</li>  
+        <li>400 ￦</li>  
+        <li>650 ￦</li> 
+        <li>900 ￦</li> 
+        <li>1200 ￦</li>
+      </ul>
+      <div class="x">×</div>
+      <div class="person">응답자 수</div>
+    </div>
+  </div>
 </div> 
 <footer class = "footer">
-	<div class = "allrights"><p>ⓒ 2020 SURVEY SLIDER, Inc. All rights reserved</p></div>
-	<div class = "·"><p>·</p></div>
-	<div class = "my_information"><p>개인정보 처리방침</p></div>
-	<div class = "·"><p>·</p></div>
-	<div class = "terms"><p>이용약관</p></div>
-	<div class = "·"><p>·</p></div>
-	<div class = "sitemap"><p>사이트맵</p></div>
-	<div class = "refund"><p>한국의 변경된 환불 정책</p></div>
+  <div class = "allrights"><p>ⓒ 2020 SURVEY SLIDER, Inc. All rights reserved</p></div>
+  <div class = "·"><p>·</p></div>
+  <div class = "my_information"><p>개인정보 처리방침</p></div>
+  <div class = "·"><p>·</p></div>
+  <div class = "terms"><p>이용약관</p></div>
+  <div class = "·"><p>·</p></div>
+  <div class = "sitemap"><p>사이트맵</p></div>
+  <div class = "refund"><p>한국의 변경된 환불 정책</p></div>
 </footer>
 
 {%endif%}
