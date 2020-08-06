@@ -5,7 +5,8 @@
   <h1>나의 설문조사</h1>
   <ul>
     {% for survey in user.survey_set.all%}
-      {% if survey.isDeleted %}
+      {% if not survey.isDeleted %} 
+      {% comment %} 지워지지 않은 것만 볼 수 있도록 {% endcomment %}
         <li>
           <a href="/edit/{{survey.id}}/">
             {{survey.title}} 
