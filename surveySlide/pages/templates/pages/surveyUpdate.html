@@ -21,12 +21,18 @@
         {% csrf_token %}
         <p>Q. <input name="question_text" type="text" value="{{question.question_text}}"/> </p>
       </form>
-      <form action="/delete/{{survey.id}}/{{question.id}}">
+      <form action="/delete/{{survey.id}}/{{question.id}}/">
         <input type="submit" value="삭제" /> 
       </form>
     
       {% for choice in question.choice_set.all %}
-        <p>A. <input type="text" value="{{choice.choice_text}}"/> <input type="submit" value="삭제"/></p>
+        <form action="/edit/{{survey.id}}/{{question.id}}/{{choice.id}}/" method="POST">
+          {% csrf_token %}
+          <p>A. <input name="choice_text" type="text" value="{{choice.choice_text}}"/></p>
+        </form>
+        <form action="/delete/{{survey.id}}/{{question.id}}/{{choice.id}}/">
+          <input type="submit" value="삭제"/>
+        </form>
       {% endfor %}
     </div>
   {% endfor %}

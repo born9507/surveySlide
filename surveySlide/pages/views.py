@@ -57,10 +57,15 @@ def questionUpdate(request, sid, qid):
     question_text = request.POST['question_text']
     question.question_text = question_text
     question.save()
-    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
+    return redirect('/edit/'+str(sid)+'/')
+    # return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
 def questionDelete(request, sid, qid):
-    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
+    survey = Survey.objects.get(id=sid)
+    question = Question.objects.get(id=qid)
+    question.delete()
+    return redirect('/edit/'+str(sid)+'/')
+    # return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
 def choiceCreate(request, sid, qid):
     survey = Survey.objects.get(id=sid)
@@ -70,11 +75,18 @@ def choiceCreate(request, sid, qid):
     choice.save()
     return render(request, 'pages/surveyCreate.html', {'survey':survey, 'question':question})
 
-def choiceUpdate(request, sid, qid):
-    return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
+def choiceUpdate(request, sid, qid, cid):
+    choice = Choice.objects.get(id=cid)
+    choice_text = request.POST['choice_text']
+    choice.choice_text = choice_text
+    choice.save()
+    return redirect('/edit/'+str(sid)+'/')
+    # return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
 
-def choiceDelete(request, sid, qid):
-    return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
+def choiceDelete(request, sid, qid, cid):
+    choice = Choice.objects.get(id=cid)
+    choice.delete()
+    return redirect('/edit/'+str(sid)+'/')
 
 
 def surveyResult(request):

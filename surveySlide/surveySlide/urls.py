@@ -36,11 +36,11 @@ urlpatterns = [
 
     path('edit/<int:sid>/', pages.views.surveyUpdate),
     path('edit/<int:sid>/<int:qid>/', pages.views.questionUpdate),
-    # path('edit/<int:sid>/<int:qid>/<int:cid>/', pages.views.choiceUpdate),
+    path('edit/<int:sid>/<int:qid>/<int:cid>/', pages.views.choiceUpdate),
 
     path('delete/<int:sid>/', pages.views.surveyDelete),
     path('delete/<int:sid>/<int:qid>/', pages.views.questionDelete),
-    # path('delete/<int:sid>/<int:qid>/<int:cid>/', pages.views.choiceDelete),
+    path('delete/<int:sid>/<int:qid>/<int:cid>/', pages.views.choiceDelete),
     
     path('complete/<int:sid>/', pages.views.surveyComplete),
 
