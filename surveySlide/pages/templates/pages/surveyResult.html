@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>나의 설문조사</h1>
+<h1>설문조사 결과</h1>
 <ul>
 {% for survey in user.survey_set.all%}
-    <a href="/edit/{{survey.id}}/"><li>{{survey.title}}</li></a>
+    <li>{{survey.title}}</li>
+    
     {% comment %} 여기는 surveyEdit 페이지로 연결되게끔 {% endcomment %}
 {% endfor %}
 </ul>

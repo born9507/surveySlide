@@ -2,21 +2,25 @@
 
 {% load static %}
 {% block content %}
-
-{{ user.last_name }} {{user.first_name}} 님의 정보입니다.
-<br>
-아이디: {{ user.get_username }}
-<br>
-이메일: {{user.email}}
-<br>
-학교: {{ user.profile.college }}
-<br>
-전공: {{ user.profile.major }}
-<br>  
-포인트: {{user.profile.point}}
-<br>       
-총 획득 포인트: {{user.profile.gainedpoint}}   
-<br>                              
-<a href="/account/{{ user.id }}/changeinfo">정보 수정</a>
-
+<div class="myinfo">
+    <div>
+        {{ user.last_name }}{{user.first_name}} 님의 정보입니다.
+        <br>
+        <div class="myinfo_detail">
+            아이디: {{ user.get_username }}
+            <br>
+            이메일: {{user.email}}
+            <br>
+            학교: {{ user.profile.college }}
+            <br>
+            전공: {{ user.profile.major }}
+            <br>  
+            포인트: {{user.profile.point}}
+            <br>       
+            총 획득 포인트: {{user.profile.gainedpoint}}   
+            <br>   
+        </div>                           
+    </div>
+    <a href="/account/{{ user.id }}/changeinfo">정보 수정</a>
+</div>
 {% endblock %}
