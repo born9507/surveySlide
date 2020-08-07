@@ -35,7 +35,6 @@ def surveyCreate(request):
         gender_filter=request.POST['gender_filter']
         grade_filter=request.POST['grade_filter']
         survey = Survey(title=title, author=request.user, isCompleted=False, explanation=explanation, gender_filter=gender_filter, grade_filter=grade_filter)
-        survey.save()
         return render(request, 'pages/surveyUpdate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
     return render(request, 'pages/surveyCreate.html')
 

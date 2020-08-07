@@ -52,3 +52,4 @@ class Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question =models.ForeignKey(Question,blank=True,null=True, on_delete=models.CASCADE)
     choice =models.ForeignKey(Choice,blank=True,null=True, on_delete=models.CASCADE)
+
