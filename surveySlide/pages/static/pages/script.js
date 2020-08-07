@@ -1,5 +1,5 @@
 function go_introduction(){
-	document.documentElement.scrollTop = 970;
+	document.documentElement.scrollTop = 830;
 }
 
 function go_price(){
