@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
+    list-style: none;
 }
 
 html {
@@ -250,6 +251,7 @@ input:hover{
     text-align: center;
     padding-top: 50px;
     padding-bottom: 40px;
+    top: -20px;
 }
 
 .serviceintroduction_title {
@@ -331,6 +333,7 @@ input:hover{
     text-align: center;
     padding-top: 50px;
     padding-bottom: 20px;
+    top: -20px;
 }
 
 .price_align {
@@ -688,15 +691,67 @@ ul.price {
 }
 
 .surveyBox {
+    background-color: rgb(250, 250, 250);
     position: relative;
-    margin: auto;
-    margin-top: 50px;
-    width: 800px;
-    background-color: rgb(255, 255, 255);
-    padding: 40px 50px 50px 50px;
-    border: none;
-    box-shadow: 0px 0px 5px 3px rgb(226, 226, 226);
-    border-radius: 20px;
-    font-size: 15px;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 14px;
     line-height: 160%;
+    top: -20px;
+}
+
+#surveyBox_title {
+    font-size: 20px;   
+}
+
+#surveyBox_content {
+    margin-top: 30px;
+    font-size: 12px;
+    line-height: 160%;
+}
+
+#surveyBox_pointCharge {
+    background-color: white;
+    padding: 4px 10px;  
+    text-decoration: none;
+    box-shadow: 0.5px 0.5px 3px 1px rgb(226, 226, 226);
+    letter-spacing: 1px;
+    color: grey;
+    font-weight: 300;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+.surveyBox_surveyTitle {
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    border: none;
+    font-size: 16px;
+    line-height: 180%;
+
+}
+
+#surveyBox_box {
+    border-color: rgb(230, 230, 230);
+    font-size: 14px;
+}
+
+#surveyBox_surveySubmit {
+    transform: none;
+    background-color: white;
+    width: 60px;
+    height: 28px;
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0px 0px 3px 1px rgb(226, 226, 226);
+    letter-spacing: 1px;
+    margin-left: 5px;
+    color: grey;
+    font-size: 15px;
+}
+
+#surveyBox_titleafterSubmit {
+    font-size: 30px;
 }
