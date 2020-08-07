@@ -3,16 +3,14 @@
 {% load static %}
 {% block content %}
 <div class="surveyBox">
-  <h1>설문조사 수정</h1>
-  <a href="/">홈으로</a>
-  <a href="/show/">이전 페이지</a>
 
   <h2>
     <form action="/edit/{{survey.id}}/" method="POST">
       {% csrf_token %}
-      <input name="title" type="text" value="{{survey.title}}"/> 
+      <input name="title" type="text" value="{{survey.title}}"/>
     </form>
   </h2>
+  <p>질문 갯수: {{survey.question_set.all.count}}</p>
 
   {% for question in survey.question_set.all %}
     <div class="questionBox">
@@ -34,16 +32,27 @@
           <input type="submit" value="삭제"/>
         </form>
       {% endfor %}
+
+      <div class="choice">
+        <form action="/new/{{survey.id}}/{{question.id}}/" method="POST">
+          {% csrf_token %}
+          <input name="choice_text"/>
+          <input type="submit" value="submit"/>
+        </form>
+      </div>
+
     </div>
   {% endfor %}
-  
-  {% comment %} <div class="questionBox">
-    <form action="/edit/{{survey.id}}/" method="POST">
+
+  <div class="questionBox">
+    <form action="/new/{{survey.id}}/" method="POST">
       {% csrf_token %}
       <p>Q. <input name="question_text"/></p>
       <input type="submit" value="submit"/>
     </form>
-  </div> {% endcomment %}
+  </div>
+  
+
   <form action="/complete/{{survey.id}}/" style="margin-top:50px">
     {% csrf_token %}
     <input type="submit" value="설문지 제작 완료!"/> 
