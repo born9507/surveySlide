@@ -22,15 +22,29 @@ def surveyRead(request):
     user = request.user
     return render(request, 'pages/surveyRead.html', {'user':user})
 
-
-def surveyDelete(request):
-    # 이건 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록!!
-    # 함수 구현
-    return redirect('/result/')
-
 def surveyUpdate(request, sid):
     survey = Survey.objects.get(id=sid)
+    survey.isCompleted = False #수정 누르면 다시 '작성중'으로 바뀌도록
+    survey.save()
+    if request.method == 'POST':
+        title = request.POST['title']
+        survey.title = title
+        survey.save()
+        return render(request, 'pages/surveyUpdate.html', {'survey':survey})
     return render(request, 'pages/surveyUpdate.html', {'survey':survey})
+
+def surveyDelete(request, sid):
+    # 나중에 이건 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록 함수 구현하기! (데이터는 남아있도록)
+    survey = Survey.objects.get(id=sid)
+    survey.isDeleted = True
+    survey.save()
+    return redirect('/show/')
+
+def surveyComplete(request, sid):
+    survey = Survey.objects.get(id=sid)
+    survey.isCompleted = True
+    survey.save()
+    return redirect('/show/')
 
 def questionCreate(request, sid):
     survey = Survey.objects.get(id=sid)
@@ -38,6 +52,22 @@ def questionCreate(request, sid):
     question = Question(survey_id=sid, question_text=question_text)
     question.save()
     return render(request, 'pages/surveyCreate.html', {'survey':survey})
+
+def questionUpdate(request, sid, qid):
+    survey = Survey.objects.get(id=sid)
+    question = Question.objects.get(id=qid)
+    question_text = request.POST['question_text']
+    question.question_text = question_text
+    question.save()
+    return redirect('/edit/'+str(sid)+'/')
+    # return render(request, 'pages/surveyUpdate.html', {'survey':survey})
+
+def questionDelete(request, sid, qid):
+    survey = Survey.objects.get(id=sid)
+    question = Question.objects.get(id=qid)
+    question.delete()
+    return redirect('/edit/'+str(sid)+'/')
+    # return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
 def choiceCreate(request, sid, qid):
     survey = Survey.objects.get(id=sid)
@@ -47,9 +77,23 @@ def choiceCreate(request, sid, qid):
     choice.save()
     return render(request, 'pages/surveyCreate.html', {'survey':survey, 'question':question})
 
+def choiceUpdate(request, sid, qid, cid):
+    choice = Choice.objects.get(id=cid)
+    choice_text = request.POST['choice_text']
+    choice.choice_text = choice_text
+    choice.save()
+    return redirect('/edit/'+str(sid)+'/')
+    # return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
+
+def choiceDelete(request, sid, qid, cid):
+    choice = Choice.objects.get(id=cid)
+    choice.delete()
+    return redirect('/edit/'+str(sid)+'/')
+
+
 def surveyResult(request):
     user = request.user
-    return render(request, 'pages/surveyResult.html', {'user':user})
+    return render(request, 'pages/surveyUpdate.html', {'user':user})
 
 
 def pricePolicy(request):
