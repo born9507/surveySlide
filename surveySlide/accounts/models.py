@@ -11,7 +11,7 @@ class Profile(models.Model):
     major = models.CharField(max_length=20, blank=True, null=True)
     grade=models.IntegerField(null=True)
     gender=models.CharField(max_length=20, null=True)
-    point = models.IntegerField(default=1000)
+    point = models.IntegerField(default=0)
     changedpoint = models.IntegerField(default=0)
     chargedpoint = models.IntegerField(default=0)
     gainedpoint= models.IntegerField(default=0)

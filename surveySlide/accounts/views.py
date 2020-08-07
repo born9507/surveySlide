@@ -53,6 +53,8 @@ def firstsetting1(request):
     user=request.user
     if request.method=='POST':
         Profile.objects.filter(user=user).update(college=request.POST['college'])
+        user.profile.point=user.profile.point+250
+        user.profile.save()
         return redirect('/')
 
 
@@ -60,16 +62,22 @@ def firstsetting2(request):
     user=request.user
     if request.method=='POST':
         Profile.objects.filter(user=user).update(major=request.POST['major'])
+        user.profile.point=user.profile.point+250
+        user.profile.save()
         return redirect('/')
 
 def firstsetting3(request):
     user=request.user
     if request.method=='POST':
         Profile.objects.filter(user=user).update(grade=request.POST['grade'])
+        user.profile.point=user.profile.point+250
+        user.profile.save()
         return redirect('/')
 
 def firstsetting4(request):
     user=request.user
     if request.method=='POST':
         Profile.objects.filter(user=user).update(gender=request.POST['gender'])
+        user.profile.point=user.profile.point+250
+        user.profile.save()
         return redirect('/')
