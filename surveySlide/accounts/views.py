@@ -18,7 +18,7 @@ def signup(request):
 def changeinfo(request, id):
     user=User.objects.get(id=id)
     if request.method=='POST':
-        User.objects.filter(id=id).update(username=request.POST['username'])
+        User.objects.filter(id=id).update(username=request.POST['username'], first_name=request.POST['first_name'], last_name=request.POST['last_name'], email=request.POST['email'])
         Profile.objects.filter(user=user).update(college=request.POST['college'], major=request.POST['major'])
         user.refresh_from_db()
         return render(request, 'account/myinfo.html')
