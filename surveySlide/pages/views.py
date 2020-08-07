@@ -14,11 +14,12 @@ def index(request):
         return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions})
     else:
         return render(request, 'pages/index.html')
-        
+
 def surveyCreate(request):
     if request.method == 'POST':
         title = request.POST['title']
-        survey = Survey(title=title, author=request.user, isCompleted=False)
+        explanation=request.POST['explanation']
+        survey = Survey(title=title, author=request.user, isCompleted=False, explanation=explanation)
         survey.save()
         return render(request, 'pages/surveyUpdate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
     return render(request, 'pages/surveyCreate.html')

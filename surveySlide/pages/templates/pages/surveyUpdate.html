@@ -11,6 +11,9 @@
     <form action="/edit/{{survey.id}}/" method="POST">
       {% csrf_token %}
       <input name="title" type="text" value="{{survey.title}}"/>
+      <br>
+      <input name="explanation" type="text" value="{{survey.explanation}}"/>
+    </form>
     </form>
   </h2>
   <p>질문 갯수: {{survey.question_set.all.count}}</p>

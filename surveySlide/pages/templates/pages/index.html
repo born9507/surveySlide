@@ -30,7 +30,7 @@
         </div>
     {% else %}
             {% if numQuestions == 0 %}
-                <div class="questionBox">질문이 없습니다</div> 
+                <div class="questionBox">참여 가능한 질문이 없습니다</div> 
             {% else %}
                 <div class="questionBox">
                 <div class="question">Q. {{ question.question_text }}</div>
@@ -40,6 +40,11 @@
                     {% endfor %}
                 </div>
                 </div>
+                <div class="questionBox">
+                    설문 제목: {{question.survey.title}}
+                    <br>
+                    설명: {{question.survey.explanation}}
+                <div>
             {% endif %}
     {% endif %}
 
