@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
-from pages.models import Survey, Question, Choice, Answer
+from pages.models import Survey, Question, Choice, Answer, Result
 import random
 
 # Create your views here.
 def index(request):
     questions = Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True)
+    notAnswered = Result.objects.exclude(interviewee=request.user)
+    # questions = notAnswered.filter(survey__isCompleted=True, survey__isDeleted=False)
     question = questions.order_by("?").first()
     numQuestions = questions.count()
+
     if numQuestions == 0:
         return render(request, 'pages/index.html', {'numQuestions':numQuestions})
     return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions})
@@ -91,7 +94,6 @@ def choiceDelete(request, sid, qid, cid):
     choice.delete()
     return redirect('/edit/'+str(sid)+'/')
 
-
 def surveyResult(request):
     user = request.user
     return render(request, 'pages/surveyUpdate.html', {'user':user})
@@ -102,3 +104,15 @@ def pricePolicy(request):
 
 def serviceIntro(request):
     return render(request, 'pages/serviceIntro.html')
+
+def answer(request, cid):
+    interviewee = request.user
+    choice = Choice.objects.get(id=cid)
+    question = choice.question
+    survey = question.survey
+    choice_text = choice.choice_text
+    interviewer = survey.author
+    
+    Result.objects.create(interviewer=interviewer, interviewee=interviewee, survey=survey, question=question, choice=choice, content=choice_text)
+
+    return redirect('/')

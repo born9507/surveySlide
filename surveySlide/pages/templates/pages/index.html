@@ -7,11 +7,15 @@
   {% if numQuestions == 0 %}
     <div class="questionBox">질문이 없습니다</div> 
   {% else %}
+
+    {{Result}}
+
     <div class="questionBox">
       <div class="question">Q. {{ question.question_text }}</div>
       <div class="answerBox">
         {% for choice in question.choice_set.all%}
-          <div class="answer"><button class="header_button"><span>{{choice.choice_text}}</span></button></div>
+          {{choice.id}}
+          <div class="answer"><a href="" class="header_button"><span>{{choice.choice_text}}</span></a></div>
         {% endfor %}
       </div>
     </div>

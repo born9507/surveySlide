@@ -44,6 +44,9 @@ urlpatterns = [
     
     path('complete/<int:sid>/', pages.views.surveyComplete),
 
+    
+    path('answer/<int:cid>/', pages.views.answer),
+
     path('result/', pages.views.surveyResult),
 
     path('account/', include('django.contrib.auth.urls')),
