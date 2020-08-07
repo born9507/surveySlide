@@ -5,48 +5,50 @@
 
 
 <div class="surveyBox">
-  <h1>설문조사 제작</h1>
+  <span id="surveyBox_title">당신의 설문조사를 제작하세요</span>
 
-  <p>안녕하세요! {{user.get_username}} 님!</p>
-  <p>당신의 현재 총 포인트: {{user.profile.point}}</p> 
+  <p id="surveyBox_content">안녕하세요! {{user.get_username}} 님<br>당신의 현재 총 포인트: {{user.profile.point}}</p> 
   {% comment %} 여기 위에 account 에서 모델 수정할 것! {% endcomment %}
-  <a href="/account/{{user.id}}/charge/">포인트 충전</a>
+  <a id="surveyBox_pointCharge" href="/account/{{user.id}}/charge/">포인트 충전</a>
 </div>
-<div class="surveyBox">
+<div class="surveyBox_surveyTitle">
   {% if not survey %}
     <form action="/new/" method="POST">
       {% csrf_token %}
       <label for="title">설문조사 제목을 입력하세요</label>
-      <input name="title"/>
-      <input type="submit" value="완료"/>
+      <br>
+      <input id="surveyBox_box" name="title" value="  "/>
+      <input id="surveyBox_surveySubmit" type="submit" value="완료"/>
     </form>
 
   {% else %}
     <h2>
       <form action="/edit/{{survey.id}}" method="POST">
         {% csrf_token %}
-        <input name="title" type="text" value="{{survey.title}}"/> 
-        <input type="submit" value="삭제"/> 
+        <p id="surveyBox_title">설문조사 제목 :</p>
+        <p id="surveyBox_titleafterSubmit">{{survey.title}}</p>
+        <input id="surveyBox_surveySubmit" type="submit" value="삭제"/> 
       </form>
     </h2>
-    <p>질문 갯수: {{survey.question_set.all.count}}</p>
+    <br>
+    <p>질문 갯수 : {{survey.question_set.all.count}}</p>
     {% for question in survey.question_set.all %}
       <div class="questionBox">
         <div>
-          <p> Q. <input type="text" value="{{question.question_text}}"/> <input type="submit" value="삭제"/></p>
+          <p> 질문. <input id="surveyBox_box" type="text" value="  {{question.question_text}}"/> <input id="surveyBox_surveySubmit" type="submit" value="삭제"/></p>
           
           <p>{{survey.question.choice_set.all}}</p>
           <ul>
             {% for choice in question.choice_set.all%}
-            <li>A. <input type="text" value="{{choice.choice_text}}"/> <input type="submit" value="삭제"/></li>
+            <li>선택지. <input type="text" value="{{choice.choice_text}}"/> <input type="submit" value="삭제"/></li>
             {% endfor %}
           </ul>
         </div>
         <div class="choice">
           <form action="/new/{{survey.id}}/{{question.id}}/" method="POST">
             {% csrf_token %}
-            <input name="choice_text"/>
-            <input type="submit" value="submit"/>
+            <p> 선택지. <input id="surveyBox_box" name="choice_text"/></p>
+            <input id="surveyBox_surveySubmit" type="submit" value="submit"/>
           </form>
         </div>
       </div>
@@ -54,7 +56,7 @@
     <div class="questionBox">
       <form action="/new/{{survey.id}}/" method="POST">
         {% csrf_token %}
-        <p>Q. <input name="question_text"/></p>
+        <p>질문. <input id="surveyBox_box" name="question_text" value="  "/></p>
         <input type="submit" value="submit"/>
       </form>
     </div>
