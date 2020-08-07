@@ -6,16 +6,16 @@
 <div class="surveyBox">
   <span id="surveyBox_title">당신의 설문조사를 제작하세요</span>
 
-  <p>안녕하세요! {{user.get_username}} 님!</p>
-  <p>당신의 현재 총 포인트: {{user.profile.point}}</p> 
-  <a href="/account/{{user.id}}/charge/">포인트 충전</a>
+  <p id="surveyBox_content">안녕하세요! {{user.get_username}} 님!<br>당신의 현재 총 포인트: {{user.profile.point}}</p> 
+  <a id="surveyBox_pointCharge" href="/account/{{user.id}}/charge/">포인트 충전</a>
 </div>
-<div class="surveyBox">
+<div class="surveyBox_surveyTitle">
   <form action="/new/" method="POST">
     {% csrf_token %}
     <label for="title">설문조사 제목을 입력하세요</label>
-    <input name="title"/>
-    <input type="submit" value="완료"/>
+    <br>
+    <input id="surveyBox_box" name="title" value="  "/>
+    <input id="surveyBox_surveySubmit" type="submit" value="완료"/>
   </form>
 
 </div>
