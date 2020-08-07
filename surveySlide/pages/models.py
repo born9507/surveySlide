@@ -7,6 +7,7 @@ import random
 
 class Survey(models.Model):
     title = models.CharField(max_length=50)
+    explanation = models.CharField(max_length=100, null=True)
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE) #유저가 탈퇴하면 누가 만든지는 삭제?
     total_reward = models.IntegerField(null=True)  
     isCompleted = models.BooleanField(default=False)

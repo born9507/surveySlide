@@ -39,7 +39,11 @@
             <div class="answer"><a href="" class="header_button"><span>{{choice.choice_text}}</span></a></div>
           {% endfor %}
         </div>
-      </div>
+      </div>    
+      <div class="questionBox">
+        <p>설문 제목: {{question.survey.title}}</p> 
+        <p>설명: {{question.survey.explanation}}</p>
+      <div>
     {% endif %}
   {% endif %}
 
