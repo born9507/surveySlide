@@ -4,44 +4,44 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    {% if user.profile.college == null and user.profile.major == null %}
-      <div class="questionBox">
-        <div class="question">Q. 당신의 학교는 어디입니까? </div>
-        <div class="answerBox">
-          <form method="POST" action="/account/firstsetting1/">
-            {% csrf_token %}
-            <input name="college" type="text" placeholder="답변을 입력하세요" default=0> 
-            <br>
-            <input type="submit" value="설정">
-          </form> 
-        </div>
+  {% if user.profile.college == null and user.profile.major == null %}
+    <div class="questionBox">
+      <div class="question">Q. 당신의 학교는 어디입니까? </div>
+      <div class="answerBox">
+        <form method="POST" action="/account/firstsetting1/">
+          {% csrf_token %}
+          <input name="college" type="text" placeholder="답변을 입력하세요" default=0> 
+          <br>
+          <input type="submit" value="설정">
+        </form> 
       </div>
-    {% elif user.profile.college != null and user.profile.major == null %}
-      <div class="questionBox">
-        <div class="question">Q. 당신의 전공은 무엇입니까?</div>
-        <div class="answerBox">
-          <form method="POST" action="/account/firstsetting2/">
-            {% csrf_token %}
-            <input name="major" type="text" placeholder="답변을 입력하세요" default=0> 
-            <br>
-            <input type="submit" value="설정">
-          </form> 
-        </div>
+    </div>
+  {% elif user.profile.college != null and user.profile.major == null %}
+    <div class="questionBox">
+      <div class="question">Q. 당신의 전공은 무엇입니까?</div>
+      <div class="answerBox">
+        <form method="POST" action="/account/firstsetting2/">
+          {% csrf_token %}
+          <input name="major" type="text" placeholder="답변을 입력하세요" default=0> 
+          <br>
+          <input type="submit" value="설정">
+        </form> 
       </div>
+    </div>
+  {% else %}
+    {% if numQuestions == 0 %}
+      <div class="questionBox">질문이 없습니다</div> 
     {% else %}
-      {% if numQuestions == 0 %}
-        <div class="questionBox">질문이 없습니다</div> 
-      {% else %}
-        <div class="questionBox">
-          <div class="question">Q. {{ question.question_text }}</div>
-          <div class="answerBox">
-            {% for choice in question.choice_set.all%}
-              <div class="answer"><a href="" class="header_button"><span>{{choice.choice_text}}</span></a></div>
-            {% endfor %}
-          </div>
+      <div class="questionBox">
+        <div class="question">Q. {{ question.question_text }}</div>
+        <div class="answerBox">
+          {% for choice in question.choice_set.all%}
+            <div class="answer"><a href="" class="header_button"><span>{{choice.choice_text}}</span></a></div>
+          {% endfor %}
         </div>
-      {% endif %}
+      </div>
     {% endif %}
+  {% endif %}
 
 {%else%}
 
