@@ -19,7 +19,7 @@ def surveyCreate(request):
         title = request.POST['title']
         survey = Survey(title=title, author=request.user, isCompleted=False)
         survey.save()
-        return render(request, 'pages/surveyCreate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
+        return render(request, 'pages/surveyUpdate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
     return render(request, 'pages/surveyCreate.html')
 
 def surveyRead(request):
@@ -55,7 +55,7 @@ def questionCreate(request, sid):
     question_text = request.POST['question_text']
     question = Question(survey_id=sid, question_text=question_text)
     question.save()
-    return render(request, 'pages/surveyCreate.html', {'survey':survey})
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
 def questionUpdate(request, sid, qid):
     survey = Survey.objects.get(id=sid)
@@ -79,7 +79,7 @@ def choiceCreate(request, sid, qid):
     choice_text = request.POST['choice_text']
     choice = Choice(question_id=qid, choice_text=choice_text)
     choice.save()
-    return render(request, 'pages/surveyCreate.html', {'survey':survey, 'question':question})
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
 
 def choiceUpdate(request, sid, qid, cid):
     choice = Choice.objects.get(id=cid)
