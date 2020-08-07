@@ -6,7 +6,7 @@ import random
 def index(request):
     user=request.user
     if user.is_authenticated:
-        questions = Question.objects.filter(survey__isCompleted=True,survey__isDeleted=False).exclude(survey__author=request.user)
+        questions = Question.objects.filter(survey__isCompleted=True).filter(survey__isDeleted=False).exclude(survey__author=request.user)
         question = questions.order_by("?").first()
         numQuestions = questions.count()
         reward=round(random.normalvariate(50,28))
