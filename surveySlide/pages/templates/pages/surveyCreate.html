@@ -12,12 +12,11 @@
 <div class="surveyBox_surveyTitle">
   <form action="/new/" method="POST">
     {% csrf_token %}
-    <label for="title">설문조사 제목을 입력하세요</label>
-    <br>
-    <input id="surveyBox_box" name="title" value="  "/>
-    <label for="explanation">설문조사에 대한 간략한 설명을 적으세요</label>
-    <input name="explanation"/>
-    <input id="surveyBox_surveySubmit" type="submit" value="완료"/>
+    <p><label for="title">설문조사 제목을 입력하세요</label></p>
+    <p><input id="surveyBox_box" name="title" value="  "/></p>
+    <p><label for="explanation">설문조사에 대한 간략한 설명을 적으세요</label></p>
+    <p><input name="explanation"/></p>
+    <p><input id="surveyBox_surveySubmit" type="submit" value="완료"/></p>
   </form>
 
 </div>

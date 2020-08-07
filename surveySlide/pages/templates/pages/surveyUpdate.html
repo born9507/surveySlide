@@ -6,11 +6,15 @@
   <h2>
     <form action="/edit/{{survey.id}}/" method="POST">
       {% csrf_token %}
-      <input id="surveyBox_titleafterSubmit" name="title" type="text" value="  {{survey.title}}"/>
-      <br>
-      <input name="explanation" type="text" value="{{survey.explanation}}"/>
+      <input id="surveyBox_titleafterSubmit" name="title" type="text" value="{{survey.title}}" default="{{survey.title}}"/>
     </form>
   </h2>
+  </h4>
+    <form action="/edit/{{survey.id}}/explanation/" method="POST">
+      {% csrf_token %}
+      <input name="explanation" type="text" value="{{survey.explanation}}" default="{{survey.explanation}}"/>
+    </form>
+  </h4>
   <p>질문 갯수: {{survey.question_set.all.count}}</p>
 
   {% for question in survey.question_set.all %}

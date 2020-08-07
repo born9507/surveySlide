@@ -41,6 +41,14 @@ def surveyUpdate(request, sid):
         survey.save()
         return render(request, 'pages/surveyUpdate.html', {'survey':survey})
     return render(request, 'pages/surveyUpdate.html', {'survey':survey})
+        
+def surveyExpUpdate(request, sid):
+    survey = Survey.objects.get(id=sid)
+    explanation = request.POST['explanation']
+    survey.explanation = explanation
+    survey.save()
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
+    
 
 def surveyDelete(request, sid):
     # 나중에 이건 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록 함수 구현하기! (데이터는 남아있도록)
@@ -117,7 +125,7 @@ def answer(request, cid, reward):
     survey = question.survey
     interviewer = survey.author
     choice_text = choice.choice_text
-    
+
     request.user.profile.point=request.user.profile.point+reward
     request.user.profile.gainedpoint=request.user.profile.gainedpoint+reward
     request.user.profile.save()
