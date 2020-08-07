@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="surveyBox">
-  <h1>나의 설문조사</h1>
+  <span id="surveyBox_title">나의 설문조사</span>
   <ul>
     {% for survey in user.survey_set.all%}
       {% if not survey.isDeleted %} 
       {% comment %} 지워지지 않은 것만 볼 수 있도록 {% endcomment %}
-        <li>
+        <li id="surveyRead_content">
           <a href="/edit/{{survey.id}}/">
             {{survey.title}} 
             {% if not survey.isCompleted %} 
@@ -15,7 +15,7 @@
             {% endif %} 
           </a>
           <form action="/delete/{{survey.id}}/">
-            <input type="submit" value="삭제"/> 
+            <input id="surveyRead_contentName" type="submit" value="삭제"> 
           </form>
         </li>
       {% endif %}
