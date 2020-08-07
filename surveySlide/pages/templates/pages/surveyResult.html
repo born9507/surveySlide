@@ -4,6 +4,8 @@
 <div class="surveyBox">
   <h1>설문조사 결과</h1>
   <p> 설명: {{survey.explanation}} </p>
+  {{survey.grade_filter}}
+  {{survey.gender_filter}}
   <ul>
     {% for question in survey.question_set.all%}
       <h4> 질문: {{question.question_text}} </h4>
