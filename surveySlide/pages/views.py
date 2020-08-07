@@ -4,31 +4,19 @@ import random
 
 # Create your views here.
 def index(request):
-    total=Question.objects.count()
-    qid=0
-    questions=Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True)
-    numquestions=questions.count()
-    question=Question.objects.get(id=1)
-    if numquestions != 0:
-        qid=random.randint(1,total)
-        qquestion=Question.objects.get(id=qid)
-        while question.survey.isCompleted is False or question.survey.isDeleted is True:
-            qid=random.randint(1,total)
-            qquestion=Question.objects.get(id=qid)
-        question=qquestion
-    if request.method=='GET':
-        return render(request, 'pages/index.html',{'questions': questions,'qid':qid,'numquestions': numquestions, 'question':question})
-
-  
-    
-
+    questions = Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True)
+    question = questions.order_by("?").first()
+    numQuestions = questions.count()
+    if numQuestions == 0:
+        return render(request, 'pages/index.html', {'numQuestions':numQuestions})
+    return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions})
 
 def surveyCreate(request):
     if request.method == 'POST':
         title = request.POST['title']
         survey = Survey(title=title, author=request.user, isCompleted=False)
         survey.save()
-        return render(request, 'pages/surveyCreate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
+        return render(request, 'pages/surveyUpdate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
     return render(request, 'pages/surveyCreate.html')
 
 def surveyRead(request):
@@ -64,7 +52,7 @@ def questionCreate(request, sid):
     question_text = request.POST['question_text']
     question = Question(survey_id=sid, question_text=question_text)
     question.save()
-    return render(request, 'pages/surveyCreate.html', {'survey':survey})
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
 def questionUpdate(request, sid, qid):
     survey = Survey.objects.get(id=sid)
@@ -88,7 +76,7 @@ def choiceCreate(request, sid, qid):
     choice_text = request.POST['choice_text']
     choice = Choice(question_id=qid, choice_text=choice_text)
     choice.save()
-    return render(request, 'pages/surveyCreate.html', {'survey':survey, 'question':question})
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
 
 def choiceUpdate(request, sid, qid, cid):
     choice = Choice.objects.get(id=cid)
