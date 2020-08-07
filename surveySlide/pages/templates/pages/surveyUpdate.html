@@ -2,6 +2,8 @@
 
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <div class="surveyBox">
   <h2>
     <form action="/edit/{{survey.id}}/" method="POST">
@@ -45,8 +47,8 @@
       <div class="choice">
         <form action="/new/{{survey.id}}/{{question.id}}/" method="POST">
           {% csrf_token %}
-          <span style="vertical-align: middle">선택지 입력 </span> &nbsp; <input id="surveyBox_boxBlue" name="choice_text" value="" oninvalid="alert('선택지를 입력하세요');" required/>
-          <input id="surveyBox_surveySubmitBlue" type="submit" value="추가"/>
+          <span style="vertical-align: middle">선택지 입력 </span> &nbsp; <input id="surveyBox_boxBlue" name="choice_text" value="" oninvalid="alert('선택지를 입력하세요');" required />
+          <input id="surveyBox_surveySubmitBlue" type="submit" value="추가" />
         </form>
       </div>
     </div>
@@ -55,8 +57,8 @@
   <div class="questionBox">
     <form action="/new/{{survey.id}}/" method="POST">
       {% csrf_token %}
-      <p>질문 추가  &nbsp; <input id="surveyBox_box" name="question_text" value="" oninvalid="alert('질문을 입력하세요');" required/></p>
-      <input id="surveyBox_surveySubmit" type="submit" value="추가"/>
+      <p>질문 추가  &nbsp; <input id="surveyBox_box" name="question_text" value="" oninvalid="alert('질문을 입력하세요');" required /></p>
+      <input id="surveyBox_surveySubmit" type="submit" value="추가" />
     </form>
   </div>
 
@@ -67,4 +69,13 @@
     <input id="surveyBox_surveyComplete" type="submit" value="설문지 제작 완료"/> 
   </form>
 </div>
+<script>
+  $(document).ready(function() {
+    let choiceInputList = document.querySelectorAll("input[name=choice_text]");
+    let lastChoice = choiceInputList[choiceInputList.length-1];
+    if(lastChoice) { // if there is some questions and submit onclick occurs
+      lastChoice.focus();
+    }
+  });  
+</script>
 {% endblock content %}
