@@ -25,7 +25,11 @@ SECRET_KEY = '+ov6m1j3)5t4&p=fyrem+soes3cg-q$wg9zyurdl^$3@6_)5vq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # "0.0.0.0",
+    # "surveyslide.iptime.org",
+    "*",
+]
 
 
 # Application definition
