@@ -37,11 +37,12 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=50)
 
 class Result(models.Model):
-    interviewee = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    interviewer = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name="interviewer")
+    interviewee = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name="interviewee")
     survey = models.ForeignKey(Survey, null=False, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, null=False, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, null=False, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.TextField(null=True)
 
 class Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
