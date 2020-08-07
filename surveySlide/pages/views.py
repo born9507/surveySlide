@@ -4,15 +4,14 @@ import random
 
 # Create your views here.
 def index(request):
-    questions = Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True)
-    notAnswered = Result.objects.exclude(interviewee=request.user)
-    # questions = notAnswered.filter(survey__isCompleted=True, survey__isDeleted=False)
-    question = questions.order_by("?").first()
+    questions = Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True).exclude(answered_users=request.user).exclude(survey__author=request.user)
     numQuestions = questions.count()
-
+    Answers = Answer.objects.all()
     if numQuestions == 0:
-        return render(request, 'pages/index.html', {'numQuestions':numQuestions})
-    return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions})
+        return render(request, 'pages/index.html', {'numQuestions':numQuestions, 'Answers':Answers,})
+    else:
+        question = questions.order_by("?").first()  #랜덤하게 배열해서 첫번째
+        return render(request, 'pages/index.html', {'question':question, 'questions':questions, 'numQuestions':numQuestions, 'Answers':Answers})
 
 def surveyCreate(request):
     if request.method == 'POST':
@@ -110,9 +109,10 @@ def answer(request, cid):
     choice = Choice.objects.get(id=cid)
     question = choice.question
     survey = question.survey
-    choice_text = choice.choice_text
     interviewer = survey.author
+    choice_text = choice.choice_text
     
     Result.objects.create(interviewer=interviewer, interviewee=interviewee, survey=survey, question=question, choice=choice, content=choice_text)
+    Answer.objects.create(user=request.user, question=question)
 
     return redirect('/')
