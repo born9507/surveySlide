@@ -4,10 +4,14 @@ import random
 
 # Create your views here.
 def index(request):
+    total=Question.objects.count()
+    qid=random.randint(1,total)
     if request.method=='GET':
-        questions=Question.objects.all()
-        total=questions.count
-    return render(request, 'pages/index.html',{'questions': questions})
+        question=Question.objects.get(id=qid)
+        if not question.survey.isDeleted and question.survey.isCompleted:
+            return render(request, 'pages/index.html',{'question': question,'qid':qid})
+    return index(request)
+    
 
 
 def surveyCreate(request):
