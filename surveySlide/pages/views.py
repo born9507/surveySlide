@@ -119,7 +119,8 @@ def surveyResults(request):
 
 def surveyResult(request, sid):
     survey=Survey.objects.get(id=sid)
-    return render(request, 'pages/surveyResult.html', {'survey':survey})
+    results = Result.objects.filter(interviewer=request.user).filter(survey=survey)
+    return render(request, 'pages/surveyResult.html', {'survey':survey, 'results':results})
 
 def pricePolicy(request):
     return render(request, 'pages/pricePolicy.html')
