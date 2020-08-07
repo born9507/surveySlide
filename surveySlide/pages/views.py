@@ -6,13 +6,20 @@ import random
 def index(request):
     user=request.user
     if user.is_authenticated:
+<<<<<<< HEAD
         questions = Question.objects.filter(survey__isCompleted=True).filter(survey__isDeleted=False).exclude(survey__author=request.user)
         question = questions.order_by("?").first()
+=======
+        questions = Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True).exclude(answered_users=request.user).exclude(survey__author=request.user)
+>>>>>>> 80bf11a4fcf2b9f8f0f54e895ecf1d665ab0b323
         numQuestions = questions.count()
+        Answers = Answer.objects.all()
         reward=round(random.normalvariate(50,28))
         if numQuestions == 0:
-            return render(request, 'pages/index.html', {'numQuestions':numQuestions})
-        return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions,'reward':reward})
+            return render(request, 'pages/index.html', {'numQuestions':numQuestions, 'Answers':Answers})
+        else:
+            question = questions.order_by("?").first()  #랜덤하게 배열해서 첫번째
+            return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions,'reward':reward, 'Answers':Answers})
     else:
         return render(request, 'pages/index.html')
 
@@ -39,6 +46,14 @@ def surveyUpdate(request, sid):
         survey.save()
         return render(request, 'pages/surveyUpdate.html', {'survey':survey})
     return render(request, 'pages/surveyUpdate.html', {'survey':survey})
+        
+def surveyExpUpdate(request, sid):
+    survey = Survey.objects.get(id=sid)
+    explanation = request.POST['explanation']
+    survey.explanation = explanation
+    survey.save()
+    return render(request, 'pages/surveyUpdate.html', {'survey':survey})
+    
 
 def surveyDelete(request, sid):
     # 나중에 이건 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록 함수 구현하기! (데이터는 남아있도록)
@@ -113,9 +128,14 @@ def answer(request, cid, reward):
     choice = Choice.objects.get(id=cid)
     question = choice.question
     survey = question.survey
-    choice_text = choice.choice_text
     interviewer = survey.author
+    choice_text = choice.choice_text
+
     request.user.profile.point=request.user.profile.point+reward
     request.user.profile.gainedpoint=request.user.profile.gainedpoint+reward
     request.user.profile.save()
+    
+    Result.objects.create(interviewer=interviewer, interviewee=interviewee, survey=survey, question=question, choice=choice, content=choice_text)
+    Answer.objects.create(user=request.user, question=question)
+
     return redirect('/')

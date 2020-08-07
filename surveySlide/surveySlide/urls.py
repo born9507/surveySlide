@@ -36,6 +36,7 @@ urlpatterns = [
     path('show/', pages.views.surveyRead),
 
     path('edit/<int:sid>/', pages.views.surveyUpdate),
+    path('edit/<int:sid>/explanation/', pages.views.surveyExpUpdate),
     path('edit/<int:sid>/<int:qid>/', pages.views.questionUpdate),
     path('edit/<int:sid>/<int:qid>/<int:cid>/', pages.views.choiceUpdate),
 

@@ -46,10 +46,10 @@
       <div class="question">Q. {{ question.question_text }}</div>
       <div class="answerBox">
         {% for choice in question.choice_set.all%}
-            <form method="POST" action="answer/{{choice.id}}/{{reward}}">
+          <form method="POST" action="answer/{{choice.id}}/{{reward}}">
             {% csrf_token %}
             <div class="answer"><button class="header_button"><span>{{choice.choice_text}}</span></button></div>
-            </form>
+          </form>
         {% endfor %}
       </div>
       </div>
