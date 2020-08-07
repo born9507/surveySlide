@@ -879,3 +879,7 @@ ul.price {
     font-size: 15px;
     vertical-align: middle;
 }
+
+.header_button {
+    margin-top: 5px !important;
+}

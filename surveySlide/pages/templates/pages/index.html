@@ -5,39 +5,32 @@
 
 {% if user.is_authenticated %}
   {% if user.profile.college == null and user.profile.major == null and user.profile.major == null and user.profile.gender == null %}
-    <div class="questionBox">
+    <div style="top: 100px;" class="questionBox">
+      <p>정확한 설문 참여를 위해 본인의 학교 정보를 입력해주세요</p>
       <div class="question">Q. 당신의 학교는 어디입니까? </div>
       <div class="answerBox">
-        <form method="POST" action="/account/firstsetting1/">
+        <form style="margin-top: 10px;" method="POST" action="/account/firstsetting1/">
           {% csrf_token %}
           <input name="college" type="text" placeholder="답변을 입력하세요"> 
           <br>
-          <input type="submit" value="설정">
+          <input style="margin-top: 10px;" id="surveyBox_surveySubmit" type="submit" value="제출">
         </form> 
       </div>
     </div>
-    <div class="questionBox">
-      설문 제목: 초기 설정
-      <br>
-      설명: 정확한 설문 참여를 위해 본인의 학교 정보를 입력해주세요
-    </div>
   {% elif user.profile.college != null and user.profile.major == null and user.profile.major == null and user.profile.gender == null %}
-    <div class="questionBox">
+    <div style="top: 100px;" class="questionBox">
+      <p>정확한 설문 참여를 위해 본인의 전공 정보를 입력해주세요</p>
       <div class="question">Q. 당신의 전공은 무엇입니까?</div>
       <div class="answerBox">
-        <form method="POST" action="/account/firstsetting2/">
+        <form style="margin-top: 10px;" method="POST" action="/account/firstsetting2/">
           {% csrf_token %}
           <input name="major" type="text" placeholder="답변을 입력하세요"> 
           <br>
-          <input type="submit" value="설정">
+          <input style="margin-top: 10px;" id="surveyBox_surveySubmit" type="submit" value="제출">
         </form>
       </div>
     </div>
-    <div class="questionBox">
-      설문 제목: 초기 설정
-      <br>
-      설명: 정확한 설문 참여를 위해 본인의 전공 정보를 입력해주세요
-    </div>
+
   {% elif user.profile.college != null and user.profile.major != null and user.profile.grade == null and user.profile.gender == null %}
     <div class="questionBox">
       <div class="question">Q. 당신은 몇 학년에 재학 중 입니까?</div>
