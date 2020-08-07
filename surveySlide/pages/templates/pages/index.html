@@ -18,7 +18,7 @@
       <div class="answerBox">
         <form style="margin-top: 10px;" method="POST" action="/account/firstsetting1/">
           {% csrf_token %}
-          <input name="college" type="text" placeholder="답변을 입력하세요"> 
+          <input name="college" type="text" placeholder="답변을 입력하세요" required /> 
           <br>
           <input style="margin-top: 10px;" id="surveyBox_surveySubmit" type="submit" value="제출">
         </form> 
@@ -36,7 +36,7 @@
       <div class="answerBox">
         <form style="margin-top: 10px;" method="POST" action="/account/firstsetting2/">
           {% csrf_token %}
-          <input name="major" type="text" placeholder="답변을 입력하세요"> 
+          <input name="major" type="text" placeholder="답변을 입력하세요" required /> 
           <br>
           <input style="margin-top: 10px;" id="surveyBox_surveySubmit" type="submit" value="제출">
         </form>
@@ -52,10 +52,10 @@
       <div class="answerBox">
         <form method="POST" action="/account/firstsetting3/">
           {% csrf_token %}
-          <p><input name="grade" type="radio" value=1> 1학년 </p>
-          <p><input name="grade" type="radio" value=2> 2학년 </p>
-          <p><input name="grade" type="radio" value=3> 3학년 </p>
-          <p><input name="grade" type="radio" value=4> 4학년 </p>
+          <p><input name="grade" type="radio" value=1 required /> 1학년 </p>
+          <p><input name="grade" type="radio" value=2 required /> 2학년 </p>
+          <p><input name="grade" type="radio" value=3 required /> 3학년 </p>
+          <p><input name="grade" type="radio" value=4 required /> 4학년 </p>
           <br>
           <input type="submit">
         </form>
@@ -73,8 +73,8 @@
       <div class="answerBox">
         <form method="POST" action="/account/firstsetting4/">
           {% csrf_token %}
-          <p><input name="gender" type="radio" value="남자"> 남자 </p>
-          <p><input name="gender" type="radio" value="여자"> 여자 </p>
+          <p><input name="gender" type="radio" value="남자" required /> 남자 </p>
+          <p><input name="gender" type="radio" value="여자" required /> 여자 </p>
           <br>
           <input type="submit">
         </form>
@@ -130,11 +130,11 @@
       <span>계정 만들기</span>
       <form method="POST" action="{%url 'signup'%}">
         {% csrf_token %}
-        <input id="username" name="username" type="text" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   아이디" oninvalid="alert('아이디를 입력하세요');" required />
-        <input id="password1" name="password1" type="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   비밀번호" value="" oninvalid="alert('비밀번호를 입력하세요');" required/>
-        <input id="password2" name="password2" type="password" placeholder="   비밀번호 확인" value="" oninvalid="alert('비밀번호를 입력하세요');" required />
-        <input id="email" name="email" type="text" placeholder="   이메일 주소">
-        <input id="familyname" name="last_name" type="text" placeholder="   성">  <input id="name" name="first_name" type="text" placeholder="   이름">
+        <input id="username" name="username" type="text" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   아이디" required />
+        <input id="password1" name="password1" type="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" placeholder="   비밀번호" value="" required />
+        <input id="password2" name="password2" type="password" placeholder="   비밀번호 확인" value="" required />
+        <input id="email" name="email" type="text" placeholder="   이메일 주소" required />
+        <input id="familyname" name="last_name" type="text" placeholder="   성" required />  <input id="name" name="first_name" type="text" placeholder="   이름" required />
         <input id="submit" type="submit" value="회원가입">
         <div class="contract">‘계정 만들기’를 클릭하거나 회원가입을 하면  surveySlide의 <a href="">이용 약관</a> 및  <a href="">개인정보 보호정책</a>에 동의하고, 아울러 surveySlide 서비스에 관련된 정보와 제공 사항을 이메일로 수신하는 것에 동의하는 것입니다.</div>
       </form>
