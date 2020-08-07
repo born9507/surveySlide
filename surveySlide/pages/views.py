@@ -6,12 +6,7 @@ import random
 def index(request):
     user=request.user
     if user.is_authenticated:
-<<<<<<< HEAD
-        questions = Question.objects.filter(survey__isCompleted=True).filter(survey__isDeleted=False).exclude(survey__author=request.user)
-        question = questions.order_by("?").first()
-=======
         questions = Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True).exclude(answered_users=request.user).exclude(survey__author=request.user)
->>>>>>> 80bf11a4fcf2b9f8f0f54e895ecf1d665ab0b323
         numQuestions = questions.count()
         Answers = Answer.objects.all()
         reward=round(random.normalvariate(50,28))
@@ -112,10 +107,13 @@ def choiceDelete(request, sid, qid, cid):
     choice.delete()
     return redirect('/edit/'+str(sid)+'/')
 
-def surveyResult(request):
-    user = request.user
-    return render(request, 'pages/surveyUpdate.html', {'user':user})
+def surveyResults(request):
+    surveys= Survey.objects.filter(isCompleted=True).exclude(isDeleted=True).filter(author=request.user)
+    return render(request, 'pages/surveyResults.html', {'surveys':surveys})
 
+def surveyResult(request, sid):
+    survey=Survey.objects.get(id=sid)
+    return render(request, 'pages/surveyResult.html', {'survey':survey})
 
 def pricePolicy(request):
     return render(request, 'pages/pricePolicy.html')
@@ -136,6 +134,6 @@ def answer(request, cid, reward):
     request.user.profile.save()
     
     Result.objects.create(interviewer=interviewer, interviewee=interviewee, survey=survey, question=question, choice=choice, content=choice_text)
-    Answer.objects.create(user=request.user, question=question)
+    Answer.objects.create(user=request.user, question=question, choice=choice)
 
     return redirect('/')

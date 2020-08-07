@@ -49,7 +49,8 @@ urlpatterns = [
     
     path('answer/<int:cid>/<int:reward>', pages.views.answer, name='answer'),
 
-    path('result/', pages.views.surveyResult),
+    path('result/', pages.views.surveyResults),
+    path('result/<int:sid>/', pages.views.surveyResult),
 
     path('account/', include('django.contrib.auth.urls')),
     path('accounts/', include('allauth.urls')),

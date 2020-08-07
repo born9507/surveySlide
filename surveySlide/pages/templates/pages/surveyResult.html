@@ -2,11 +2,13 @@
 
 {% block content %}
 <h1>설문조사 결과</h1>
+<p> 설명: {{survey.explanation}} </p>
 <ul>
-  {% for survey in user.survey_set.all%}
-    <li>{{survey.title}}</li>
-    
-    {% comment %} 여기는 surveyEdit 페이지로 연결되게끔 {% endcomment %}
+  {% for question in survey.question_set.all%}
+     <p> 질문: {{question.question_text}} </p>
+     {% for choice in question.choice_set.all %}
+        <p> {{choice.choice_text}}: {{choice.choosed_users.count}} 명</p>
+      {% endfor %}
   {% endfor %}
 </ul>
 
