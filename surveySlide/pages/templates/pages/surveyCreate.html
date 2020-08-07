@@ -25,8 +25,9 @@
     <h2>
       <form action="/edit/{{survey.id}}" method="POST">
         {% csrf_token %}
-        <p id="surveyBox_title">설문조사 제목 :</p>
-        <p id="surveyBox_titleafterSubmit">{{survey.title}}</p>
+        <p id="surveyBox_title" style="font-size: 18px; font-weight: 400">설문조사 제목 :</p>
+        <input id="surveyBox_titleafterSubmit" type="text" value="{{survey.title}}"/>
+        <br>
         <input id="surveyBox_surveySubmit" type="submit" value="삭제"/> 
       </form>
     </h2>
@@ -40,15 +41,15 @@
           <p>{{survey.question.choice_set.all}}</p>
           <ul>
             {% for choice in question.choice_set.all%}
-            <li>선택지. <input type="text" value="{{choice.choice_text}}"/> <input type="submit" value="삭제"/></li>
+            <li>선택지. <input type="text" value="{{choice.choice_text}}"/> <input id="surveyBox_surveySubmit" type="submit" value="삭제"/></li>
             {% endfor %}
           </ul>
         </div>
         <div class="choice">
           <form action="/new/{{survey.id}}/{{question.id}}/" method="POST">
             {% csrf_token %}
-            <p> 선택지. <input id="surveyBox_box" name="choice_text"/></p>
-            <input id="surveyBox_surveySubmit" type="submit" value="submit"/>
+            <p> 선택지. <input id="surveyBox_box" name="choice_text" value="  "/>
+            <input id="surveyBox_surveySubmit" type="submit" value="제출"/>
           </form>
         </div>
       </div>
@@ -56,10 +57,13 @@
     <div class="questionBox">
       <form action="/new/{{survey.id}}/" method="POST">
         {% csrf_token %}
-        <p>질문. <input id="surveyBox_box" name="question_text" value="  "/></p>
-        <input type="submit" value="submit"/>
+        <p>질문. <input id="surveyBox_box" name="question_text" value="  "/>
+        <input id="surveyBox_surveySubmit" type="submit" value="제출"/>
       </form>
     </div>
+    <br>
+    <br>
+    <br>
   {% endif %}
 </div>
 
