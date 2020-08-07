@@ -46,7 +46,10 @@
       <div class="question">Q. {{ question.question_text }}</div>
       <div class="answerBox">
         {% for choice in question.choice_set.all%}
-          <div class="answer"><button class="header_button"><span>{{choice.choice_text}}</span></button></div>
+            <form method="POST" action="answer/{{choice.id}}/{{reward}}">
+            {% csrf_token %}
+            <div class="answer"><button class="header_button"><span>{{choice.choice_text}}</span></button></div>
+            </form>
         {% endfor %}
       </div>
       </div>
@@ -54,6 +57,8 @@
         설문 제목: {{question.survey.title}}
         <br>
         설명: {{question.survey.explanation}}
+        <br>
+        보상: {{reward}} 포인트
       <div>
     {% endif %}
   {% endif %}

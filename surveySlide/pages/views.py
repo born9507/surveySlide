@@ -9,9 +9,10 @@ def index(request):
         questions = Question.objects.filter(survey__isCompleted=True,survey__isDeleted=False).exclude(survey__author=request.user)
         question = questions.order_by("?").first()
         numQuestions = questions.count()
+        reward=round(random.normalvariate(50,28))
         if numQuestions == 0:
             return render(request, 'pages/index.html', {'numQuestions':numQuestions})
-        return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions})
+        return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions,'reward':reward})
     else:
         return render(request, 'pages/index.html')
 
@@ -107,14 +108,14 @@ def pricePolicy(request):
 def serviceIntro(request):
     return render(request, 'pages/serviceIntro.html')
 
-def answer(request, cid):
+def answer(request, cid, reward):
     interviewee = request.user
     choice = Choice.objects.get(id=cid)
     question = choice.question
     survey = question.survey
     choice_text = choice.choice_text
     interviewer = survey.author
-    
-    Result.objects.create(interviewer=interviewer, interviewee=interviewee, survey=survey, question=question, choice=choice, content=choice_text)
-
+    request.user.profile.point=request.user.profile.point+reward
+    request.user.profile.gainedpoint=request.user.profile.gainedpoint+reward
+    request.user.profile.save()
     return redirect('/')

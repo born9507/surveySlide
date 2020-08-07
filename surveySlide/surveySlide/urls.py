@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', pages.views.index, name='index'),
 
+
     path('serviceIntro/', pages.views.serviceIntro),
     path('pricePolicy/', pages.views.pricePolicy),
 
@@ -45,7 +46,7 @@ urlpatterns = [
     path('complete/<int:sid>/', pages.views.surveyComplete),
 
     
-    path('answer/<int:cid>/', pages.views.answer),
+    path('answer/<int:cid>/<int:reward>', pages.views.answer, name='answer'),
 
     path('result/', pages.views.surveyResult),
 
