@@ -10,7 +10,7 @@
       <div class="answerBox">
         <form method="POST" action="/account/firstsetting1/">
           {% csrf_token %}
-          <input name="college" type="text" placeholder="답변을 입력하세요" default=0> 
+          <input name="college" type="text" placeholder="답변을 입력하세요" /> 
           <br>
           <input type="submit" value="설정">
         </form> 
@@ -22,7 +22,7 @@
       <div class="answerBox">
         <form method="POST" action="/account/firstsetting2/">
           {% csrf_token %}
-          <input name="major" type="text" placeholder="답변을 입력하세요" default=0> 
+          <input name="major" type="text" placeholder="답변을 입력하세요" /> 
           <br>
           <input type="submit" value="설정">
         </form> 
