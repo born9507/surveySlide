@@ -101,7 +101,7 @@ body {
 
 .intro {
     margin: 0px auto;
-    margin-top: 90px;
+    margin-top: 100px;
 }
 
 .title {
@@ -240,7 +240,7 @@ input:hover{
 
 .service_introduction {
     position: relative;
-    top: 930px;
+    top: 780px;
     text-align: center;
     margin: 0px auto;
 }
@@ -267,7 +267,7 @@ input:hover{
 .interview {
     position: relative;
     margin: 0px auto;
-    top: 20px;
+    top: -20px;
     text-align: center;
 }
 
@@ -423,7 +423,7 @@ ul.price {
     position: relative;
     top: 1180px;
     right: 200px;
-    margin-bottom : 50px;
+    margin-bottom : 10px;
     font-size: 9px;
     display: flex;
 }
