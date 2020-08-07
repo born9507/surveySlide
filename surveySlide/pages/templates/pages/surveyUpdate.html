@@ -3,17 +3,12 @@
 {% load static %}
 {% block content %}
 <div class="surveyBox">
-  <span id="surveyBox_title">설문조사 수정</span>
-  <a href="/">홈으로</a>
-  <a href="/show/">이전 페이지</a>
-
   <h2>
     <form action="/edit/{{survey.id}}/" method="POST">
       {% csrf_token %}
-      <input name="title" type="text" value="{{survey.title}}"/>
+      <input id="surveyBox_titleafterSubmit" name="title" type="text" value="  {{survey.title}}"/>
       <br>
       <input name="explanation" type="text" value="{{survey.explanation}}"/>
-    </form>
     </form>
   </h2>
   <p>질문 갯수: {{survey.question_set.all.count}}</p>
@@ -23,27 +18,27 @@
 
       <form action="/edit/{{survey.id}}/{{question.id}}/" method="POST">
         {% csrf_token %}
-        <p>Q. <input name="question_text" type="text" value="{{question.question_text}}"/> </p>
+        <p>질문. <input id="surveyBox_box" name="question_text" type="text" value="  {{question.question_text}}"/> </p>
       </form>
-      <form action="/delete/{{survey.id}}/{{question.id}}/">
-        <input type="submit" value="삭제" /> 
+      <form style="display: inline" action="/delete/{{survey.id}}/{{question.id}}/">
+        <input id="surveyBox_surveySubmit" type="submit" value="삭제" /> 
       </form>
     
       {% for choice in question.choice_set.all %}
         <form action="/edit/{{survey.id}}/{{question.id}}/{{choice.id}}/" method="POST">
           {% csrf_token %}
-          <p>A. <input name="choice_text" type="text" value="{{choice.choice_text}}"/></p>
+          <p>선택지. <input id="surveyBox_box" name="choice_text" type="text" value="  {{choice.choice_text}}"/></p>
         </form>
         <form action="/delete/{{survey.id}}/{{question.id}}/{{choice.id}}/">
-          <input type="submit" value="삭제"/>
+          <input id="surveyBox_surveySubmit" type="submit" value="삭제"/>
         </form>
       {% endfor %}
 
       <div class="choice">
         <form action="/new/{{survey.id}}/{{question.id}}/" method="POST">
           {% csrf_token %}
-          <input name="choice_text"/>
-          <input type="submit" value="submit"/>
+          <p>선택지. <input id="surveyBox_box" value="  " name="choice_text"/></p>
+          <input id="surveyBox_surveySubmit" type="submit" value="제출"/>
         </form>
       </div>
 
@@ -53,15 +48,16 @@
   <div class="questionBox">
     <form action="/new/{{survey.id}}/" method="POST">
       {% csrf_token %}
-      <p>Q. <input name="question_text"/></p>
-      <input type="submit" value="submit"/>
+      <p>질문. <input id="surveyBox_box" name="question_text" value="  "/></p>
+      <input id="surveyBox_surveySubmit" type="submit" value="제출"/>
     </form>
   </div>
-  
 
+ </div> 
+<div>
   <form action="/complete/{{survey.id}}/" style="margin-top:50px">
     {% csrf_token %}
-    <input type="submit" value="설문지 제작 완료!"/> 
+    <input id="surveyBox_surveyComplete" type="submit" value="설문지 제작 완료"/> 
   </form>
 </div>
 {% endblock content %}
