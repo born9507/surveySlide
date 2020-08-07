@@ -7,7 +7,9 @@
 <div class="Questions">
   {{ qid }}
   <p>isDeleted, isCompleted: {{question.survey.isDeleted}}, {{question.survey.isCompleted}}</p>
-
+    {% if numquestions == 0 %}
+      참여할 설문이 없습니다
+    {% else %}  
       <div class="questionBox">
         <div class="question">Q. {{ question.question_text }}</div>
         <div class="answerBox">
@@ -16,6 +18,7 @@
           {% endfor %}
         </div>
       </div>
+    {% endif %}
 
 </div>
 {%else%}

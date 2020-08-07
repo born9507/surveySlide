@@ -6,11 +6,13 @@ import random
 def index(request):
     total=Question.objects.count()
     qid=random.randint(1,total)
+    questions=Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True)
+    numquestions=questions.count()
+    question=Question.objects.get(id=qid)
     if request.method=='GET':
-        question=Question.objects.get(id=qid)
-        if not question.survey.isDeleted and question.survey.isCompleted:
-            return render(request, 'pages/index.html',{'question': question,'qid':qid})
-    return index(request)
+        return render(request, 'pages/index.html',{'questions': questions,'qid':qid,'numquestions': numquestions, 'question':question})
+
+  
     
 
 
