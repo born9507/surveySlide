@@ -5,10 +5,17 @@ import random
 # Create your views here.
 def index(request):
     total=Question.objects.count()
-    qid=random.randint(1,total)
+    qid=0
     questions=Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True)
     numquestions=questions.count()
-    question=Question.objects.get(id=qid)
+    question=Question.objects.get(id=1)
+    if numquestions != 0:
+        qid=random.randint(1,total)
+        qquestion=Question.objects.get(id=qid)
+        while question.survey.isCompleted is False or question.survey.isDeleted is True:
+            qid=random.randint(1,total)
+            qquestion=Question.objects.get(id=qid)
+        question=qquestion
     if request.method=='GET':
         return render(request, 'pages/index.html',{'questions': questions,'qid':qid,'numquestions': numquestions, 'question':question})
 
