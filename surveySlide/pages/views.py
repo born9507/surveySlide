@@ -4,13 +4,17 @@ import random
 
 # Create your views here.
 def index(request):
-    questions = Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True)
-    question = questions.order_by("?").first()
-    numQuestions = questions.count()
-    if numQuestions == 0:
-        return render(request, 'pages/index.html', {'numQuestions':numQuestions})
-    return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions})
-
+    user=request.user
+    if user.is_authenticated:
+        questions = Question.objects.filter(survey__isCompleted=True,survey__isDeleted=False).exclude(survey__author=request.user)
+        question = questions.order_by("?").first()
+        numQuestions = questions.count()
+        if numQuestions == 0:
+            return render(request, 'pages/index.html', {'numQuestions':numQuestions})
+        return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions})
+    else:
+        return render(request, 'pages/index.html')
+        
 def surveyCreate(request):
     if request.method == 'POST':
         title = request.POST['title']
