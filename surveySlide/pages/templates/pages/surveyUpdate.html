@@ -38,7 +38,7 @@
           선택지 : &nbsp;<input id="surveyBox_box" name="choice_text" type="text" value="  {{choice.choice_text}}"/>
         </form>
         <form style="display: inline" action="/delete/{{survey.id}}/{{question.id}}/{{choice.id}}/">
-          <input id="surveyBox_surveySubmit" type="submit" value="삭제" onclick="return confirm('정말 삭제하시겠습니까?')" />
+          <input id="surveyBox_surveySubmit" type="submit" value="삭제" />
         </form>
       </div>
       {% endfor %}
