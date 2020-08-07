@@ -4,9 +4,16 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+<div style="position:fixed; display:inline-block; top:130px; left:200px;">
+  <img id="pigGif" width="320" src="{% static 'pages/imgs/pig.gif' %}" />
+  <h3 style="text-align:center">내 포인트: {{user.profile.point}}</h3>
+</div>
+
+<div style="position:fixed; display:inline-block; top:130px; right:230px;">
   {% if user.profile.college == null and user.profile.major == null and user.profile.major == null and user.profile.gender == null %}
-    <div style="top: 100px;" class="questionBox">
-      <p>정확한 설문 참여를 위해 본인의 학교 정보를 입력해주세요</p>
+    <div class="questionBox">
+    {% comment %} <div style="top: 100px;" class="questionBox"> {% endcomment %}
+      {% comment %} <p>정확한 설문 참여를 위해 본인의 학교 정보를 입력해주세요</p> {% endcomment %}
       <div class="question">Q. 당신의 학교는 어디입니까? </div>
       <div class="answerBox">
         <form style="margin-top: 10px;" method="POST" action="/account/firstsetting1/">
@@ -17,9 +24,14 @@
         </form> 
       </div>
     </div>
+    <div class="questionBox">
+      <p>정확한 설문 참여를 위해 본인의 학교 정보를 입력해주세요</p>
+    </div>
+
   {% elif user.profile.college != null and user.profile.major == null and user.profile.major == null and user.profile.gender == null %}
-    <div style="top: 100px;" class="questionBox">
-      <p>정확한 설문 참여를 위해 본인의 전공 정보를 입력해주세요</p>
+    <div class="questionBox">
+    {% comment %} <div style="top: 100px;" class="questionBox"> {% endcomment %}
+      {% comment %} <p>정확한 설문 참여를 위해 본인의 전공 정보를 입력해주세요</p> {% endcomment %}
       <div class="question">Q. 당신의 전공은 무엇입니까?</div>
       <div class="answerBox">
         <form style="margin-top: 10px;" method="POST" action="/account/firstsetting2/">
@@ -29,6 +41,9 @@
           <input style="margin-top: 10px;" id="surveyBox_surveySubmit" type="submit" value="제출">
         </form>
       </div>
+    </div>
+    <div class="questionBox">
+      <p>정확한 설문 참여를 위해 본인의 전공 정보를 입력해주세요</p>
     </div>
 
   {% elif user.profile.college != null and user.profile.major != null and user.profile.grade == null and user.profile.gender == null %}
@@ -51,39 +66,42 @@
       <br>
       설명: 정확한 설문 참여를 위해 본인이 제학 중인 학년을 선택해주세요
     </div>
-    {% elif user.profile.college != null and user.profile.major != null and user.profile.grade != null and user.profile.gender == null %}
-        <div class="questionBox">
-            <div class="question">Q. 당신의 성별을 선택해주세요</div>
-            <div class="answerBox">
-                <form method="POST" action="/account/firstsetting4/">
-                    {% csrf_token %}
-                    <p><input name="gender" type="radio" value="남자"> 남자 </p>
-                    <p><input name="gender" type="radio" value="여자"> 여자 </p>
-                    <br>
-                    <input type="submit">
-                </form>
-            </div>
-        </div>
-        <div class="questionBox">
-        설문 제목: 초기 설정
-        <br>
-        설명: 정확한 설문 참여를 위해 본인의 성별을 선택해주세요
-        </div>
+  
+  {% elif user.profile.college != null and user.profile.major != null and user.profile.grade != null and user.profile.gender == null %}
+    <div class="questionBox">
+      <div class="question">Q. 당신의 성별을 선택해주세요</div>
+      <div class="answerBox">
+        <form method="POST" action="/account/firstsetting4/">
+          {% csrf_token %}
+          <p><input name="gender" type="radio" value="남자"> 남자 </p>
+          <p><input name="gender" type="radio" value="여자"> 여자 </p>
+          <br>
+          <input type="submit">
+        </form>
+      </div>
+    </div>
+    <div class="questionBox">
+      설문 제목: 초기 설정
+      <br>
+      설명: 정확한 설문 참여를 위해 본인의 성별을 선택해주세요
+    </div>
+
   {% else %}
     {% if numQuestions == 0 %}
         <div class="questionBox">참여 가능한 질문이 없습니다</div> 
     {% else %}
       <div class="questionBox">
-      <div class="question">Q. {{ question.question_text }}</div>
-      <div class="answerBox">
-        {% for choice in question.choice_set.all%}
-            <form method="POST" action="answer/{{choice.id}}/{{reward}}">
-            {% csrf_token %}
-            <div class="answer"><button class="header_button"><span>{{choice.choice_text}}</span></button></div>
-            </form>
-        {% endfor %}
+        <div class="question">Q. {{ question.question_text }}</div>
+        <div class="answerBox">
+          {% for choice in question.choice_set.all%}
+              <form method="POST" action="answer/{{choice.id}}/{{reward}}">
+              {% csrf_token %}
+              <div class="answer"><button class="header_button"><span>{{choice.choice_text}}</span></button></div>
+              </form>
+          {% endfor %}
+        </div>
       </div>
-      </div>
+
       <div class="questionBox">
         설문 제목: {{question.survey.title}}
         <br>
