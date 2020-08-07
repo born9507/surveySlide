@@ -16,6 +16,11 @@
             </form> 
         </div>
         </div>
+        <div class="questionBox">
+            설문 제목: 초기 설정
+            <br>
+            설명: 정확한 설문 참여를 위해 본인의 학교 정보를 입력해주세요
+        </div>
     {% elif user.profile.college != null and user.profile.major == null %}
         <div class="questionBox">
         <div class="question">Q. 당신의 전공은 무엇입니까?</div>
@@ -27,6 +32,11 @@
                 <input type="submit" value="설정">
             </form> 
         </div>
+        </div>
+        <div class="questionBox">
+            설문 제목: 초기 설정
+            <br>
+            설명: 정확한 설문 참여를 위해 본인의 전공 정보를 입력해주세요
         </div>
     {% else %}
             {% if numQuestions == 0 %}
