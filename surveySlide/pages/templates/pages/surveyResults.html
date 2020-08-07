@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>완료한 설문조사 목록</h1>
+<ul>
+  {% for survey in surveys%}
+    <form method="POST" action="/result/{{survey.id}}/">
+      {% csrf_token %}
+      <div class="answer"><button class="header_button"><span>{{survey.title}}</span></button></div>
+    </form>
+  {% endfor %}
+</ul>
+
+{% endblock content%}

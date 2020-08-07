@@ -36,6 +36,7 @@ class Question(models.Model):
 class Choice(models.Model):
     question = models.ForeignKey(Question, null=False, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=50)
+    choosed_users = models.ManyToManyField(User, blank=True, related_name='choose_choice', through='Answer')
 
 class Result(models.Model):
     interviewer = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name="interviewer")
@@ -48,3 +49,4 @@ class Result(models.Model):
 class Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question =models.ForeignKey(Question,blank=True,null=True, on_delete=models.CASCADE)
+    choice =models.ForeignKey(Choice,blank=True,null=True, on_delete=models.CASCADE)

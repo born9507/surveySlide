@@ -113,10 +113,13 @@ def choiceDelete(request, sid, qid, cid):
     choice.delete()
     return redirect('/edit/'+str(sid)+'/')
 
-def surveyResult(request):
-    user = request.user
-    return render(request, 'pages/surveyUpdate.html', {'user':user})
+def surveyResults(request):
+    surveys= Survey.objects.filter(isCompleted=True).exclude(isDeleted=True).filter(author=request.user)
+    return render(request, 'pages/surveyResults.html', {'surveys':surveys})
 
+def surveyResult(request, sid):
+    survey=Survey.objects.get(id=sid)
+    return render(request, 'pages/surveyResult.html', {'survey':survey})
 
 def pricePolicy(request):
     return render(request, 'pages/pricePolicy.html')
@@ -137,6 +140,6 @@ def answer(request, cid, reward):
     request.user.profile.save()
     
     Result.objects.create(interviewer=interviewer, interviewee=interviewee, survey=survey, question=question, choice=choice, content=choice_text)
-    Answer.objects.create(user=request.user, question=question)
+    Answer.objects.create(user=request.user, question=question, choice=choice)
 
     return redirect('/')
