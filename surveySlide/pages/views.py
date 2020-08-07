@@ -57,7 +57,7 @@ def surveyExpUpdate(request, sid):
     
 
 def surveyDelete(request, sid):
-    # 나중에 이건 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록 함수 구현하기! (데이터는 남아있도록)
+    # 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록 함수 구현하기! (데이터는 남아있도록)
     survey = Survey.objects.get(id=sid)
     survey.isDeleted = True
     survey.save()
