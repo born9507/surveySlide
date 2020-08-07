@@ -10,7 +10,11 @@
   <p> 설명: {{survey.explanation}} </p>
   <div class="questionBox"> 
     <h2>요약</h2>
-
+    <button type="button" onclick="exportTableToCsv('example-table', 'Export example')">
+      CSV 파일 다운로드
+    </button>
+    <br>
+    <br>
 
     <div id="wrap"> 
       <table id='example-table' style="margin:auto; width: 500px">
@@ -32,10 +36,6 @@
         </tbody>
       </table>
     </div>
-    <br>
-    <button type="button" onclick="exportTableToCsv('example-table', 'Export example')">
-      CSV 파일 다운로드
-    </button>
   </div>
 
   <div class="questionBox">
