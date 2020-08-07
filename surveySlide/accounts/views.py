@@ -12,7 +12,7 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:
             user=User.objects.create_user(username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'], first_name=request.POST['first_name'], last_name=request.POST['last_name'])
             auth.login(request,user)
-            return render(request, 'account/firstsetting1.html')
+            return render(request, 'pages/index.html')
     return render(request, 'pages/index.html')
 
 def changeinfo(request, id):
@@ -38,7 +38,7 @@ def charge(request, id):
        return render(request, 'account/charge.html')
     else:
         return render(request, 'account/charge.html')
-        
+
 def change(request, id):
     user=User.objects.get(id=id)
     if request.method=='POST':
@@ -53,14 +53,11 @@ def firstsetting1(request):
     user=request.user
     if request.method=='POST':
         Profile.objects.filter(user=user).update(college=request.POST['college'])
-        return render(request, 'account/firstsetting2.html')
-    else:
-        return render(request, 'account/firstsetting1.html')
+        return redirect('/')
+
 
 def firstsetting2(request):
     user=request.user
     if request.method=='POST':
         Profile.objects.filter(user=user).update(major=request.POST['major'])
         return redirect('/')
-    else:
-        return render(request, 'account/firstsetting2.html')
