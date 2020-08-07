@@ -61,3 +61,15 @@ def firstsetting2(request):
     if request.method=='POST':
         Profile.objects.filter(user=user).update(major=request.POST['major'])
         return redirect('/')
+
+def firstsetting3(request):
+    user=request.user
+    if request.method=='POST':
+        Profile.objects.filter(user=user).update(grade=request.POST['grade'])
+        return redirect('/')
+
+def firstsetting4(request):
+    user=request.user
+    if request.method=='POST':
+        Profile.objects.filter(user=user).update(gender=request.POST['gender'])
+        return redirect('/')

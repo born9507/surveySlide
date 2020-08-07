@@ -9,6 +9,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     college = models.CharField(max_length=20, blank=True, null=True)
     major = models.CharField(max_length=20, blank=True, null=True)
+    grade=models.IntegerField(null=True)
+    gender=models.CharField(max_length=20, null=True)
     point = models.IntegerField(default=1000)
     changedpoint = models.IntegerField(default=0)
     chargedpoint = models.IntegerField(default=0)

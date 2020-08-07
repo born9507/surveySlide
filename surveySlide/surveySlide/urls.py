@@ -62,5 +62,7 @@ urlpatterns = [
     
     path('account/firstsetting1/', accounts.views.firstsetting1, name='firstsetting1'),
     path('account/firstsetting2/', accounts.views.firstsetting2, name='firstsetting2'),
+    path('account/firstsetting3/', accounts.views.firstsetting3, name='firstsetting3'),
+    path('account/firstsetting4/', accounts.views.firstsetting4, name='firstsetting4'),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
