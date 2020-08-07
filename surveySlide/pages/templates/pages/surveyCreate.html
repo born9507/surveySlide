@@ -10,12 +10,12 @@
   <a id="surveyBox_pointCharge" href="/account/{{user.id}}/charge/">포인트 충전</a>
 </div>
 <div class="surveyBox_surveyTitle">
-  <form action="/new/" method="POST">
+  <form name="newSurvey" action="/new/" method="POST">
     {% csrf_token %}
     <p><label for="title">설문조사 제목을 입력하세요</label></p>
-    <p><input id="surveyBox_box" name="title" value="  "/></p>
+    <p><input id="surveyBox_box" name="title" value="" oninvalid="alert('제목을 입력하세요');" required/></p>
     <p><label for="explanation">설문조사에 대한 간략한 설명을 적으세요</label></p>
-    <p><input name="explanation"/></p>
+    <p><input name="explanation" value=""/></p>
     <p><input id="surveyBox_surveySubmit" type="submit" value="완료"/></p>
   </form>
 

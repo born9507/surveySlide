@@ -6,7 +6,7 @@
   <h2>
     <form action="/edit/{{survey.id}}/" method="POST">
       {% csrf_token %}
-      <input id="surveyBox_titleafterSubmit" name="title" type="text" value="{{survey.title}}" default="{{survey.title}}"/>
+      <input id="surveyBox_titleafterSubmit" name="title" type="text" value="{{survey.title}}" default="{{survey.title}}" oninvalid="alert('제목을 입력하세요');" required/>
     </form>
   </h2>
   </h4>
@@ -45,7 +45,7 @@
       <div class="choice">
         <form action="/new/{{survey.id}}/{{question.id}}/" method="POST">
           {% csrf_token %}
-          <span style="vertical-align: middle">선택지 입력 </span> &nbsp; <input id="surveyBox_boxBlue" value="  " name="choice_text"/>
+          <span style="vertical-align: middle">선택지 입력 </span> &nbsp; <input id="surveyBox_boxBlue" name="choice_text" value="" oninvalid="alert('선택지를 입력하세요');" required/>
           <input id="surveyBox_surveySubmitBlue" type="submit" value="추가"/>
         </form>
       </div>
@@ -55,7 +55,7 @@
   <div class="questionBox">
     <form action="/new/{{survey.id}}/" method="POST">
       {% csrf_token %}
-      <p>질문 추가  &nbsp; <input id="surveyBox_box" name="question_text" value="  "/></p>
+      <p>질문 추가  &nbsp; <input id="surveyBox_box" name="question_text" value="" oninvalid="alert('질문을 입력하세요');" required/></p>
       <input id="surveyBox_surveySubmit" type="submit" value="추가"/>
     </form>
   </div>
