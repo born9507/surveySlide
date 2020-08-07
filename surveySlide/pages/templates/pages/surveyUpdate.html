@@ -3,6 +3,9 @@
 {% load static %}
 {% block content %}
 <div class="surveyBox">
+  <span id="surveyBox_title">설문조사 수정</span>
+  <a href="/">홈으로</a>
+  <a href="/show/">이전 페이지</a>
 
   <h2>
     <form action="/edit/{{survey.id}}/" method="POST">
