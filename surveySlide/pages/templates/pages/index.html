@@ -4,20 +4,26 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="Questions">
-  {{ qid }}
-  <p>isDeleted, isCompleted: {{question.survey.isDeleted}}, {{question.survey.isCompleted}}</p>
 
+  {% if numQuestions == 0 %}
+    <div class="questionBox">질문이 없습니다</div> 
+  {% else %}
+    {% for question in questions%}
       <div class="questionBox">
         <div class="question">Q. {{ question.question_text }}</div>
         <div class="answerBox">
-          {% for c in question.choice_set.all%}
-            <div class="answer"><button class="header_button"><span>{{c.choice_text}}</span></button></div>
+          {% for choice in question.choice_set.all%}
+            <div class="answer"><button class="header_button"><span>{{choice.choice_text}}</span></button></div>
           {% endfor %}
         </div>
       </div>
-
-</div>
+    {% endfor %}
+  {% endif %}
+{% comment %} 
+<div class="Questions">
+  {{ qid }}
+  <p>isDeleted, isCompleted: {{question.survey.isDeleted}}, {{question.survey.isCompleted}}</p>
+</div> {% endcomment %}
 {%else%}
 
 <div style="border: 4px solid grey; border-radius: 3%;">
