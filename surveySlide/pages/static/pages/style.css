@@ -699,7 +699,7 @@ ul.price {
     position: relative;
     text-align: center;
     padding-top: 50px;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
     font-size: 14px;
     line-height: 160%;
     top: -20px;
@@ -830,6 +830,7 @@ ul.price {
     display: inline;
 }
 
+
 .surveyBox a {
     vertical-align: middle;
 }
@@ -841,4 +842,40 @@ ul.price {
 .surveyBox > ul {
     position: relative;
     top: 40px;
+}
+
+.choice {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(61, 158, 255);
+    position: relative;
+    margin: 0px auto;
+    width: 700px;
+    left: -50px;
+    color: white;
+}
+
+.questionBox_choices {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#surveyBox_boxBlue {
+    border-color: transparent;
+    font-size: 14px;
+}
+
+#surveyBox_surveySubmitBlue {
+    transform: none;
+    background-color: white;
+    width: 60px;
+    height: 28px;
+    border: none !important;
+    outline: none !important;
+    letter-spacing: 1px;
+    margin-left: 5px;
+    color: rgb(29, 150, 255);
+    font-weight: 400;
+    font-size: 15px;
+    vertical-align: middle;
 }
