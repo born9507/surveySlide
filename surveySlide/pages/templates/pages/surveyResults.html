@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>완료한 설문조사 목록</h1>
-<ul>
-  {% for survey in surveys%}
-    <form method="POST" action="/result/{{survey.id}}/">
-      {% csrf_token %}
-      <div class="answer"><button class="header_button"><span>{{survey.title}}</span></button></div>
-    </form>
-  {% endfor %}
-</ul>
-
+<div class="surveyBox">
+  <span id="surveyBox_title">나의 설문조사 결과</span>
+  <ul>
+    {% for survey in surveys%}
+      <li id="surveyRead_list">
+        <a id="surveyRead_content" href="/result/{{survey.id}}/">
+          {{survey.title}}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="surveyBox">
+  <p>설문조사가 보이지 않나요? 편집 페이지에서 제작 완료 했는지 확인하세요!</p>
+</div>
 {% endblock content%}
