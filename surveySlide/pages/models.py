@@ -12,12 +12,8 @@ class Survey(models.Model):
     total_reward = models.IntegerField(null=True)  
     isCompleted = models.BooleanField(default=False)
     isDeleted = models.BooleanField(default=False)
-    gender_filter1 = models.CharField(max_length=10, default="x")
-    gender_filter2 = models.CharField(max_length=10, default="y")
-    grade_filter1 = models.IntegerField(null=True, default=5)
-    grade_filter2 = models.IntegerField(null=True, default=6)
-    grade_filter3 = models.IntegerField(null=True, default=7)
-    grade_filter4 = models.IntegerField(null=True, default=8)
+    gender_filter = models.CharField(max_length=10, null=True)
+    grade_filter = models.IntegerField(null=True)
     # 제작 완료 됐는지를 알리는 요소가 필요함
     # 제작이 완료되지 않으면 설문조사가 배포되면 안되므로! 
 

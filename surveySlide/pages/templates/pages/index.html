@@ -44,10 +44,10 @@
       <div class="answerBox">
         <form method="POST" action="/account/firstsetting3/">
           {% csrf_token %}
-          <p><input name="grade" type="checkbox" value=1> 1학년 </p>
-          <p><input name="grade" type="checkbox" value=2> 2학년 </p>
-          <p><input name="grade" type="checkbox" value=3> 3학년 </p>
-          <p><input name="grade" type="checkbox" value=4> 4학년 </p>
+          <p><input name="grade" type="radio" value=1> 1학년 </p>
+          <p><input name="grade" type="radio" value=2> 2학년 </p>
+          <p><input name="grade" type="radio" value=3> 3학년 </p>
+          <p><input name="grade" type="radio" value=4> 4학년 </p>
           <br>
           <input type="submit">
         </form>
@@ -64,8 +64,8 @@
             <div class="answerBox">
                 <form method="POST" action="/account/firstsetting4/">
                     {% csrf_token %}
-                    <p><input name="gender" type="checkbox" value="남자"> 남자 </p>
-                    <p><input name="gender" type="checkbox" value="여자"> 여자 </p>
+                    <p><input name="gender" type="radio" value="남자"> 남자 </p>
+                    <p><input name="gender" type="radio" value="여자"> 여자 </p>
                     <br>
                     <input type="submit">
                 </form>
