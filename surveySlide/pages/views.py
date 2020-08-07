@@ -6,7 +6,9 @@ import random
 def index(request):
     user=request.user
     if user.is_authenticated:
-        questions = Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True).exclude(answered_users=request.user).exclude(survey__author=request.user)
+        grade=user.profile.grade
+        gender=user.profile.gender
+        questions = Question.objects.filter(survey__isCompleted=True).exclude(survey__isDeleted=True).exclude(answered_users=request.user).exclude(survey__author=request.user).filter(survey__grade_filter=grade).filter(survey__gender_filter=gender)
         numQuestions = questions.count()
         Answers = Answer.objects.all()
         reward=round(random.normalvariate(50,28))
@@ -22,7 +24,9 @@ def surveyCreate(request):
     if request.method == 'POST':
         title = request.POST['title']
         explanation=request.POST['explanation']
-        survey = Survey(title=title, author=request.user, isCompleted=False, explanation=explanation)
+        gender_filter=request.POST['gender_filter']
+        grade_filter=request.POST['grade_filter']
+        survey = Survey(title=title, author=request.user, isCompleted=False, explanation=explanation, gender_filter=gender_filter, grade_filter=grade_filter)
         survey.save()
         return render(request, 'pages/surveyUpdate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
     return render(request, 'pages/surveyCreate.html')
