@@ -47,5 +47,4 @@ class Result(models.Model):
 
 class Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    survey = models.ForeignKey(Survey, blank=True, null=True, on_delete=models.CASCADE)
     question =models.ForeignKey(Question,blank=True,null=True, on_delete=models.CASCADE)
