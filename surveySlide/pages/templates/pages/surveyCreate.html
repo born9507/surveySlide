@@ -13,12 +13,20 @@
   <form name="newSurvey" action="/new/" method="POST">
     {% csrf_token %}
     <p><label for="title">설문조사 제목을 입력하세요</label></p>
-    <p><input id="surveyBox_box" name="title" value="" oninvalid="alert('제목을 입력하세요');" required/></p>
+    <p><input id="surveyBox_box" name="title" value="" required/></p>
     <p><label for="explanation">설문조사에 대한 간략한 설명을 적으세요</label></p>
     <p><input name="explanation"/></p>
     <p><label for="explanation">설문 대상을 선택하세요</label></p>
-    <p><input type="radio" name="gender_filter" value="남자"> 남자 </input> &nbsp; <input type="radio" name="gender_filter" value="여자"> 여자 </input> </p> 
-    <p><input type="radio" name="grade_filter" value=1> 1학년 </input> &nbsp; <input type="radio" name="grade_filter" value=2> 2학년 </input>&nbsp; <input type="radio" name="grade_filter" value=3> 3학년 </input>&nbsp; <input type="radio" name="grade_filter" value=4> 4학년 </input></p> 
+    <p>
+      <input type="radio" name="gender_filter" value="남자" required /> 남자 </input> &nbsp; 
+      <input type="radio" name="gender_filter" value="여자" required /> 여자 </input> 
+    </p> 
+    <p>
+      <input type="radio" name="grade_filter" value=1 required /> 1학년 </input> &nbsp; 
+      <input type="radio" name="grade_filter" value=2 required /> 2학년 </input>&nbsp; 
+      <input type="radio" name="grade_filter" value=3 required /> 3학년 </input>&nbsp; 
+      <input type="radio" name="grade_filter" value=4 required /> 4학년 </input>
+    </p> 
     <p><input id="surveyBox_surveySubmit" type="submit" value="완료"/></p>
   </form>
 
