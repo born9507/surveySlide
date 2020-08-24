@@ -31,7 +31,7 @@ html {
     float: right;
     font-weight: 400;
     font-size: 14px;
-    margin-top: 40px;
+    margin-top: 35px;
     margin-right:200px;
     z-index: 5;
 }
@@ -282,7 +282,7 @@ input:hover{
 }
 
 .interviewer_image {
-    width: 400px;
+    width: 350px;
 }
 
 .interviewer_title {
