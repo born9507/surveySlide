@@ -2,12 +2,11 @@ from django.shortcuts import render, redirect
 from pages.models import Survey, Question, Choice, Answer, Result
 import random
 
-# Create your views here.
 def index(request):
-    user=request.user
+    user = request.user
     if user.is_authenticated:
-        grade=user.profile.grade
-        gender=user.profile.gender
+        grade = user.profile.grade
+        gender = user.profile.gender
         questions = (Question.objects
             .filter(survey__isCompleted=True)
             .exclude(survey__isDeleted=True)
@@ -19,21 +18,21 @@ def index(request):
         )
         numQuestions = questions.count()
         Answers = Answer.objects.all()
-        reward=round(random.normalvariate(50,28))
+        reward = round(random.normalvariate(50,28))
         if numQuestions == 0:
-            return render(request, 'pages/index.html', {'numQuestions':numQuestions, 'Answers':Answers})
+            return render(request, 'pages/index.html', {'numQuestions': numQuestions, 'Answers': Answers})
         else:
-            question = questions.order_by("?").first()  #랜덤하게 배열해서 첫번째
-            return render(request, 'pages/index.html', {'question':question, 'numQuestions':numQuestions,'reward':reward, 'Answers':Answers})
+            question = questions.order_by("?").first()  # 랜덤하게 배열해서 첫번째
+            return render(request, 'pages/index.html', {'question': question, 'numQuestions': numQuestions, 'reward': reward, 'Answers': Answers})
     else:
         return render(request, 'pages/index.html')
 
-def surveyCreate(request):
+def survey_create(request):
     if request.method == 'POST':
         title = request.POST['title']
-        explanation=request.POST['explanation']
-        gender_filter=request.POST['gender_filter']
-        grade_filter=request.POST['grade_filter']
+        explanation = request.POST['explanation']
+        gender_filter = request.POST['gender_filter']
+        grade_filter = request.POST['grade_filter']
         survey = (Survey(
             title=title, 
             author=request.user, 
@@ -46,11 +45,11 @@ def surveyCreate(request):
         return render(request, 'pages/surveyUpdate.html', {'survey':survey}) #여기서 해당 설문조사의 아이디를 넘겨주어야 한다.
     return render(request, 'pages/surveyCreate.html')
 
-def surveyRead(request):
+def survey_read(request):
     user = request.user
     return render(request, 'pages/surveyRead.html', {'user':user})
 
-def surveyUpdate(request, sid):
+def survey_update(request, sid):
     survey = Survey.objects.get(id=sid)
     survey.isCompleted = False #수정 누르면 다시 '작성중'으로 바뀌도록
     survey.save()
@@ -61,7 +60,7 @@ def surveyUpdate(request, sid):
         return render(request, 'pages/surveyUpdate.html', {'survey':survey})
     return render(request, 'pages/surveyUpdate.html', {'survey':survey})
         
-def surveyExpUpdate(request, sid):
+def survey_expUpdate(request, sid):
     survey = Survey.objects.get(id=sid)
     explanation = request.POST['explanation']
     survey.explanation = explanation
@@ -69,27 +68,27 @@ def surveyExpUpdate(request, sid):
     return render(request, 'pages/surveyUpdate.html', {'survey':survey})
     
 
-def surveyDelete(request, sid):
+def survey_delete(request, sid):
     # 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록 함수 구현하기! (데이터는 남아있도록)
     survey = Survey.objects.get(id=sid)
     survey.isDeleted = True
     survey.save()
     return redirect('/show/')
 
-def surveyComplete(request, sid):
+def survey_complete(request, sid):
     survey = Survey.objects.get(id=sid)
     survey.isCompleted = True
     survey.save()
     return redirect('/show/')
 
-def questionCreate(request, sid):
+def question_create(request, sid):
     survey = Survey.objects.get(id=sid)
     question_text = request.POST['question_text']
     question = Question(survey_id=sid, question_text=question_text)
     question.save()
     return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
-def questionUpdate(request, sid, qid):
+def question_update(request, sid, qid):
     survey = Survey.objects.get(id=sid)
     question = Question.objects.get(id=qid)
     question_text = request.POST['question_text']
@@ -98,14 +97,14 @@ def questionUpdate(request, sid, qid):
     return redirect('/edit/'+str(sid)+'/')
     # return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
-def questionDelete(request, sid, qid):
+def question_delete(request, sid, qid):
     survey = Survey.objects.get(id=sid)
     question = Question.objects.get(id=qid)
     question.delete()
     return redirect('/edit/'+str(sid)+'/')
     # return render(request, 'pages/surveyUpdate.html', {'survey':survey})
 
-def choiceCreate(request, sid, qid):
+def choice_create(request, sid, qid):
     survey = Survey.objects.get(id=sid)
     question = Question.objects.get(id=qid)
     choice_text = request.POST['choice_text']
@@ -113,7 +112,7 @@ def choiceCreate(request, sid, qid):
     choice.save()
     return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
 
-def choiceUpdate(request, sid, qid, cid):
+def choice_update(request, sid, qid, cid):
     choice = Choice.objects.get(id=cid)
     choice_text = request.POST['choice_text']
     choice.choice_text = choice_text
@@ -121,24 +120,24 @@ def choiceUpdate(request, sid, qid, cid):
     return redirect('/edit/'+str(sid)+'/')
     # return render(request, 'pages/surveyUpdate.html', {'survey':survey, 'question':question})
 
-def choiceDelete(request, sid, qid, cid):
+def choice_delete(request, sid, qid, cid):
     choice = Choice.objects.get(id=cid)
     choice.delete()
     return redirect('/edit/'+str(sid)+'/')
 
-def surveyResults(request):
+def survey_results(request):
     surveys= Survey.objects.filter(isCompleted=True).exclude(isDeleted=True).filter(author=request.user)
     return render(request, 'pages/surveyResults.html', {'surveys':surveys})
 
-def surveyResult(request, sid):
+def survey_result(request, sid):
     survey=Survey.objects.get(id=sid)
     results = Result.objects.filter(interviewer=request.user).filter(survey=survey)
     return render(request, 'pages/surveyResult.html', {'survey':survey, 'results':results})
 
-def pricePolicy(request):
+def price_policy(request):
     return render(request, 'pages/pricePolicy.html')
 
-def serviceIntro(request):
+def service_intro(request):
     return render(request, 'pages/serviceIntro.html')
 
 def answer(request, cid, reward):

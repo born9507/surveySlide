@@ -1,7 +1,7 @@
 $('#login-form').submit((event) => {
     event.preventDefault()
     $.ajax({
-        url: '/accounts/login/?next{{request.path}}',
+        url: '/account/login/?next{{request.path}}',
         method: 'POST',
         data: {
             login: $(`input#login-username`).val(),
