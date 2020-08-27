@@ -14,12 +14,12 @@
         <br>
         총 환전 포인트:  {{user.profile.changedpoint}}
         <br>                              
-        <form method="POST" action="/account/{{ user.id }}/charge/">
+        <form method="POST" action="/accounts/{{ user.id }}/charge/">
             {% csrf_token %}
             충전할 포인트:  <input id="forcharge" name="chargepoint" type="integer" placeholder="  금액을 입력하세요" default=0> <input id="forcharge_submit" type="submit" value="충전하기">
             <br>
         </form>
-        <form method="POST" action="/account/{{ user.id }}/change/">
+        <form method="POST" action="/accounts/{{ user.id }}/change/">
             {% csrf_token %}
             환전할 포인트:  <input id="forcharge" name="changepoint" type="integer" placeholder="  금액을 입력하세요" default=0> <input id="forcharge_submit"type="submit" value="환전하기">
             <br>

@@ -7,7 +7,7 @@
   <span id="surveyBox_title">당신의 설문조사를 제작하세요</span>
 
   <p id="surveyBox_content">안녕하세요! {{user.get_username}} 님!<br>당신의 현재 총 포인트: {{user.profile.point}}</p> 
-  <a id="surveyBox_pointCharge" href="/account/{{user.id}}/charge/">포인트 충전</a>
+  <a id="surveyBox_pointCharge" href="/accounts/{{user.id}}/charge/">포인트 충전</a>
 </div>
 <div class="surveyBox_surveyTitle">
   <form name="newSurvey" action="/new/" method="POST">

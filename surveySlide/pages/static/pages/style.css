@@ -508,7 +508,7 @@ ul.price {
     margin-top: 120px;
 }
 
-.myinfo {
+.profile {
     position: relative;
     margin: auto;
     margin-top: 200px;
@@ -522,7 +522,7 @@ ul.price {
     line-height: 160%;
 }
 
-.myinfo a {
+.profile a {
     text-decoration: none !important;
     position: relative;
     float: right;

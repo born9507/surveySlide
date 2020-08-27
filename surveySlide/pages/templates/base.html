@@ -30,8 +30,8 @@
         <img class="arrowDown" src="{% static "pages/imgs/arrowDown.png"%}"/>
         <ul class="additional_menus">
           <li><a href="/result/">설문 결과</a></li>  
-          <li><a href="/account/{{ user.id }}/myinfo">내 프로필</a></li>  
-          <li><a href="/account/{{ user.id }}/charge">충전/환전</a></li>  
+          <li><a href="/accounts/{{ user.id }}/profile">내 프로필</a></li>  
+          <li><a href="/accounts/{{ user.id }}/charge">충전/환전</a></li>  
           <li><a href="">설정</a></li>  
           <li><a id="logout" href="{% url 'logout'%}">로그아웃</a></li>  
         </ul> 
@@ -54,7 +54,7 @@
       {% endblock %}
     </div>
 
-    {% include 'accounts/login.html' %}
+    {% include 'account/login.html' %}
     <script src="{% static 'pages/modal.js' %}"></script>
     <script src="{% static 'pages/script.js' %}"></script>
   </body>

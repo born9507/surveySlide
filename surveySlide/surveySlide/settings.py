@@ -42,10 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pages',
-    'accounts',
+    'pages.apps.PagesConfig',
+    'accounts.apps.AccountsConfig',
 
-    #allouth
+    # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -130,9 +130,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'seminar', 'static'),) 
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'seminar', 'static'),
+]
 
 SITE_ID = 1
 ACCOUNT_LOGOUT_ON_GET = True

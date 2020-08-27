@@ -16,7 +16,7 @@
       {% comment %} <p>정확한 설문 참여를 위해 본인의 학교 정보를 입력해주세요</p> {% endcomment %}
       <div class="question">Q. 당신의 학교는 어디입니까? </div>
       <div class="answerBox">
-        <form style="margin-top: 10px;" method="POST" action="/account/firstsetting1/">
+        <form style="margin-top: 10px;" method="POST" action="/accounts/firstsetting1/">
           {% csrf_token %}
           <input name="college" type="text" placeholder="답변을 입력하세요" required /> 
           <br>
@@ -34,7 +34,7 @@
       {% comment %} <p>정확한 설문 참여를 위해 본인의 전공 정보를 입력해주세요</p> {% endcomment %}
       <div class="question">Q. 당신의 전공은 무엇입니까?</div>
       <div class="answerBox">
-        <form style="margin-top: 10px;" method="POST" action="/account/firstsetting2/">
+        <form style="margin-top: 10px;" method="POST" action="/accounts/firstsetting2/">
           {% csrf_token %}
           <input name="major" type="text" placeholder="답변을 입력하세요" required /> 
           <br>
@@ -50,7 +50,7 @@
     <div class="questionBox">
       <div class="question">Q. 당신은 몇 학년에 재학 중 입니까?</div>
       <div class="answerBox">
-        <form method="POST" action="/account/firstsetting3/">
+        <form method="POST" action="/accounts/firstsetting3/">
           {% csrf_token %}
           <p><input name="grade" type="radio" value=1 required /> 1학년 </p>
           <p><input name="grade" type="radio" value=2 required /> 2학년 </p>
@@ -71,7 +71,7 @@
     <div class="questionBox">
       <div class="question">Q. 당신의 성별을 선택해주세요</div>
       <div class="answerBox">
-        <form method="POST" action="/account/firstsetting4/">
+        <form method="POST" action="/accounts/firstsetting4/">
           {% csrf_token %}
           <p><input name="gender" type="radio" value="남자" required /> 남자 </p>
           <p><input name="gender" type="radio" value="여자" required /> 여자 </p>
