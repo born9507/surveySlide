@@ -10,7 +10,7 @@ from django.http import JsonResponse
 def signup(request):
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:
-            user=User.objects.create_user(username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'], first_name=request.POST['first_name'], last_name=request.POST['last_name'])
+            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'], email=request.POST['email'], first_name=request.POST['first_name'], last_name=request.POST['last_name'])
             auth.login(request,user)
             return render(request, 'pages/index.html')
     return render(request, 'pages/index.html')

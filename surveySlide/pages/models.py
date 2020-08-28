@@ -3,15 +3,13 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 import random
 
-# Create your models here.
-
 class Survey(models.Model):
     title = models.CharField(max_length=50)
     explanation = models.CharField(max_length=100, null=True)
-    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE) #유저가 탈퇴하면 누가 만든지는 삭제?
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE) # 유저가 탈퇴하면 누가 만든지는 삭제?
     total_reward = models.IntegerField(null=True)  
-    isCompleted = models.BooleanField(default=False)
-    isDeleted = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False)
+    is_deleted = models.BooleanField(default=False)
     gender_filter = models.CharField(max_length=10, null=True)
     grade_filter = models.IntegerField(null=True)
     # 제작 완료 됐는지를 알리는 요소가 필요함
@@ -27,8 +25,8 @@ class Survey(models.Model):
     def __str__(self):
         return self.title
 
-    ##지우는 게 불가능하게 만들자. 중요한 데이터들이므로
-    ##사용자가 설문을 지우면, 실제로는 지워지는 게 아니라 사용자에게 뜨지만 않도록 하자
+    # 지우는 게 불가능하게 만들자. 중요한 데이터들이므로
+    # 사용자가 설문을 지우면, 실제로는 지워지는 게 아니라 사용자에게 뜨지만 않도록 하자
 
 class Question(models.Model):
     survey = models.ForeignKey(Survey, null=False, on_delete=models.CASCADE)
@@ -38,7 +36,7 @@ class Question(models.Model):
 class Choice(models.Model):
     question = models.ForeignKey(Question, null=False, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=50)
-    choosed_users = models.ManyToManyField(User, blank=True, related_name='choose_choice', through='Answer')
+    chosen_users = models.ManyToManyField(User, blank=True, related_name='choose_choice', through='Answer')
 
 class Result(models.Model):
     interviewer = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name="interviewer")
@@ -50,6 +48,6 @@ class Result(models.Model):
 
 class Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    question =models.ForeignKey(Question,blank=True,null=True, on_delete=models.CASCADE)
-    choice =models.ForeignKey(Choice,blank=True,null=True, on_delete=models.CASCADE)
+    question =models.ForeignKey(Question,blank=True, null=True, on_delete=models.CASCADE)
+    choice = models.ForeignKey(Choice,blank=True, null=True, on_delete=models.CASCADE)
 
