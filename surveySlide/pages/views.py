@@ -8,8 +8,8 @@ def index(request):
         grade = user.profile.grade
         gender = user.profile.gender
         questions = (Question.objects
-            .filter(survey__isCompleted=True)
-            .exclude(survey__isDeleted=True)
+            .filter(survey__is_completed=True)
+            .exclude(survey__is_deleted=True)
             .exclude(answered_users=request.user)
             .exclude(survey__author=request.user)
             .exclude(choice=None)
@@ -36,7 +36,7 @@ def survey_create(request):
         survey = (Survey(
             title=title, 
             author=request.user, 
-            isCompleted=False, 
+            is_completed=False, 
             explanation=explanation, 
             gender_filter=gender_filter, 
             grade_filter=grade_filter
@@ -51,7 +51,7 @@ def survey_read(request):
 
 def survey_update(request, sid):
     survey = Survey.objects.get(id=sid)
-    survey.isCompleted = False #수정 누르면 다시 '작성중'으로 바뀌도록
+    survey.is_completed = False #수정 누르면 다시 '작성중'으로 바뀌도록
     survey.save()
     if request.method == 'POST':
         title = request.POST['title']
@@ -71,13 +71,13 @@ def survey_expUpdate(request, sid):
 def survey_delete(request, sid):
     # 실제로 설문조사를 삭제하지 않고 설문 시행자와 설문지의 연결관계만 끊도록 함수 구현하기! (데이터는 남아있도록)
     survey = Survey.objects.get(id=sid)
-    survey.isDeleted = True
+    survey.is_deleted = True
     survey.save()
     return redirect('/show/')
 
 def survey_complete(request, sid):
     survey = Survey.objects.get(id=sid)
-    survey.isCompleted = True
+    survey.is_completed = True
     survey.save()
     return redirect('/show/')
 
@@ -126,7 +126,7 @@ def choice_delete(request, sid, qid, cid):
     return redirect('/edit/'+str(sid)+'/')
 
 def survey_results(request):
-    surveys= Survey.objects.filter(isCompleted=True).exclude(isDeleted=True).filter(author=request.user)
+    surveys= Survey.objects.filter(is_completed=True).exclude(is_deleted=True).filter(author=request.user)
     return render(request, 'pages/surveyResults.html', {'surveys':surveys})
 
 def survey_result(request, sid):

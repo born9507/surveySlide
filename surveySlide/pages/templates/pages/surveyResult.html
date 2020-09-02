@@ -45,7 +45,7 @@
         <div class="questionBox" style="width:500px;">
           <h4> 질문: {{question.question_text}} </h4>
           {% for choice in question.choice_set.all %}
-            <p> {{choice.choice_text}}: {{choice.choosed_users.count}} 명</p>
+            <p> {{choice.choice_text}}: {{choice.chosen_users.count}} 명</p>
           {% endfor %}
         </div>  
       {% endfor %}
