@@ -22,7 +22,7 @@ class Survey(models.Model):
     
     def __str__(self):
         return self.title
-
+        
 class Question(models.Model):
     survey = models.ForeignKey(Survey, null=False, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=500 ,blank=False, null=False)
