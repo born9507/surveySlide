@@ -9,7 +9,7 @@ class Survey(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE) # 유저가 탈퇴하면 누가 만든지는 삭제?
     total_reward = models.IntegerField(null=True)  
     is_completed = models.BooleanField(default=False)
-    is_deleted = models.BooleanField(default=False)
+    is_closed = models.BooleanField(default=False)
     gender_filter = models.CharField(max_length=10, null=True) # 특정 성별 뿐 아니라 range로 묶으면 좋을 듯
     grade_filter = models.IntegerField(null=True) # 위와 마찬가지
 
@@ -22,7 +22,7 @@ class Survey(models.Model):
     
     def __str__(self):
         return self.title
-
+        
 class Question(models.Model):
     survey = models.ForeignKey(Survey, null=False, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=500 ,blank=False, null=False)

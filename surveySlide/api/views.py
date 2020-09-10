@@ -1,18 +1,45 @@
-from rest_framework import viewsets
-from django.contrib.auth.models import User
-from .models import Survey, Question, Choice, Result, Answer
-from .serializers import UserSerializer, SurveySerializer
+from rest_framework.response import Response
+from rest_framework import generics
+from rest_framework import status
 from rest_framework import permissions
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated, ]
+from django.contrib.auth.models import User
+from django.http import Http404
 
-class SurveyView(viewsets.ModelViewSet):
-    queryset = Survey.objects.all()
+from .models import Survey, Question, Choice, Result, Answer
+from .serializers import SurveySerializer, QuestionSerializer, ChoiceSerializer
+import random
+
+class SurveyList(generics.ListCreateAPIView):
     serializer_class = SurveySerializer
-    permission_classes = [permissions.IsAuthenticated, ]
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    # overrides get method
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_authenticated:
+            gender = user.profile.gender
+            grade = user.profile.grade
+            queryset = Survey.objects.filter(
+                is_completed=True,
+                is_closed=False,
+                gender_filter=gender,
+                grade_filter=grade
+            ).exclude(
+                author=user
+            )
+            return queryset
+        else:
+            print('no user')
+            queryset = Survey.objects.all()   
+            return queryset
+
+    def post(self, request, format=None):
+        serializer = SurveySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            print('invalid request')
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+

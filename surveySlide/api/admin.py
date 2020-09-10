@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Survey
+
+class SurveyAdmin(admin.ModelAdmin):
+    fields = '__all__'
+
+admin.site.register(Survey, )
